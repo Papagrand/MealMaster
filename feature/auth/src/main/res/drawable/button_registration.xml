@@ -1,0 +1,11 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- Задаем цвет обводки -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/button_light_stroke" />
+
+    <solid android:color="@color/button_light" />
+    <corners
+        android:radius="128dp" />
+</shape>

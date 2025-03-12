@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/foursScrollView"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.profile_create.fourth_step.CreateProfileFourthStepFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineUpperCreateProfileText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <TextView
+            android:id="@+id/createProfileText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/exo_bold"
+            android:gravity="center_vertical"
+            android:text="@string/createProfile"
+            android:textColor="?attr/colorTertiary"
+            app:autoSizePresetSizes="@array/autosize_text_sizes_24"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineUnderCreateProfileTextStep4"
+            app:layout_constraintEnd_toStartOf="@id/stepText"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toTopOf="@id/guidelineUpperCreateProfileText" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/PickActivityLevelText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/exo_bold"
+            android:text="@string/pickGoalWeightAndEndData"
+            android:textColor="?attr/colorSecondary"
+            android:autoSizeTextType="uniform"
+            android:autoSizePresetSizes="@array/autosize_text_sizes_16"
+            app:layout_constraintBottom_toTopOf="@id/guidelineUnderActivityText"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guidelineUnderCreateProfileTextStep4" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineUnderActivityText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+
+        <TextView
+            android:id="@+id/stepText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoSizePresetSizes="@array/autosize_text_sizes_16"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/exo_bold"
+            android:text="Шаг 4"
+            android:textColor="?attr/colorSecondary"
+            app:layout_constraintBottom_toTopOf="@id/guidelineUnderCreateProfileTextStep4"
+            app:layout_constraintRight_toRightOf="@id/guidelineRight" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineUnderCreateProfileTextStep4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/goal_weight_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="goal_weight_edittext"
+            app:layout_constraintBottom_toTopOf="@id/end_diet_group"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintTop_toTopOf="@id/guidelineUnderCreateProfileTextStep4" />
+
+        <EditText
+            android:id="@+id/goal_weight_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:autoSizePresetSizes="@array/autosize_text_sizes_24"
+            android:autoSizeTextType="uniform"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/exo_regular"
+            android:hint="Конечный вес"
+            android:inputType="numberDecimal"
+            android:textColor="?attr/colorTertiary"
+            android:textColorHint="?attr/colorTertiary"
+            app:layout_constraintBottom_toBottomOf="@+id/goal_weight_group"
+            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/goal_weight_group"
+            app:layout_constraintTop_toTopOf="@+id/goal_weight_group" />
+
+        <ImageView
+            android:id="@+id/goal_weight_underline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/drawline_auth"
+            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/goal_weight_group"
+            app:layout_constraintTop_toBottomOf="@id/goal_weight_edittext" />
+
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/end_diet_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="end_diet_textview"
+            app:layout_constraintBottom_toBottomOf="@+id/guidelineHalfVertical"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintTop_toBottomOf="@id/goal_weight_group" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/end_diet_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginStart="5dp"
+            android:autoSizeTextType="uniform"
+            android:autoSizePresetSizes="@array/autosize_text_sizes_24"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/exo_regular"
+            android:text="Дата окончания диеты"
+            android:textColor="?attr/colorTertiary"
+            android:textColorHint="?attr/colorTertiary"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/end_diet_group"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/end_diet_group"
+            app:layout_constraintTop_toTopOf="@+id/end_diet_group" />
+
+
+        <ImageView
+            android:id="@+id/second_end_diet_underline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/drawline_auth"
+            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/end_diet_group"
+            app:layout_constraintTop_toBottomOf="@id/end_diet_textview" />
+
+
+
+        <ImageButton
+            android:id="@+id/go_to_step_two"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_light_purple_selector"
+            android:clickable="true"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guidelineBottom" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_bold"
+            android:text="Далее"
+            android:textColor="@color/white"
+            android:textSize="@dimen/top_strings_size_16"
+            app:layout_constraintBottom_toBottomOf="@+id/go_to_step_two"
+            app:layout_constraintLeft_toLeftOf="@+id/go_to_step_two"
+            app:layout_constraintRight_toRightOf="@+id/go_to_step_two"
+            app:layout_constraintTop_toTopOf="@+id/go_to_step_two" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineHalfVertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

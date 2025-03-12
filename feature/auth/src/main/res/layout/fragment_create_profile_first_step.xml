@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.profile_create.first_step.CreateProfileFirstStepFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineUpperCreateProfileText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <TextView
+            android:id="@+id/createProfileText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/exo_bold"
+            android:gravity="center_vertical"
+            android:text="@string/createProfile"
+            android:textColor="?attr/colorTertiary"
+            app:autoSizePresetSizes="@array/autosize_text_sizes_24"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineUnderCreateProfileText"
+            app:layout_constraintEnd_toStartOf="@id/stepText"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toTopOf="@id/guidelineUpperCreateProfileText" />
+
+
+        <TextView
+            android:id="@+id/stepText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoSizePresetSizes="@array/autosize_text_sizes_16"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/exo_bold"
+            android:text="Шаг 1"
+            android:textColor="?attr/colorSecondary"
+            app:layout_constraintBottom_toTopOf="@id/guidelineUnderCreateProfileText"
+            app:layout_constraintRight_toRightOf="@id/guidelineRight" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineUnderCreateProfileText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/name_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="name_edittext"
+            app:layout_constraintBottom_toTopOf="@id/second_name_group"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintTop_toTopOf="@id/guidelineUnderCreateProfileText" />
+
+        <EditText
+            android:id="@+id/name_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:autoSizePresetSizes="@array/autosize_text_sizes_16"
+            android:autoSizeTextType="uniform"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/exo_regular"
+            android:hint="Имя"
+            android:textColor="?attr/colorTertiary"
+            android:textColorHint="?attr/colorTertiary"
+            app:layout_constraintBottom_toBottomOf="@+id/name_group"
+            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/name_group"
+            app:layout_constraintTop_toTopOf="@+id/name_group" />
+
+        <ImageView
+            android:id="@+id/name_underline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/drawline_auth"
+            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/name_group"
+            app:layout_constraintTop_toBottomOf="@id/name_edittext" />
+
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/second_name_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="second_name_edittext"
+            app:layout_constraintBottom_toTopOf="@+id/height_group"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintTop_toBottomOf="@id/name_group" />
+
+        <EditText
+            android:id="@+id/second_name_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:autoSizePresetSizes="@array/autosize_text_sizes_16"
+            android:autoSizeTextType="uniform"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/exo_regular"
+            android:hint="Фамилия"
+            android:textColor="?attr/colorTertiary"
+            android:textColorHint="?attr/colorTertiary"
+            app:layout_constraintBottom_toBottomOf="@+id/second_name_group"
+            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/second_name_group"
+            app:layout_constraintTop_toTopOf="@+id/second_name_group" />
+
+        <ImageView
+            android:id="@+id/second_name_underline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/drawline_auth"
+            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/second_name_group"
+            app:layout_constraintTop_toBottomOf="@id/second_name_edittext" />
+
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/height_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="height_edittext"
+            app:layout_constraintBottom_toTopOf="@id/weight_group"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintTop_toBottomOf="@id/second_name_group" />
+
+        <EditText
+            android:id="@+id/height_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:autoSizePresetSizes="@array/autosize_text_sizes_16"
+            android:autoSizeTextType="uniform"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/exo_regular"
+            android:hint="Рост"
+            android:textColor="?attr/colorTertiary"
+            android:textColorHint="?attr/colorTertiary"
+            app:layout_constraintBottom_toBottomOf="@id/height_group"
+            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/height_group"
+            app:layout_constraintTop_toTopOf="@id/height_group" />
+
+        <ImageView
+            android:id="@+id/height_underline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/drawline_auth"
+            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/height_group"
+            app:layout_constraintTop_toBottomOf="@id/height_edittext" />
+
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/weight_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="weight_edittext"
+            app:layout_constraintBottom_toTopOf="@id/age_group"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintTop_toBottomOf="@id/height_group" />
+
+        <EditText
+            android:id="@+id/weight_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:autoSizePresetSizes="@array/autosize_text_sizes_16"
+            android:autoSizeTextType="uniform"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/exo_regular"
+            android:hint="Вес"
+            android:textColor="?attr/colorTertiary"
+            android:textColorHint="?attr/colorTertiary"
+            app:layout_constraintBottom_toBottomOf="@id/weight_group"
+            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/weight_group"
+            app:layout_constraintTop_toTopOf="@id/weight_group" />
+
+        <ImageView
+            android:id="@+id/weight_underline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/drawline_auth"
+            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/weight_group"
+            app:layout_constraintTop_toBottomOf="@id/weight_edittext" />
+
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/age_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="age_edittext"
+            app:layout_constraintBottom_toTopOf="@id/gender_group"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintTop_toBottomOf="@id/weight_group" />
+
+        <EditText
+            android:id="@+id/age_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:autoSizePresetSizes="@array/autosize_text_sizes_16"
+            android:autoSizeTextType="uniform"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/exo_regular"
+            android:hint="Возраст"
+            android:textColor="?attr/colorTertiary"
+            android:textColorHint="?attr/colorTertiary"
+            app:layout_constraintBottom_toBottomOf="@id/age_group"
+            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/age_group"
+            app:layout_constraintTop_toTopOf="@id/age_group" />
+
+        <ImageView
+            android:id="@+id/age_underline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/drawline_auth"
+            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/age_group"
+            app:layout_constraintTop_toBottomOf="@id/age_edittext" />
+
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/gender_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="gender_edittext"
+            app:layout_constraintBottom_toTopOf="@id/guidelineBottom"
+            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintTop_toBottomOf="@id/age_group" />
+
+        <EditText
+            android:id="@+id/gender_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:autoSizePresetSizes="@array/autosize_text_sizes_16"
+            android:autoSizeTextType="uniform"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/exo_regular"
+            android:hint="Пол"
+            android:textColor="?attr/colorTertiary"
+            android:textColorHint="?attr/colorTertiary"
+            app:layout_constraintBottom_toBottomOf="@id/gender_group"
+            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/gender_group"
+            app:layout_constraintTop_toTopOf="@id/gender_group" />
+
+        <ImageView
+            android:id="@+id/gender_underline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/drawline_auth"
+            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
+            app:layout_constraintRight_toRightOf="@id/gender_group"
+            app:layout_constraintTop_toBottomOf="@id/gender_edittext" />
+
+
+        <ImageButton
+            android:id="@+id/go_to_step_two"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_light_purple_selector"
+            android:clickable="true"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guidelineBottom" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_bold"
+            android:text="Далее"
+            android:textColor="@color/white"
+            android:textSize="@dimen/top_strings_size_16"
+            app:layout_constraintBottom_toBottomOf="@+id/go_to_step_two"
+            app:layout_constraintLeft_toLeftOf="@+id/go_to_step_two"
+            app:layout_constraintRight_toRightOf="@+id/go_to_step_two"
+            app:layout_constraintTop_toTopOf="@+id/go_to_step_two" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

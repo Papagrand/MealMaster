@@ -1,0 +1,236 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.profile_create.third_step.CreateProfileThirdStepFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineUpperCreateProfileText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/createProfileText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/exo_bold"
+            android:text="@string/createProfile"
+            android:textColor="?attr/colorTertiary"
+            android:gravity="center_vertical"
+            app:autoSizeTextType="uniform"
+            app:autoSizePresetSizes="@array/autosize_text_sizes_24"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineUnderCreateProfileTextStep2"
+            app:layout_constraintEnd_toStartOf="@id/stepText"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toTopOf="@id/guidelineUpperCreateProfileText" />
+
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/stepText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_bold"
+            android:text="Шаг 3"
+            android:textColor="?attr/colorSecondary"
+            android:autoSizeTextType="uniform"
+            android:autoSizePresetSizes="@array/autosize_text_sizes_16"
+            app:layout_constraintBottom_toTopOf="@id/guidelineUnderCreateProfileTextStep2"
+            app:layout_constraintRight_toRightOf="@id/guidelineRight" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineUnderCreateProfileTextStep2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/PickgoalLevelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_bold"
+            android:text="@string/pickGoal"
+            android:textColor="?attr/colorSecondary"
+            android:autoSizeTextType="uniform"
+            android:autoSizePresetSizes="@array/autosize_text_sizes_16"
+            app:layout_constraintBottom_toTopOf="@id/guidelineUndergoalText"
+            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/guidelineUnderCreateProfileTextStep2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineUndergoalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+
+        <worker8.com.github.radiogroupplus.RadioGroupPlus
+            android:id="@+id/radioGroupGoal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/guidelineUndergoalText"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom">
+            <!-- Уровень 1 -->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/item_loss"
+                    layout="@layout/item_diet_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:tag="loss"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/loss_radio_button"
+                    app:layout_constraintBottom_toTopOf="@+id/item_gain"
+                    />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/loss_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="?attr/colorTertiary"
+                    android:button="@drawable/custom_radio_button"
+                    android:minWidth="0dp"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/item_loss"
+                    app:layout_constraintTop_toTopOf="@id/item_loss"
+                    app:layout_constraintBottom_toBottomOf="@id/item_loss"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+
+                <include
+                    android:id="@+id/item_gain"
+                    layout="@layout/item_diet_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:tag="gain"
+                    app:layout_constraintTop_toBottomOf="@+id/item_loss"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/gain_radio_button"
+                    app:layout_constraintBottom_toTopOf="@id/item_maintenance"
+                    />
+
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/gain_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="?attr/colorTertiary"
+                    android:button="@drawable/custom_radio_button"
+                    android:minWidth="0dp"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/item_gain"
+                    app:layout_constraintTop_toTopOf="@id/item_gain"
+                    app:layout_constraintBottom_toBottomOf="@id/item_gain"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <include
+                    android:id="@+id/item_maintenance"
+                    layout="@layout/item_diet_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:tag="maintenance"
+                    app:layout_constraintTop_toBottomOf="@+id/item_gain"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/maintenance_radio_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/maintenance_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="?attr/colorTertiary"
+                    android:button="@drawable/custom_radio_button"
+                    android:minWidth="0dp"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/item_maintenance"
+                    app:layout_constraintTop_toTopOf="@id/item_maintenance"
+                    app:layout_constraintBottom_toBottomOf="@id/item_maintenance"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </worker8.com.github.radiogroupplus.RadioGroupPlus>
+
+
+        <ImageButton
+            android:id="@+id/go_to_step_four"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_light_purple_selector"
+            android:clickable="true"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guidelineBottom"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_bold"
+            android:text="Далее"
+            android:textColor="@color/white"
+            android:textSize="@dimen/top_strings_size_16"
+            app:layout_constraintBottom_toBottomOf="@+id/go_to_step_four"
+            app:layout_constraintLeft_toLeftOf="@+id/go_to_step_four"
+            app:layout_constraintRight_toRightOf="@+id/go_to_step_four"
+            app:layout_constraintTop_toTopOf="@+id/go_to_step_four" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

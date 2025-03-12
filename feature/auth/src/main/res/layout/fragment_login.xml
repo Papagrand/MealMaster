@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/mealMasterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/exo_bold"
+        android:text="@string/app_name"
+        android:shadowColor="?attr/colorTertiary"
+        android:shadowRadius="5"
+        android:textColor="?attr/colorTertiary"
+        android:textSize="@dimen/most_high_textSize_42"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/authorizationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/exo_bold"
+        android:text="@string/Login"
+        android:textColor="?attr/colorSecondary"
+        android:textSize="@dimen/normal_text_size_24"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mealMasterText" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/login_group"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="35dp"
+        app:constraint_referenced_ids="email_image_view,login_edittext"
+        app:layout_constraintBottom_toTopOf="@id/password_group"
+        app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+        app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+        app:layout_constraintTop_toBottomOf="@+id/authorizationText" />
+
+    <ImageView
+        android:id="@+id/email_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/user"
+        app:layout_constraintBottom_toBottomOf="@+id/login_group"
+        app:layout_constraintLeft_toLeftOf="@+id/login_group"
+        app:layout_constraintTop_toTopOf="@+id/login_group" />
+
+    <EditText
+        android:id="@+id/login_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:background="@null"
+        android:hint="Логин"
+        android:textColorHint="?attr/colorTertiary"
+        android:fontFamily="@font/exo_regular"
+        app:layout_constraintBottom_toBottomOf="@+id/login_group"
+        app:layout_constraintLeft_toRightOf="@+id/email_image_view"
+        app:layout_constraintRight_toRightOf="@id/login_group"
+        app:layout_constraintTop_toTopOf="@+id/login_group" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/drawline_auth"
+        app:layout_constraintLeft_toRightOf="@id/email_image_view"
+        app:layout_constraintRight_toRightOf="@id/login_group"
+        app:layout_constraintTop_toBottomOf="@id/login_edittext" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/password_group"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="password_image_view,password_edittext, "
+        app:layout_constraintBottom_toTopOf="@id/guideline7"
+        app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
+        app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+        app:layout_constraintTop_toBottomOf="@+id/login_group" />
+
+    <ImageView
+        android:id="@+id/password_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/password"
+        app:layout_constraintBottom_toBottomOf="@+id/password_group"
+        app:layout_constraintLeft_toLeftOf="@+id/password_group"
+        app:layout_constraintTop_toTopOf="@+id/password_group" />
+
+    <EditText
+        android:id="@+id/password_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:background="@null"
+        android:inputType="textPassword"
+        android:hint="Пароль"
+        android:fontFamily="@font/exo_regular"
+        android:textColorHint="?attr/colorTertiary"
+        app:layout_constraintBottom_toBottomOf="@+id/password_group"
+        app:layout_constraintLeft_toRightOf="@+id/password_image_view"
+        app:layout_constraintRight_toRightOf="@id/password_group"
+        app:layout_constraintTop_toTopOf="@+id/password_group" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/drawline_auth"
+        app:layout_constraintLeft_toRightOf="@id/password_image_view"
+        app:layout_constraintRight_toRightOf="@id/password_group"
+        app:layout_constraintTop_toBottomOf="@id/password_edittext" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <ImageButton
+        android:id="@+id/button_auth"
+        android:layout_width="250dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_login"
+        app:layout_constraintBottom_toTopOf="@id/button_registration_in_auth"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:clickable="true"
+        android:text="Войти"
+        android:fontFamily="@font/exo_regular"
+        android:textColor="@color/white"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineUnderData" />
+
+    <ImageButton
+        android:id="@+id/button_registration_in_auth"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_registration"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/white"
+        android:clickable="true"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_auth"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="@+id/button_auth"
+        app:layout_constraintTop_toTopOf="@+id/button_auth"
+        app:layout_constraintBottom_toBottomOf="@+id/button_auth"
+        app:layout_constraintLeft_toLeftOf="@+id/button_auth"
+        android:fontFamily="@font/exo_bold"
+        android:text="Войти"
+        android:textSize="@dimen/top_strings_size_16"
+        android:textColor="@color/white"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="@+id/button_registration_in_auth"
+        app:layout_constraintTop_toTopOf="@+id/button_registration_in_auth"
+        app:layout_constraintBottom_toBottomOf="@+id/button_registration_in_auth"
+        app:layout_constraintLeft_toLeftOf="@+id/button_registration_in_auth"
+        android:fontFamily="@font/exo_bold"
+        android:text="Регистрация"
+        android:textSize="@dimen/top_strings_size_16"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/forgotPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_bold"
+        android:text="@string/forgot_password"
+        android:textColor="?attr/colorTertiary"
+        android:textSize="@dimen/top_strings_size_16"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineUnderData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

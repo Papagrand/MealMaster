@@ -1,0 +1,11 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- Задаем цвет обводки -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/not_full_status_bar" />
+
+    <solid android:color="@color/button_and_slider_color" />
+    <corners
+        android:radius="128dp" />
+</shape>
