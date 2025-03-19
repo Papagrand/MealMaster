@@ -10,8 +10,8 @@ internal interface RegisterComponent {
 
     @Component.Builder
     interface Builder {
-        fun deps(registrationDeps: RegistrationDeps):Builder
-        fun build():RegisterComponent
+        fun deps(registrationDeps: RegistrationDeps): Builder
+        fun build(): RegisterComponent
     }
 }
 

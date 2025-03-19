@@ -38,6 +38,12 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.security:security-crypto:1.1.0-alpha03"){
+        isTransitive = false
+    }
+    implementation ("com.google.crypto.tink:tink-android:1.6.1"){
+        isTransitive = false
+    }
     implementation(libs.bundles.navigation)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -4,11 +4,11 @@
         <item name="android:windowBackground">@color/dark_background_color</item>
         <item name="colorPrimary">@color/dark_main_background_elements</item>
         <item name="colorSecondary">@color/not_full_status_bar</item>
-        <item name="colorTertiary">@color/dark_full_status_bar_purple</item>
-        <item name="android:textColor">@color/light_background_color</item>
+        <item name="colorTertiary">@color/foreground_text_purple</item>
+        <item name="android:textColor">@color/light_main_background_elements</item>
         <item name="colorPrimaryVariant">@color/dark_water_and_products_buttons</item>
         <item name="colorSecondaryVariant">@color/not_full_circle_diagram_and_center_circle_color</item>
-        <item name="colorTertiaryFixed">@color/light_water_and_products_buttons</item>
+        <item name="colorTertiaryFixed">@color/dark_water_and_products_buttons</item>
     </style>
 
 </resources>

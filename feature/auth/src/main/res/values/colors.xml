@@ -6,16 +6,18 @@
     <color name="light_background_color">#FFEDF5</color>
     <color name="dark_background_color">#191C1E</color>
 
-    <color name="light_water_and_products_buttons">#C1E8FF</color>
+    <color name="light_water_and_products_buttons">#B4D2E7</color>
     <color name="dark_water_and_products_buttons">#006688</color>
 
-    <color name="light_main_background_elements">#E5DEFF</color>
+    <color name="light_main_background_elements">#CECBE6</color>
     <color name="dark_main_background_elements">#5F5A7D</color>
 
     <color name="not_full_status_bar">#ADA5DC</color>
 
     <color name="light_full_status_bar_purple">#5F5A7D</color>
     <color name="dark_full_status_bar_purple">#E5DEFF</color>
+
+    <color name="foreground_text_purple">#5F5A7D</color>
 
     <color name="button_and_slider_color">#5F5A7D</color>
 

@@ -12,9 +12,9 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/exo_bold"
         android:text="@string/app_name"
-        android:shadowColor="?attr/colorTertiary"
+        android:shadowColor="?attr/android:textColor"
         android:shadowRadius="5"
-        android:textColor="?attr/colorTertiary"
+        android:textColor="?attr/android:textColor"
         android:textSize="@dimen/most_high_textSize_42"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -60,7 +60,8 @@
         android:layout_marginStart="5dp"
         android:background="@null"
         android:hint="Логин"
-        android:textColorHint="?attr/colorTertiary"
+        android:textColorHint="?attr/android:textColor"
+        android:textColor="?attr/android:textColor"
         android:fontFamily="@font/exo_regular"
         app:layout_constraintBottom_toBottomOf="@+id/login_group"
         app:layout_constraintLeft_toRightOf="@+id/email_image_view"
@@ -68,6 +69,7 @@
         app:layout_constraintTop_toTopOf="@+id/login_group" />
 
     <ImageView
+        android:id="@+id/login_auth_underline"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -76,6 +78,17 @@
         app:layout_constraintLeft_toRightOf="@id/email_image_view"
         app:layout_constraintRight_toRightOf="@id/login_group"
         app:layout_constraintTop_toBottomOf="@id/login_edittext" />
+
+    <TextView
+        android:id="@+id/login_not_found_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_regular"
+        android:textColorHint="?attr/colorError"
+        app:layout_constraintTop_toBottomOf="@id/login_auth_underline"
+        app:layout_constraintLeft_toLeftOf="@id/login_edittext"
+        android:visibility="invisible"
+        />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/password_group"
@@ -105,13 +118,15 @@
         android:inputType="textPassword"
         android:hint="Пароль"
         android:fontFamily="@font/exo_regular"
-        android:textColorHint="?attr/colorTertiary"
+        android:textColorHint="?attr/android:textColor"
+        android:textColor="?attr/android:textColor"
         app:layout_constraintBottom_toBottomOf="@+id/password_group"
         app:layout_constraintLeft_toRightOf="@+id/password_image_view"
         app:layout_constraintRight_toRightOf="@id/password_group"
         app:layout_constraintTop_toTopOf="@+id/password_group" />
 
     <ImageView
+        android:id="@+id/password_auth_underline"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -120,6 +135,17 @@
         app:layout_constraintLeft_toRightOf="@id/password_image_view"
         app:layout_constraintRight_toRightOf="@id/password_group"
         app:layout_constraintTop_toBottomOf="@id/password_edittext" />
+
+    <TextView
+        android:id="@+id/password_is_empty_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_regular"
+        android:textColorHint="?attr/colorError"
+        app:layout_constraintTop_toBottomOf="@id/password_auth_underline"
+        app:layout_constraintStart_toStartOf="@id/password_edittext"
+        android:visibility="invisible"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineLeft"
@@ -135,58 +161,39 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.9" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
+        style="@style/DarkPurpleMaterialButton"
         android:id="@+id/button_auth"
-        android:layout_width="250dp"
-        android:layout_height="0dp"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
-        android:background="@drawable/button_login"
         app:layout_constraintBottom_toTopOf="@id/button_registration_in_auth"
         app:layout_constraintLeft_toLeftOf="parent"
         android:clickable="true"
         android:text="Войти"
+        android:textSize="@dimen/top_strings_size_16"
         android:fontFamily="@font/exo_regular"
         android:textColor="@color/white"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guidelineUnderData" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_registration_in_auth"
-        android:layout_width="200dp"
-        android:layout_height="0dp"
+        style="@style/LightPurpleMaterialButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
-        android:background="@drawable/button_registration"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:textColor="@color/white"
         android:clickable="true"
-        app:layout_constraintRight_toRightOf="parent"
+        android:text="Регистрация"
+        android:fontFamily="@font/exo_regular"
+        android:textSize="@dimen/top_strings_size_16"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_auth"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="@+id/button_auth"
-        app:layout_constraintTop_toTopOf="@+id/button_auth"
-        app:layout_constraintBottom_toBottomOf="@+id/button_auth"
-        app:layout_constraintLeft_toLeftOf="@+id/button_auth"
-        android:fontFamily="@font/exo_bold"
-        android:text="Войти"
-        android:textSize="@dimen/top_strings_size_16"
-        android:textColor="@color/white"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="@+id/button_registration_in_auth"
-        app:layout_constraintTop_toTopOf="@+id/button_registration_in_auth"
-        app:layout_constraintBottom_toBottomOf="@+id/button_registration_in_auth"
-        app:layout_constraintLeft_toLeftOf="@+id/button_registration_in_auth"
-        android:fontFamily="@font/exo_bold"
-        android:text="Регистрация"
-        android:textSize="@dimen/top_strings_size_16"
-        android:textColor="@color/white"
-        />
 
     <TextView
         android:id="@+id/forgotPasswordText"
@@ -194,7 +201,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_bold"
         android:text="@string/forgot_password"
-        android:textColor="?attr/colorTertiary"
+        android:textColor="?attr/android:textColor"
         android:textSize="@dimen/top_strings_size_16"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

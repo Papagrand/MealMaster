@@ -52,6 +52,7 @@ dependencies {
     implementation(project(":feature:meal"))
     implementation(project(":feature:profile"))
     implementation(project(":feature:recipes"))
+    implementation(project(":feature:splash"))
 
 
     implementation(libs.okHttp3)

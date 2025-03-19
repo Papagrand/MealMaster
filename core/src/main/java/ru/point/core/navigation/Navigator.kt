@@ -4,8 +4,12 @@ interface Navigator {
     fun popBackStack()
     fun fromLoginFragmentToRegisterFragment()
     fun fromRegisterFragmentToLoginFragment()
-    fun fromLoginFragmentToCreateProfileFirstStepFragment()
+    fun fromLoginFragmentToOnboardingFragment()
     fun fromCreateProfileFirstStepFragmentToCreateProfileSecondStepFragment()
     fun fromCreateProfileSecondStepFragmentToCreateProfileThirdStepFragment()
     fun fromCreateProfileThirdStepFragmentToCreateProfileFourthStepFragment()
+    fun fromLoginFragmentToHomeProgressFragment()
+    fun fromSplashFragmentToLoginFragment()
+    fun fromSplashFragmentToOnboardingFragment()
+    fun fromSplashFragmentToHomeProgressFragment()
 }

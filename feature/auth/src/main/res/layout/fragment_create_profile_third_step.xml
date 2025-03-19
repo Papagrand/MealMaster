@@ -23,7 +23,7 @@
             android:layout_height="0dp"
             android:fontFamily="@font/exo_bold"
             android:text="@string/createProfile"
-            android:textColor="?attr/colorTertiary"
+            android:textColor="?attr/android:textColor"
             android:gravity="center_vertical"
             app:autoSizeTextType="uniform"
             app:autoSizePresetSizes="@array/autosize_text_sizes_24"
@@ -44,7 +44,7 @@
             android:autoSizeTextType="uniform"
             android:autoSizePresetSizes="@array/autosize_text_sizes_16"
             app:layout_constraintBottom_toTopOf="@id/guidelineUnderCreateProfileTextStep2"
-            app:layout_constraintRight_toRightOf="@id/guidelineRight" />
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineUnderCreateProfileTextStep2"
@@ -64,7 +64,7 @@
             android:autoSizeTextType="uniform"
             android:autoSizePresetSizes="@array/autosize_text_sizes_16"
             app:layout_constraintBottom_toTopOf="@id/guidelineUndergoalText"
-            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
+            app:layout_constraintStart_toEndOf="@id/guidelineLeft"
             app:layout_constraintTop_toBottomOf="@id/guidelineUnderCreateProfileTextStep2" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -183,17 +183,20 @@
         </worker8.com.github.radiogroupplus.RadioGroupPlus>
 
 
-        <ImageButton
-            android:id="@+id/go_to_step_four"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:background="@drawable/button_light_purple_selector"
-            android:clickable="true"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guidelineBottom"/>
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/go_to_step_four"-->
+<!--            style="@style/LightPurpleMaterialButton"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:clickable="true"-->
+<!--            android:text="Далее"-->
+<!--            android:textSize="@dimen/top_strings_size_16"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:fontFamily="@font/exo_regular"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/guidelineBottom"/>-->
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineBottom"
@@ -201,18 +204,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.85" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/exo_bold"
-            android:text="Далее"
-            android:textColor="@color/white"
-            android:textSize="@dimen/top_strings_size_16"
-            app:layout_constraintBottom_toBottomOf="@+id/go_to_step_four"
-            app:layout_constraintLeft_toLeftOf="@+id/go_to_step_four"
-            app:layout_constraintRight_toRightOf="@+id/go_to_step_four"
-            app:layout_constraintTop_toTopOf="@+id/go_to_step_four" />
 
 
         <androidx.constraintlayout.widget.Guideline

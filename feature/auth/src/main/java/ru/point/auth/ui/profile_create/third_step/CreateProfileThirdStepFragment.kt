@@ -8,13 +8,20 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.activityViewModels
 import ru.point.auth.R
 import ru.point.auth.databinding.FragmentCreateProfileThirdStepBinding
+import ru.point.auth.ui.on_boarding.OnboardingStep
+import ru.point.auth.ui.on_boarding.OnboardingViewModel
+import ru.point.auth.ui.profile_create.second_step.CreateProfileSecondStepFragment
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.ui.BaseFragment
 import worker8.com.github.radiogroupplus.RadioGroupPlus
 
-class CreateProfileThirdStepFragment : BaseFragment<FragmentCreateProfileThirdStepBinding>() {
+class CreateProfileThirdStepFragment : BaseFragment<FragmentCreateProfileThirdStepBinding>(),
+    OnboardingStep {
+
+    private val onboardingViewModel: OnboardingViewModel by activityViewModels()
 
     private lateinit var titles: List<String>
     private lateinit var descriptions: List<String>
@@ -30,13 +37,28 @@ class CreateProfileThirdStepFragment : BaseFragment<FragmentCreateProfileThirdSt
     ): FragmentCreateProfileThirdStepBinding =
         FragmentCreateProfileThirdStepBinding.inflate(inflater, container, false)
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        (requireActivity() as BottomBarManager).hide()
+
+    override fun saveData() {
+        val selectedId = binding.radioGroupGoal.checkedRadioButtonId
+        val goal = when (selectedId) {
+            R.id.loss_radio_button -> 1
+            R.id.gain_radio_button -> 2
+            R.id.maintenance_radio_button -> 3
+            else -> 0
+        }
+
+        if (goal != 0){
+            onboardingViewModel.updateCanGo(true)
+            onboardingViewModel.updateGoal(goal)
+        }else{
+            onboardingViewModel.updateCanGo(false)
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as BottomBarManager).hide()
 
         titles = listOf(
             getString(R.string.goal_title_loss),
@@ -83,14 +105,6 @@ class CreateProfileThirdStepFragment : BaseFragment<FragmentCreateProfileThirdSt
             pfc.text = pfcs[i]
         }
 
-        radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                R.id.loss_radio_button -> { /* Логика для первого элемента */ }
-                R.id.gain_radio_button -> { /* Логика для второго элемента */ }
-                R.id.maintenance_radio_button -> { /* Логика для третьего элемента */ }
-            }
-        }
-
         // Устанавливаем обработчики кликов для include, чтобы они также переключали RadioButton
         for (i in includes.indices) {
             includes[i].setOnClickListener {
@@ -99,10 +113,10 @@ class CreateProfileThirdStepFragment : BaseFragment<FragmentCreateProfileThirdSt
         }
 
 
-        binding.goToStepFour.setOnClickListener {
-            navigator.fromCreateProfileThirdStepFragmentToCreateProfileFourthStepFragment()
-        }
+    }
 
+    companion object {
+        fun getNewInstance() = CreateProfileThirdStepFragment()
     }
 
 

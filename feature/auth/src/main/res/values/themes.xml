@@ -5,12 +5,33 @@
         <item name="colorPrimary">@color/light_main_background_elements</item>
         <item name="colorSecondary">@color/not_full_status_bar</item>
         <item name="colorTertiary">@color/light_full_status_bar_purple</item>
-        <item name="android:textColor">@color/dark_background_color</item>
+        <item name="android:textColor">@color/dark_main_background_elements</item>
         <item name="colorPrimaryVariant">@color/light_water_and_products_buttons</item>
         <item name="colorSecondaryVariant">@color/not_full_circle_diagram_and_center_circle_color</item>
         <item name="colorTertiaryFixed">@color/full_status_bar_purple_blue</item>
         <item name="colorError">@color/stop_tracker_starving_color</item>
     </style>
 
+
+    <style name="MyExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <item name="boxStrokeColor">?attr/android:textColor</item>
+        <item name="hintTextColor">?attr/android:textColor</item>
+        <item name="endIconTint">?attr/android:textColor</item>
+    </style>
+
+    <style name="LightPurpleMaterialButton" parent="@style/Widget.Material3.Button.IconButton.Outlined">
+        <item name="strokeColor">?attr/colorTertiary</item>
+        <item name="backgroundTint">?attr/colorSecondary</item>
+        <item name="strokeWidth">2dp</item>
+
+    </style>
+
+    <style name="DarkPurpleMaterialButton" parent="@style/Widget.Material3.Button.IconButton.Outlined">
+        <item name="strokeColor">?attr/colorSecondary</item>
+        <item name="backgroundTint">?attr/colorTertiary</item>
+        <item name="strokeWidth">2dp</item>
+
+    </style>
 
 </resources>

@@ -6,10 +6,11 @@
         <item name="colorPrimary">@color/light_main_background_elements</item>
         <item name="colorSecondary">@color/not_full_status_bar</item>
         <item name="colorTertiary">@color/light_full_status_bar_purple</item>
-        <item name="android:textColor">@color/dark_background_color</item>
+        <item name="android:textColor">@color/dark_main_background_elements</item>
         <item name="colorPrimaryVariant">@color/light_water_and_products_buttons</item>
         <item name="colorSecondaryVariant">@color/not_full_circle_diagram_and_center_circle_color</item>
         <item name="colorTertiaryFixed">@color/full_status_bar_purple_blue</item>
+        <item name="colorError">@color/stop_tracker_starving_color</item>
     </style>
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">

@@ -26,7 +26,7 @@
             android:fontFamily="@font/exo_bold"
             android:gravity="center_vertical"
             android:text="@string/createProfile"
-            android:textColor="?attr/colorTertiary"
+            android:textColor="?attr/android:textColor"
             app:autoSizePresetSizes="@array/autosize_text_sizes_24"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="@id/guidelineUnderCreateProfileText"
@@ -45,7 +45,7 @@
             android:text="Шаг 1"
             android:textColor="?attr/colorSecondary"
             app:layout_constraintBottom_toTopOf="@id/guidelineUnderCreateProfileText"
-            app:layout_constraintRight_toRightOf="@id/guidelineRight" />
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineUnderCreateProfileText"
@@ -60,8 +60,8 @@
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="name_edittext"
             app:layout_constraintBottom_toTopOf="@id/second_name_group"
-            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
             app:layout_constraintTop_toTopOf="@id/guidelineUnderCreateProfileText" />
 
         <EditText
@@ -74,11 +74,11 @@
             android:background="@android:color/transparent"
             android:fontFamily="@font/exo_regular"
             android:hint="Имя"
-            android:textColor="?attr/colorTertiary"
-            android:textColorHint="?attr/colorTertiary"
+            android:textColor="?attr/android:textColor"
+            android:textColorHint="?attr/android:textColor"
             app:layout_constraintBottom_toBottomOf="@+id/name_group"
-            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@id/name_group"
+            app:layout_constraintStart_toEndOf="@+id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/name_group"
             app:layout_constraintTop_toTopOf="@+id/name_group" />
 
         <ImageView
@@ -88,8 +88,8 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:src="@drawable/drawline_auth"
-            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@id/name_group"
+            app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/name_group"
             app:layout_constraintTop_toBottomOf="@id/name_edittext" />
 
 
@@ -99,8 +99,8 @@
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="second_name_edittext"
             app:layout_constraintBottom_toTopOf="@+id/height_group"
-            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
             app:layout_constraintTop_toBottomOf="@id/name_group" />
 
         <EditText
@@ -113,11 +113,11 @@
             android:background="@android:color/transparent"
             android:fontFamily="@font/exo_regular"
             android:hint="Фамилия"
-            android:textColor="?attr/colorTertiary"
-            android:textColorHint="?attr/colorTertiary"
+            android:textColor="?attr/android:textColor"
+            android:textColorHint="?attr/android:textColor"
             app:layout_constraintBottom_toBottomOf="@+id/second_name_group"
-            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@id/second_name_group"
+            app:layout_constraintStart_toEndOf="@+id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/second_name_group"
             app:layout_constraintTop_toTopOf="@+id/second_name_group" />
 
         <ImageView
@@ -127,8 +127,8 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:src="@drawable/drawline_auth"
-            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@id/second_name_group"
+            app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/second_name_group"
             app:layout_constraintTop_toBottomOf="@id/second_name_edittext" />
 
 
@@ -138,8 +138,8 @@
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="height_edittext"
             app:layout_constraintBottom_toTopOf="@id/weight_group"
-            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
             app:layout_constraintTop_toBottomOf="@id/second_name_group" />
 
         <EditText
@@ -152,11 +152,12 @@
             android:background="@android:color/transparent"
             android:fontFamily="@font/exo_regular"
             android:hint="Рост"
-            android:textColor="?attr/colorTertiary"
-            android:textColorHint="?attr/colorTertiary"
+            android:inputType="numberDecimal"
+            android:textColor="?attr/android:textColor"
+            android:textColorHint="?attr/android:textColor"
             app:layout_constraintBottom_toBottomOf="@id/height_group"
-            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@id/height_group"
+            app:layout_constraintStart_toEndOf="@+id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/height_group"
             app:layout_constraintTop_toTopOf="@id/height_group" />
 
         <ImageView
@@ -166,9 +167,20 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:src="@drawable/drawline_auth"
-            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@id/height_group"
+            app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/height_group"
             app:layout_constraintTop_toBottomOf="@id/height_edittext" />
+
+        <TextView
+            android:id="@+id/height_error_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_regular"
+            android:textColorHint="?attr/colorError"
+            app:layout_constraintTop_toBottomOf="@id/height_underline"
+            app:layout_constraintLeft_toLeftOf="@id/height_edittext"
+            android:visibility="invisible"
+            />
 
 
         <androidx.constraintlayout.widget.Group
@@ -177,8 +189,8 @@
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="weight_edittext"
             app:layout_constraintBottom_toTopOf="@id/age_group"
-            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
             app:layout_constraintTop_toBottomOf="@id/height_group" />
 
         <EditText
@@ -191,11 +203,12 @@
             android:background="@android:color/transparent"
             android:fontFamily="@font/exo_regular"
             android:hint="Вес"
-            android:textColor="?attr/colorTertiary"
-            android:textColorHint="?attr/colorTertiary"
+            android:inputType="numberDecimal"
+            android:textColor="?attr/android:textColor"
+            android:textColorHint="?attr/android:textColor"
             app:layout_constraintBottom_toBottomOf="@id/weight_group"
-            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@id/weight_group"
+            app:layout_constraintStart_toEndOf="@+id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/weight_group"
             app:layout_constraintTop_toTopOf="@id/weight_group" />
 
         <ImageView
@@ -205,9 +218,20 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:src="@drawable/drawline_auth"
-            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@id/weight_group"
+            app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/weight_group"
             app:layout_constraintTop_toBottomOf="@id/weight_edittext" />
+
+        <TextView
+            android:id="@+id/weight_error_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_regular"
+            android:textColorHint="?attr/colorError"
+            app:layout_constraintTop_toBottomOf="@id/weight_underline"
+            app:layout_constraintLeft_toLeftOf="@id/weight_edittext"
+            android:visibility="invisible"
+            />
 
 
         <androidx.constraintlayout.widget.Group
@@ -216,8 +240,8 @@
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="age_edittext"
             app:layout_constraintBottom_toTopOf="@id/gender_group"
-            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
             app:layout_constraintTop_toBottomOf="@id/weight_group" />
 
         <EditText
@@ -230,11 +254,12 @@
             android:background="@android:color/transparent"
             android:fontFamily="@font/exo_regular"
             android:hint="Возраст"
-            android:textColor="?attr/colorTertiary"
-            android:textColorHint="?attr/colorTertiary"
+            android:inputType="number"
+            android:textColor="?attr/android:textColor"
+            android:textColorHint="?attr/android:textColor"
             app:layout_constraintBottom_toBottomOf="@id/age_group"
-            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@id/age_group"
+            app:layout_constraintStart_toEndOf="@+id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/age_group"
             app:layout_constraintTop_toTopOf="@id/age_group" />
 
         <ImageView
@@ -244,61 +269,71 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:src="@drawable/drawline_auth"
-            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@id/age_group"
+            app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/age_group"
             app:layout_constraintTop_toBottomOf="@id/age_edittext" />
+
+        <TextView
+            android:id="@+id/age_error_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_regular"
+            android:textColorHint="?attr/colorError"
+            app:layout_constraintTop_toBottomOf="@id/age_underline"
+            app:layout_constraintLeft_toLeftOf="@id/age_edittext"
+            android:visibility="invisible"
+            />
 
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/gender_group"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="gender_edittext"
+            app:constraint_referenced_ids="gender_menu"
             app:layout_constraintBottom_toTopOf="@id/guidelineBottom"
-            app:layout_constraintLeft_toLeftOf="@+id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@+id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
             app:layout_constraintTop_toBottomOf="@id/age_group" />
 
-        <EditText
-            android:id="@+id/gender_edittext"
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/MyExposedDropdownMenu"
+            android:id="@+id/gender_menu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:autoSizePresetSizes="@array/autosize_text_sizes_16"
-            android:autoSizeTextType="uniform"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/exo_regular"
-            android:hint="Пол"
-            android:textColor="?attr/colorTertiary"
-            android:textColorHint="?attr/colorTertiary"
+            android:textColorHint="?attr/android:textColor"
             app:layout_constraintBottom_toBottomOf="@id/gender_group"
-            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@id/gender_group"
-            app:layout_constraintTop_toTopOf="@id/gender_group" />
-
-        <ImageView
-            android:id="@+id/gender_underline"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/drawline_auth"
-            app:layout_constraintLeft_toRightOf="@id/guidelineLeft"
-            app:layout_constraintRight_toRightOf="@id/gender_group"
-            app:layout_constraintTop_toBottomOf="@id/gender_edittext" />
+            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/gender_group"
+            app:layout_constraintTop_toTopOf="@id/gender_group"
+            android:hint="Пол">
 
 
-        <ImageButton
-            android:id="@+id/go_to_step_two"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:background="@drawable/button_light_purple_selector"
-            android:clickable="true"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guidelineBottom" />
+            <AutoCompleteTextView
+                android:id="@+id/gender_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/android:textColor"
+                android:inputType="none"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/go_to_step_two"-->
+<!--            style="@style/LightPurpleMaterialButton"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:clickable="true"-->
+<!--            android:text="Далее"-->
+<!--            android:textSize="@dimen/top_strings_size_16"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:fontFamily="@font/exo_regular"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/guidelineBottom" />-->
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineBottom"
@@ -306,18 +341,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.85" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/exo_bold"
-            android:text="Далее"
-            android:textColor="@color/white"
-            android:textSize="@dimen/top_strings_size_16"
-            app:layout_constraintBottom_toBottomOf="@+id/go_to_step_two"
-            app:layout_constraintLeft_toLeftOf="@+id/go_to_step_two"
-            app:layout_constraintRight_toRightOf="@+id/go_to_step_two"
-            app:layout_constraintTop_toTopOf="@+id/go_to_step_two" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineLeft"

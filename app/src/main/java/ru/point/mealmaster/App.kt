@@ -1,7 +1,9 @@
 package ru.point.mealmaster
 
 import android.app.Application
+import ru.point.auth.ui.login.LoginDepsStore
 import ru.point.auth.ui.register.RegistrationDepsStore
+import ru.point.core.secure_prefs.SecurePrefs
 import ru.point.mealmaster.di.AppComponent
 import ru.point.mealmaster.di.DaggerAppComponent
 
@@ -14,6 +16,8 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        SecurePrefs.init(this)
         RegistrationDepsStore.deps = appComponent
+        LoginDepsStore.deps = appComponent
     }
 }

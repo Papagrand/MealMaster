@@ -8,15 +8,21 @@ import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.activityViewModels
 import ru.point.auth.R
 import ru.point.auth.databinding.FragmentCreateProfileSecondStepBinding
+import ru.point.auth.ui.on_boarding.OnboardingStep
+import ru.point.auth.ui.on_boarding.OnboardingViewModel
+import ru.point.auth.ui.profile_create.first_step.CreateProfileFirstStepFragment
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.ui.BaseFragment
 import worker8.com.github.radiogroupplus.RadioGroupPlus
 
-class CreateProfileSecondStepFragment : BaseFragment<FragmentCreateProfileSecondStepBinding>() {
+class CreateProfileSecondStepFragment : BaseFragment<FragmentCreateProfileSecondStepBinding>(),
+    OnboardingStep {
 
-    // Инициализация списков будет происходить позже
+    private val onboardingViewModel: OnboardingViewModel by activityViewModels()
+
     private lateinit var titles: List<String>
     private lateinit var descriptions: List<String>
 
@@ -34,13 +40,31 @@ class CreateProfileSecondStepFragment : BaseFragment<FragmentCreateProfileSecond
     ): FragmentCreateProfileSecondStepBinding =
         FragmentCreateProfileSecondStepBinding.inflate(inflater, container, false)
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        (requireActivity() as BottomBarManager).hide()
+
+    override fun saveData() {
+        // Читаем id выбранного RadioButton из radioGroup, определённого в binding
+        val selectedId = binding.radioGroup.checkedRadioButtonId
+        // Определяем уровень активности (число от 1 до 5)
+        val activityLevel = when (selectedId) {
+            R.id.very_low_radio_button -> 1
+            R.id.low_radio_button -> 2
+            R.id.medium_radio_button -> 3
+            R.id.high_radio_button -> 4
+            R.id.very_high_radio_button -> 5
+            else -> 0
+        }
+        if (activityLevel != 0){
+            onboardingViewModel.updateCanGo(true)
+            onboardingViewModel.updateActivityLevel(activityLevel)
+        }else{
+            onboardingViewModel.updateCanGo(false)
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as BottomBarManager).hide()
 
         titles = listOf(
             getString(R.string.activity_title_lowest),
@@ -58,29 +82,30 @@ class CreateProfileSecondStepFragment : BaseFragment<FragmentCreateProfileSecond
             getString(R.string.activity_description_highest)
         )
 
-        val radioGroup = view.findViewById<RadioGroupPlus>(R.id.radio_group)
+        // Используем binding для получения RadioGroupPlus
+        val radioGroup: RadioGroupPlus = binding.radioGroup
 
-        // Получаем ConstraintLayout, который является единственным дочерним элементом RadioGroupPlus
-        val constraintLayout = radioGroup.getChildAt(0) as ConstraintLayout
+        // Получаем ConstraintLayout, являющийся контейнером для элементов внутри radioGroup
+        val containerLayout = radioGroup.getChildAt(0) as ConstraintLayout
 
-        // Список include и RadioButton
+        // Получаем списки include-элементов и RadioButton
         val includes = listOf(
-            constraintLayout.findViewById<View>(R.id.item_lowest),
-            constraintLayout.findViewById(R.id.item_low),
-            constraintLayout.findViewById(R.id.item_medium),
-            constraintLayout.findViewById(R.id.item_high),
-            constraintLayout.findViewById(R.id.item_very_high)
+            containerLayout.findViewById<View>(R.id.item_lowest),
+            containerLayout.findViewById(R.id.item_low),
+            containerLayout.findViewById(R.id.item_medium),
+            containerLayout.findViewById(R.id.item_high),
+            containerLayout.findViewById(R.id.item_very_high)
         )
 
         val radioButtons = listOf(
-            constraintLayout.findViewById<RadioButton>(R.id.very_low_radio_button),
-            constraintLayout.findViewById(R.id.low_radio_button),
-            constraintLayout.findViewById(R.id.medium_radio_button),
-            constraintLayout.findViewById(R.id.high_radio_button),
-            constraintLayout.findViewById(R.id.very_high_radio_button)
+            containerLayout.findViewById<RadioButton>(R.id.very_low_radio_button),
+            containerLayout.findViewById(R.id.low_radio_button),
+            containerLayout.findViewById(R.id.medium_radio_button),
+            containerLayout.findViewById(R.id.high_radio_button),
+            containerLayout.findViewById(R.id.very_high_radio_button)
         )
 
-        // Инициализация текстов и иконок
+        // Инициализация текстовых полей и иконок для каждого элемента
         for (i in includes.indices) {
             val itemView = includes[i]
             val title = itemView.findViewById<TextView>(R.id.title)
@@ -92,27 +117,18 @@ class CreateProfileSecondStepFragment : BaseFragment<FragmentCreateProfileSecond
             icon.setImageResource(icons[i])
         }
 
-        // Обработчик выбора RadioButton
-        radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                R.id.very_low_radio_button -> { /* Логика для первого элемента */ }
-                R.id.low_radio_button -> { /* Логика для второго элемента */ }
-                R.id.medium_radio_button -> { /* Логика для третьего элемента */ }
-                R.id.high_radio_button -> { /* Логика для четвертого элемента */ }
-                R.id.very_high_radio_button -> { /* Логика для пятого элемента */ }
-            }
-        }
-
-        // Устанавливаем обработчики кликов для include, чтобы они также переключали RadioButton
+        // Устанавливаем обработчик кликов для include-элементов, чтобы они переключали соответствующий RadioButton
         for (i in includes.indices) {
             includes[i].setOnClickListener {
                 radioButtons[i].isChecked = true
             }
         }
 
-        binding.goToStepThree.setOnClickListener {
-            navigator.fromCreateProfileSecondStepFragmentToCreateProfileThirdStepFragment()
-        }
+        // Обработчик выбора RadioButton можно оставить пустым, если все данные будут сохранены через saveData()
+        radioGroup.setOnCheckedChangeListener { _, _ -> /* Можно обновлять UI на лету, если требуется */ }
+    }
 
+    companion object {
+        fun getNewInstance() = CreateProfileSecondStepFragment()
     }
 }

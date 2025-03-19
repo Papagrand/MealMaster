@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/loginFragment"
         android:name="ru.point.auth.ui.login.LoginFragment"
@@ -12,8 +12,11 @@
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_createProfileFirstStepFragment"
-            app:destination="@id/createProfileFirstStepFragment" />
+            android:id="@+id/action_loginFragment_to_onboardingFragment"
+            app:destination="@id/onboardingFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeProgressFragment"
+            app:destination="@id/homeProgressFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -51,4 +54,26 @@
         android:id="@+id/createProfileFourthStepFragment"
         android:name="ru.point.auth.ui.profile_create.fourth_step.CreateProfileFourthStepFragment"
         android:label="CreateProfileFourthStepFragment" />
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="ru.point.auth.ui.on_boarding.OnboardingFragment"
+        android:label="OnboardingFragment" />
+    <fragment
+        android:id="@+id/homeProgressFragment"
+        android:name="ru.point.home.HomeProgressFragment"
+        android:label="HomeProgressFragment" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="ru.point.splash.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_onboardingFragment"
+            app:destination="@id/onboardingFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeProgressFragment"
+            app:destination="@id/homeProgressFragment" />
+    </fragment>
 </navigation>

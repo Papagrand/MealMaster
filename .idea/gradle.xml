@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/feature/meal" />
             <option value="$PROJECT_DIR$/feature/profile" />
             <option value="$PROJECT_DIR$/feature/recipes" />
+            <option value="$PROJECT_DIR$/feature/splash" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
