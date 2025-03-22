@@ -13,6 +13,7 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.navigation.Navigator
 import ru.point.core.navigation.NavigatorProvider
+import ru.point.core.secure_prefs.SecurePrefs
 import ru.point.mealmaster.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), BottomBarManager, NavigatorProvider {

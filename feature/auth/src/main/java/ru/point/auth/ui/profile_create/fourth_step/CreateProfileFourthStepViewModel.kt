@@ -22,7 +22,7 @@ class CreateProfileFourthStepViewModel : ViewModel() {
         // Обрабатываем ввод с задержкой (debounce) – даем время пользователю завершить ввод
         viewModelScope.launch {
             _rawTargetWeightInput
-                .debounce(2000)
+                .debounce(700)
                 .collectLatest { input ->
                     processTargetWeight(input)
                 }

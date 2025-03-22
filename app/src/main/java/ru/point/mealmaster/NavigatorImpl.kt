@@ -32,6 +32,10 @@ class NavigatorImpl(private val navController: NavController): Navigator {
         navController.navigateSafe(R.id.action_splashFragment_to_homeProgressFragment)
     }
 
+    override fun fromOnboardingFragmentToHomeProgressFragment() {
+        navController.navigateSafe(R.id.action_onboardingFragment_to_homeProgressFragment)
+    }
+
     override fun fromLoginFragmentToOnboardingFragment() {
         navController.navigateSafe(R.id.action_loginFragment_to_onboardingFragment)
     }

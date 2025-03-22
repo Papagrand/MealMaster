@@ -5,13 +5,16 @@ import dagger.Module
 import dagger.Provides
 import ru.point.api.login.LoginService
 import ru.point.api.login.createLoginService
+import ru.point.api.profile_creating.ProfileService
+import ru.point.api.profile_creating.createProfileService
 import ru.point.api.registration.RegistrationService
 import ru.point.api.registration.createRegistrationService
 import ru.point.auth.ui.login.LoginDeps
+import ru.point.auth.ui.on_boarding.OnboardingDeps
 import ru.point.auth.ui.register.RegistrationDeps
 
 @Component(modules = [NetworkModule::class, /* другие модули */])
-interface AppComponent : RegistrationDeps, LoginDeps {
+interface AppComponent : RegistrationDeps, LoginDeps, OnboardingDeps {
     // Другие глобальные зависимости
 }
 
@@ -28,5 +31,10 @@ class NetworkModule {
     @Provides
     fun provideLoginService(): LoginService {
         return createLoginService("http://192.168.1.101:8080")
+    }
+
+    @Provides
+    fun provideProfileService(): ProfileService{
+        return createProfileService("http://192.168.1.101:8080")
     }
 }

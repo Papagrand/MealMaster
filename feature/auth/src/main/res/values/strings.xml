@@ -78,6 +78,8 @@
     <string name="link_to_image">https://www.eatingwell.com/thmb/m5xUzIOmhWSoXZnY-oZcO9SdArQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/article_291139_the-top-10-healthiest-foods-for-kids_-02-4b745e57928c4786a61b47d8ba920058.jpg</string>
     <string name="delete_product">Удалить продукт</string>
     <string name="close">Закрыть</string>
+    <string name="dialog_loss_text">"При введенных параметрах расчетное количество сжигаемой массы в месяц превышает 2 килограмма. Крайне настоятельно рекомендуем увеличить временной промежуток диеты или изменить конечную цель веса."</string>
+    <string name="dialog_gain_text">"При введенных параметрах расчетное количество набираемой массы в месяц превышает 1 килограмм. Крайне настоятельно рекомендуем увеличить временной промежуток диеты или изменить конечную цель веса."</string>
 
     <!-- Заголовки уровней активности -->
     <string name="activity_title_lowest">Очень низкий уровень активности</string>

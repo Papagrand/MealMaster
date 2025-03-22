@@ -30,7 +30,7 @@ class CreateProfileFirstStepViewModel : ViewModel() {
         // При изменении _rawHeightInput с задержкой в 300 мс обрабатываем значение
         viewModelScope.launch {
             _rawHeightInput
-                .debounce(2000)
+                .debounce(700)
                 .collectLatest { input ->
                     processHeight(input)
                 }
@@ -38,7 +38,7 @@ class CreateProfileFirstStepViewModel : ViewModel() {
         // Аналогично для веса
         viewModelScope.launch {
             _rawWeightInput
-                .debounce(2000)
+                .debounce(700)
                 .collectLatest { input ->
                     processWeight(input)
                 }

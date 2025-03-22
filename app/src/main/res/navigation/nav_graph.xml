@@ -57,7 +57,11 @@
     <fragment
         android:id="@+id/onboardingFragment"
         android:name="ru.point.auth.ui.on_boarding.OnboardingFragment"
-        android:label="OnboardingFragment" />
+        android:label="OnboardingFragment" >
+        <action
+            android:id="@+id/action_onboardingFragment_to_homeProgressFragment"
+            app:destination="@id/homeProgressFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeProgressFragment"
         android:name="ru.point.home.HomeProgressFragment"

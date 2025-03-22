@@ -30,13 +30,6 @@ interface LoginService {
     ): Response<CheckAuthUserResponse>
 }
 
-
-@Serializable
-data class CheckAuthUserRequest(
-    val userId: String,
-    val deviceId: String
-)
-
 @Serializable
 data class CheckAuthUserResponse(
     val success: Boolean,

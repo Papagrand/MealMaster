@@ -12,4 +12,5 @@ interface Navigator {
     fun fromSplashFragmentToLoginFragment()
     fun fromSplashFragmentToOnboardingFragment()
     fun fromSplashFragmentToHomeProgressFragment()
+    fun fromOnboardingFragmentToHomeProgressFragment()
 }

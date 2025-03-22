@@ -2,6 +2,7 @@ package ru.point.mealmaster
 
 import android.app.Application
 import ru.point.auth.ui.login.LoginDepsStore
+import ru.point.auth.ui.on_boarding.OnboardingDepsStore
 import ru.point.auth.ui.register.RegistrationDepsStore
 import ru.point.core.secure_prefs.SecurePrefs
 import ru.point.mealmaster.di.AppComponent
@@ -19,5 +20,6 @@ class App : Application() {
         SecurePrefs.init(this)
         RegistrationDepsStore.deps = appComponent
         LoginDepsStore.deps = appComponent
+        OnboardingDepsStore.deps = appComponent
     }
 }

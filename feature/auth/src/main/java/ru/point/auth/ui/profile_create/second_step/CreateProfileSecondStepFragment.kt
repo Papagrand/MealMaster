@@ -31,7 +31,7 @@ class CreateProfileSecondStepFragment : BaseFragment<FragmentCreateProfileSecond
         R.drawable.low_activity,
         R.drawable.medium_activity,
         R.drawable.high_activity,
-        R.drawable.very_low_activity
+        R.drawable.very_high_activity
     )
 
     override fun createView(
