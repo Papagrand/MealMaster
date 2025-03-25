@@ -1,10 +1,11 @@
-package ru.point.auth.ui.on_boarding
+package ru.point.auth.ui.on_boarding.di
 
 import dagger.Component
-import ru.point.api.profile_creating.ProfileService
+import ru.point.api.profile_creating.data.ProfileService
+import ru.point.auth.ui.on_boarding.ui.OnboardingFragment
 import kotlin.properties.Delegates.notNull
 
-@Component(dependencies = [OnboardingDeps::class])
+@Component(dependencies = [OnboardingDeps::class], modules = [OnboardingModule::class])
 internal interface OnboardingComponent {
     fun inject(fragment: OnboardingFragment)
 

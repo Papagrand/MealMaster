@@ -1,29 +1,26 @@
-package ru.point.auth.ui.on_boarding
+package ru.point.auth.ui.on_boarding.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.dialog.MaterialDialogs
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import ru.point.auth.R
 import ru.point.auth.databinding.FragmentOnboardingBinding
+import ru.point.auth.ui.on_boarding.di.DaggerOnboardingComponent
+import ru.point.auth.ui.on_boarding.di.OnboardingDepsProvider
 import ru.point.auth.ui.profile_create.first_step.CreateProfileFirstStepFragment
 import ru.point.auth.ui.profile_create.fourth_step.CreateProfileFourthStepFragment
 import ru.point.auth.ui.profile_create.second_step.CreateProfileSecondStepFragment
@@ -36,7 +33,7 @@ import javax.inject.Inject
 class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
 
     @Inject
-    lateinit var onboardindViewModelFactory: OnboardingViewModel.Factory
+    lateinit var onboardindViewModelFactory: OnboardingViewModelFactory
 
     private val onboardingViewModel: OnboardingViewModel by activityViewModels {
         onboardindViewModelFactory
@@ -70,53 +67,33 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
         (requireActivity() as BottomBarManager).hide()
 
         val viewPagerAdapter = ViewPagerAdapter(requireActivity(), list)
-
         binding.viewPagerCreateProfile.isUserInputEnabled = false
-
         binding.viewPagerCreateProfile.adapter = viewPagerAdapter
 
+        // Обработка кнопки "Далее"
         binding.goToNextStep.setOnClickListener {
             val currentFragment = list[currentPosition]
             if (currentFragment is OnboardingStep) {
-                currentFragment.saveData() // saveData() обновляет canGoToNextStep во ViewModel
+                // Сохраняем данные во ViewModel
+                currentFragment.saveData()
             }
+            // Проверяем, можно ли переходить дальше
             if (onboardingViewModel.getCanGo()) {
                 binding.viewPagerCreateProfile.setCurrentItem(currentPosition + 1, true)
-                // После перехода можно сбросить флаг, чтобы требовать повторной валидации при возвращении
+                // Сбрасываем canGo, чтобы заново проверять на следующем шаге
                 onboardingViewModel.updateCanGo(false)
             } else {
-                // Если данные некорректны, можно показать уведомление пользователю
-                when (currentPosition) {
-                    0 -> Snackbar.make(
-                        binding.root,
-                        "Неверно заполнены данные. Проверьте введённую информацию.",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-
-                    1 -> Snackbar.make(
-                        binding.root,
-                        "Вы не выбрали уровень физической активности",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-
-                    2 -> Snackbar.make(binding.root, "Вы не выбрали цель", Snackbar.LENGTH_LONG)
-                        .show()
-
-                    3 -> Snackbar.make(
-                        binding.root,
-                        "Неверно заполнены данные. Проверьте введённую информацию.",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                }
+                // Показать ошибку пользователю
+                showFillDataError(currentPosition)
             }
         }
 
-
-
+        // Обработка кнопки "Назад"
         binding.goToPreviousStep.setOnClickListener {
             binding.viewPagerCreateProfile.setCurrentItem(currentPosition - 1, true)
         }
 
+        // Обработка кнопки "Создать профиль" (на последнем шаге)
         binding.createProfileButton.setOnClickListener {
             val currentFragment = list[currentPosition]
             if (currentFragment is OnboardingStep) {
@@ -125,7 +102,9 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
             val lossMessage = getString(R.string.dialog_loss_text)
             val gainMessage = getString(R.string.dialog_gain_text)
             lifecycleScope.launch {
-                if (onboardingViewModel.getCanGo() && onboardingViewModel.checkMassRate(lossMessage, gainMessage)) {
+                if (onboardingViewModel.getCanGo()
+                    && onboardingViewModel.checkMassRate(lossMessage, gainMessage)
+                ) {
                     val userProfileId = SecurePrefs.getUserId()
                     if (userProfileId != null) {
                         onboardingViewModel.createProfile(userProfileId)
@@ -134,6 +113,7 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
             }
         }
 
+        // Следим за сменой страницы ViewPager
         binding.viewPagerCreateProfile.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -144,34 +124,37 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
             }
         })
 
+        // Подписываемся на события UI из ViewModel
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 onboardingViewModel.uiEvent.collect { event ->
                     when (event) {
                         is OnboardingUiEvent.NavigateToHomeProgress -> {
+                            // Переход на основной экран
                             navigator.fromOnboardingFragmentToHomeProgressFragment()
                         }
-
                         is OnboardingUiEvent.ShowSnackBar -> {
                             Snackbar.make(binding.root, event.message, Snackbar.LENGTH_LONG).show()
                         }
-
                         is OnboardingUiEvent.ShowWarningDialog -> {
-                            showWarningDialog(event.dialogData)
+                            val dialogData = OnboardingUiEvent.ShowWarningDialog(
+                                message = event.message,
+                                positiveButtonText = event.positiveButtonText,
+                                negativeButtonText = event.negativeButtonText
+                            )
+                            showWarningDialog(dialogData)
                         }
                     }
                 }
             }
         }
-
     }
 
-    private fun showWarningDialog(dialogData: DialogData) {
+    private fun showWarningDialog(dialogData: OnboardingUiEvent.ShowWarningDialog) {
         MaterialAlertDialogBuilder(requireContext())
             .setMessage(dialogData.message)
             .setTitle("Предупреждение пользователя")
             .setPositiveButton(dialogData.positiveButtonText) { dialog, _ ->
-                // Если пользователь выбрал "Все равно завершить" — продолжаем создание профиля
                 val userProfileId = SecurePrefs.getUserId()
                 if (userProfileId != null) {
                     onboardingViewModel.createProfile(userProfileId)
@@ -179,10 +162,20 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
                 dialog.dismiss()
             }
             .setNegativeButton(dialogData.negativeButtonText) { dialog, _ ->
-                // Если пользователь отменил — просто закрываем диалог
                 dialog.dismiss()
             }
             .show()
+    }
+
+    private fun showFillDataError(stepPosition: Int) {
+        val message = when (stepPosition) {
+            0 -> "Неверно заполнены данные. Проверьте введённую информацию."
+            1 -> "Вы не выбрали уровень физической активности."
+            2 -> "Вы не выбрали цель."
+            3 -> "Неверно заполнены данные. Проверьте введённую информацию."
+            else -> "Проверьте введённые данные."
+        }
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }
 
 }

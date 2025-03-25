@@ -1,7 +1,6 @@
 package ru.point.auth.ui.profile_create.third_step
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +10,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import ru.point.auth.R
 import ru.point.auth.databinding.FragmentCreateProfileThirdStepBinding
-import ru.point.auth.ui.on_boarding.OnboardingStep
-import ru.point.auth.ui.on_boarding.OnboardingViewModel
-import ru.point.auth.ui.profile_create.second_step.CreateProfileSecondStepFragment
+import ru.point.auth.ui.on_boarding.ui.OnboardingStep
+import ru.point.auth.ui.on_boarding.ui.OnboardingViewModel
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.ui.BaseFragment
 import worker8.com.github.radiogroupplus.RadioGroupPlus

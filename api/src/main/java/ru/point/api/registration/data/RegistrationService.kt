@@ -1,4 +1,4 @@
-package ru.point.api.registration
+package ru.point.api.registration.data
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.Serializable
@@ -39,13 +39,13 @@ data class RegistrationResponse(
 
 @Serializable
 data class EmailCheckResponse(
-    val available: Boolean,
+    val success: Boolean,
     val message: String? = null
 )
 
 @Serializable
 data class LoginCheckResponse(
-    val available: Boolean,
+    val success: Boolean,
     val message: String? = null
 )
 

@@ -1,27 +1,24 @@
 package ru.point.auth.ui.profile_create.first_step
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.delay
+import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.point.auth.R
 import ru.point.auth.databinding.FragmentCreateProfileFirstStepBinding
-import ru.point.auth.ui.on_boarding.OnboardingStep
-import ru.point.auth.ui.on_boarding.OnboardingViewModel
+import ru.point.auth.ui.on_boarding.ui.OnboardingStep
+import ru.point.auth.ui.on_boarding.ui.OnboardingViewModel
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.ui.BaseFragment
 
@@ -32,7 +29,12 @@ class CreateProfileFirstStepFragment : BaseFragment<FragmentCreateProfileFirstSt
     private val onboardingViewModel: OnboardingViewModel by activityViewModels()
 
     // ViewModel для первого шага
-    private val viewModel: CreateProfileFirstStepViewModel by activityViewModels()
+    private val viewModel: CreateProfileFirstStepViewModel by activityViewModels {
+        CreateProfileFirstStepViewModelFactory(
+            profileValidationUseCase = ProfileValidationUseCase()
+        )
+    }
+
 
     override fun createView(inflater: LayoutInflater, container: ViewGroup?) =
         FragmentCreateProfileFirstStepBinding.inflate(inflater, container, false)
@@ -41,7 +43,6 @@ class CreateProfileFirstStepFragment : BaseFragment<FragmentCreateProfileFirstSt
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as BottomBarManager).hide()
 
-        // Настройка адаптера для выбора пола
         val genders = listOf("Мужской", "Женский")
         val adapter = ArrayAdapter(requireContext(), R.layout.gender_spinner_dropdown_item, genders)
         val autoCompleteTextView =
@@ -50,17 +51,41 @@ class CreateProfileFirstStepFragment : BaseFragment<FragmentCreateProfileFirstSt
 
         // Передаем текст для роста во ViewModel
         binding.heightEdittext.doAfterTextChanged { text ->
-
             viewModel.onHeightChanged(text.toString())
         }
+
+        binding.heightEdittext.onFocusChangeListener =
+            OnFocusChangeListener { _, hasFocus ->
+                if (!hasFocus){
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                            viewModel.processHeight()
+                        }
+                    }
+
+                }
+            }
         // Передаем текст для веса во ViewModel
         binding.weightEdittext.doAfterTextChanged { text ->
             viewModel.onWeightChanged(text.toString())
         }
+        binding.weightEdittext.onFocusChangeListener =
+            OnFocusChangeListener { _, hasFocus ->
+                if (!hasFocus){
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                            viewModel.processWeight()
+                        }
+                    }
+
+                }
+            }
+
         // Передаем текст для возраста во ViewModel
         binding.ageEdittext.doAfterTextChanged { text ->
             viewModel.onAgeChanged(text.toString())
         }
+
 
         // Подписка на состояние ViewModel для обновления UI (ошибки, форматирование)
         lifecycleScope.launch {
@@ -74,23 +99,14 @@ class CreateProfileFirstStepFragment : BaseFragment<FragmentCreateProfileFirstSt
                     binding.weightEdittext.setSelection(state.weight.length)
                 }
                 binding.heightErrorTextview.text = state.heightError ?: ""
-                binding.heightErrorTextview.isVisible =
-                    if (state.heightError != null) true else false
+                binding.heightErrorTextview.isVisible = state.heightError != null
 
                 binding.weightErrorTextview.text = state.weightError ?: ""
-                binding.weightErrorTextview.isVisible =
-                    if (state.weightError != null) true else false
+                binding.weightErrorTextview.isVisible = state.weightError != null
 
                 binding.ageErrorTextview.text = state.ageError ?: ""
-                binding.ageErrorTextview.isVisible =
-                    if (state.ageError != null) true else false
+                binding.ageErrorTextview.isVisible = state.ageError != null
             }
-        }
-
-        // Обработка выбора пола
-        autoCompleteTextView.setOnItemClickListener { _, _, position, _ ->
-            // Сохраните выбранный пол в общем OnboardingViewModel при необходимости
-            // Например: onboardingViewModel.updatePersonalInfo(..., gender = genders[position])
         }
     }
 

@@ -1,4 +1,4 @@
-package ru.point.api.login
+package ru.point.api.login.data
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.Serializable
@@ -38,13 +38,13 @@ data class CheckAuthUserResponse(
 
 @Serializable
 data class LoginCheckResponseAuth(
-    val available: Boolean,
+    val success: Boolean,
     val message: String? = null
 )
 
 @Serializable
 data class ProfileExistCheckResponse(
-    val available: Boolean,
+    val success: Boolean,
     val message: String? = null
 )
 

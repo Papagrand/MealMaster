@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.point.api.login.createLoginService
-import ru.point.api.login.LoginService
+import ru.point.api.login.data.createLoginService
+import ru.point.api.login.data.LoginService
 import ru.point.core.secure_prefs.SecurePrefs
 
 sealed class SplashUiEvent {
@@ -55,8 +55,8 @@ class SplashViewModel(
                             // Проверяем, существует ли профиль, используя код ответа
                             val profileResponse = loginService.checkProfileExist(userId)
                             when (profileResponse.code()) {
-                                302 -> _uiEvent.emit(SplashUiEvent.NavigateToMain)
-                                404 -> _uiEvent.emit(SplashUiEvent.NavigateToCreateProfile)
+                                200 -> _uiEvent.emit(SplashUiEvent.NavigateToMain)
+                                403 -> _uiEvent.emit(SplashUiEvent.NavigateToCreateProfile)
                                 else -> _uiEvent.emit(SplashUiEvent.NavigateToLogin)
                             }
                         } else {

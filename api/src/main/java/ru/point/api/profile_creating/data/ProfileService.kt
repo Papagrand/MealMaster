@@ -1,4 +1,4 @@
-package ru.point.api.profile_creating
+package ru.point.api.profile_creating.data
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.Serializable

@@ -1,10 +1,14 @@
-package ru.point.auth.ui.register
+package ru.point.auth.ui.register.di
 
 import dagger.Component
-import ru.point.api.registration.RegistrationService
+import ru.point.api.registration.data.RegistrationService
+import ru.point.auth.ui.register.ui.RegisterFragment
 import kotlin.properties.Delegates.notNull
 
-@Component(dependencies = [RegistrationDeps::class])
+@Component(
+    dependencies = [RegistrationDeps::class],
+    modules = [RegistrationModule::class]
+)
 internal interface RegisterComponent {
     fun inject(fragment: RegisterFragment)
 

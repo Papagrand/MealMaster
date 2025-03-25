@@ -1,4 +1,4 @@
-package ru.point.auth.ui.login
+package ru.point.auth.ui.login.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -11,12 +11,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 import ru.point.auth.databinding.FragmentLoginBinding
+import ru.point.auth.ui.login.di.DaggerLoginComponent
+import ru.point.auth.ui.login.di.LoginDepsProvider
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.ui.BaseFragment
 import javax.inject.Inject
@@ -24,9 +26,9 @@ import javax.inject.Inject
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     @Inject
-    lateinit var loginViewModelFactory: LoginViewModel.Factory
+    lateinit var loginViewModelFactory: LoginViewModelFactory
 
-    private val loginViewModel: LoginViewModel by viewModels {
+    private val loginViewModel: LoginViewModel by activityViewModels{
         loginViewModelFactory
     }
 

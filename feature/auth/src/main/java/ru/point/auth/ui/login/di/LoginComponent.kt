@@ -1,10 +1,14 @@
-package ru.point.auth.ui.login
+package ru.point.auth.ui.login.di
 
 import dagger.Component
-import ru.point.api.login.LoginService
+import ru.point.api.login.data.LoginService
+import ru.point.auth.ui.login.ui.LoginFragment
 import kotlin.properties.Delegates.notNull
 
-@Component(dependencies = [LoginDeps::class])
+@Component(
+    dependencies = [LoginDeps::class],
+    modules = [LoginModule::class]
+)
 internal interface LoginComponent {
     fun inject(fragment: LoginFragment)
 

@@ -1,4 +1,4 @@
-package ru.point.auth.ui.register
+package ru.point.auth.ui.register.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +17,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import ru.point.auth.R
 import ru.point.auth.databinding.FragmentRegisterBinding
+import ru.point.auth.ui.register.di.DaggerRegisterComponent
+import ru.point.auth.ui.register.di.RegistrationDepsProvider
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.ui.BaseFragment
 import javax.inject.Inject
@@ -23,20 +26,11 @@ import javax.inject.Inject
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
     @Inject
-    lateinit var registrationViewModelFactory: RegistrationViewModel.Factory
+    lateinit var registrationViewModelFactory: RegistrationViewModelFactory
 
-    private val registrationViewModel: RegistrationViewModel by viewModels {
+    private val registrationViewModel: RegistrationViewModel by activityViewModels {
         registrationViewModelFactory
     }
-
-    private var emailCheckJob: Job? = null
-    private var loginCheckJob: Job? = null
-    private var passwordCheckJob: Job? = null
-    private var repeatPasswordCheckJob: Job? = null
-
-    private var validEmail: String = ""
-    private var validLogin: String = ""
-    private var validPassword: String = ""
 
     override fun onAttach(context: Context) {
         // Создаем компонент Registration и внедряем зависимости

@@ -3,34 +3,40 @@ package ru.point.auth.ui.profile_create.fourth_step
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import ru.point.auth.R
 import ru.point.auth.databinding.FragmentCreateProfileFourthStepBinding
-import ru.point.auth.ui.on_boarding.OnboardingStep
-import ru.point.auth.ui.on_boarding.OnboardingViewModel
-import ru.point.auth.ui.profile_create.second_step.CreateProfileSecondStepFragment
+import ru.point.auth.ui.on_boarding.ui.OnboardingStep
+import ru.point.auth.ui.on_boarding.ui.OnboardingViewModel
+import ru.point.auth.ui.profile_create.first_step.CreateProfileFirstStepViewModel
+import ru.point.auth.ui.profile_create.first_step.CreateProfileFirstStepViewModelFactory
+import ru.point.auth.ui.profile_create.first_step.ProfileValidationUseCase
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.ui.BaseFragment
 import java.util.Calendar
 
-class CreateProfileFourthStepFragment : BaseFragment<FragmentCreateProfileFourthStepBinding>(), OnboardingStep {
+class CreateProfileFourthStepFragment : BaseFragment<FragmentCreateProfileFourthStepBinding>(),
+    OnboardingStep {
 
     // Общий ViewModel для онбординга (сбор данных со всех шагов)
     private val onboardingViewModel: OnboardingViewModel by activityViewModels()
     // ViewModel для четвертого шага, отвечающая за целевой вес
-    private val viewModel: CreateProfileFourthStepViewModel by activityViewModels()
+    private val viewModel: CreateProfileFourthStepViewModel by activityViewModels {
+        CreateProfileFourthStepViewModelFactory(
+            validateTargetWeightUseCase = ValidateTargetWeightUseCase()
+        )
+    }
 
     override fun createView(
         inflater: LayoutInflater,
@@ -46,6 +52,18 @@ class CreateProfileFourthStepFragment : BaseFragment<FragmentCreateProfileFourth
         binding.goalWeightEdittext.doAfterTextChanged { text ->
             viewModel.onTargetWeightChanged(text.toString())
         }
+
+        binding.goalWeightEdittext.onFocusChangeListener =
+            OnFocusChangeListener { _, hasFocus ->
+                if (!hasFocus){
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                            viewModel.validateAndFormatTargetWeight()
+                        }
+                    }
+
+                }
+            }
 
         // Подписка на состояние ViewModel для обновления UI
         lifecycleScope.launch {

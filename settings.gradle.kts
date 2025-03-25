@@ -20,6 +20,7 @@ dependencyResolutionManagement {
     }
 }
 
+
 rootProject.name = "MealMaster"
 include(":app")
 include(":core")

@@ -11,9 +11,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import ru.point.auth.R
 import ru.point.auth.databinding.FragmentCreateProfileSecondStepBinding
-import ru.point.auth.ui.on_boarding.OnboardingStep
-import ru.point.auth.ui.on_boarding.OnboardingViewModel
-import ru.point.auth.ui.profile_create.first_step.CreateProfileFirstStepFragment
+import ru.point.auth.ui.on_boarding.ui.OnboardingStep
+import ru.point.auth.ui.on_boarding.ui.OnboardingViewModel
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.ui.BaseFragment
 import worker8.com.github.radiogroupplus.RadioGroupPlus
