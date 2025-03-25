@@ -19,9 +19,6 @@ import kotlinx.coroutines.launch
 import ru.point.auth.databinding.FragmentCreateProfileFourthStepBinding
 import ru.point.auth.ui.on_boarding.ui.OnboardingStep
 import ru.point.auth.ui.on_boarding.ui.OnboardingViewModel
-import ru.point.auth.ui.profile_create.first_step.CreateProfileFirstStepViewModel
-import ru.point.auth.ui.profile_create.first_step.CreateProfileFirstStepViewModelFactory
-import ru.point.auth.ui.profile_create.first_step.ProfileValidationUseCase
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.ui.BaseFragment
 import java.util.Calendar

@@ -41,7 +41,7 @@ class LoginRepositoryImpl (
                 403 -> false
                 else -> false
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             false
         }
     }

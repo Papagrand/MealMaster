@@ -31,7 +31,7 @@ class CreateProfileFirstStepViewModel(
         _rawHeightInput.value = input.trim()
     }
 
-    suspend fun processHeight() {
+    fun processHeight() {
         val result = profileValidationUseCase.validateHeight(_rawHeightInput.value)
         state.value = state.value.copy(
             height = result.formattedValue,
@@ -43,7 +43,7 @@ class CreateProfileFirstStepViewModel(
         _rawWeightInput.value = input.trim()
     }
 
-    suspend fun processWeight() {
+    fun processWeight() {
         val result = profileValidationUseCase.validateWeight(_rawWeightInput.value)
         state.value = state.value.copy(
             weight = result.formattedValue,

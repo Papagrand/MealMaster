@@ -1,9 +1,7 @@
 package ru.point.auth.ui.profile_create.fourth_step
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 
 data class FourthStepState(
     val targetWeight: String = "",
@@ -25,7 +23,7 @@ class CreateProfileFourthStepViewModel(
         _rawTargetWeightInput.value = input.trim()
     }
 
-    suspend fun validateAndFormatTargetWeight() {
+    fun validateAndFormatTargetWeight() {
         val result = validateTargetWeightUseCase.invoke(_rawTargetWeightInput.value)
         _state.value = _state.value.copy(
             targetWeight = result.formattedValue,

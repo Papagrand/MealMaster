@@ -80,7 +80,7 @@ class CheckMassRateUseCase {
                     MassRateCheckResult.Valid
                 }
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             MassRateCheckResult.Valid // Или вернуть ошибку
         }
     }

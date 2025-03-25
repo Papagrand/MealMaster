@@ -2,6 +2,7 @@ package ru.point.auth.ui.register.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -65,6 +66,7 @@ class RegistrationViewModel(
         observeLoginInput()
     }
 
+    @OptIn(FlowPreview::class)
     private fun observeEmailInput() {
         viewModelScope.launch {
             _emailInput
@@ -115,6 +117,7 @@ class RegistrationViewModel(
         }
     }
 
+    @OptIn(FlowPreview::class)
     private fun observeLoginInput() {
         viewModelScope.launch {
             _loginInput

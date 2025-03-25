@@ -66,7 +66,7 @@ class SplashViewModel(
                     } else {
                         _uiEvent.emit(SplashUiEvent.NavigateToLogin)
                     }
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     // При исключении (например, проблемах с сетью) – перенаправляем на логин
                     _uiEvent.emit(SplashUiEvent.NavigateToLogin)
                 }
