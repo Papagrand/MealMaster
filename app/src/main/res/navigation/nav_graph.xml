@@ -6,7 +6,7 @@
     app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="ru.point.auth.ui.login.LoginFragment"
+        android:name="ru.point.auth.ui.login.ui.LoginFragment"
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="ru.point.auth.ui.register.RegisterFragment"
+        android:name="ru.point.auth.ui.register.ui.RegisterFragment"
         android:label="RegisterFragment" >
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
@@ -56,7 +56,7 @@
         android:label="CreateProfileFourthStepFragment" />
     <fragment
         android:id="@+id/onboardingFragment"
-        android:name="ru.point.auth.ui.on_boarding.OnboardingFragment"
+        android:name="ru.point.auth.ui.on_boarding.ui.OnboardingFragment"
         android:label="OnboardingFragment" >
         <action
             android:id="@+id/action_onboardingFragment_to_homeProgressFragment"
@@ -64,8 +64,18 @@
     </fragment>
     <fragment
         android:id="@+id/homeProgressFragment"
-        android:name="ru.point.home.HomeProgressFragment"
-        android:label="HomeProgressFragment" />
+        android:name="ru.point.home.ui.HomeProgressFragment"
+        android:label="HomeProgressFragment" >
+        <action
+            android:id="@+id/action_homeProgressFragment_to_fastingFragment"
+            app:destination="@id/fastingFragment" />
+        <action
+            android:id="@+id/action_homeProgressFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeProgressFragment_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="ru.point.splash.SplashFragment"
@@ -79,5 +89,47 @@
         <action
             android:id="@+id/action_splashFragment_to_homeProgressFragment"
             app:destination="@id/homeProgressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fastingFragment"
+        android:name="ru.point.fasting.ui.FastingFragment"
+        android:label="FastingFragment" >
+        <action
+            android:id="@+id/action_fastingFragment_to_homeProgressFragment"
+            app:destination="@id/homeProgressFragment" />
+        <action
+            android:id="@+id/action_fastingFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_fastingFragment_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="ru.point.profile.ui.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_homeProgressFragment"
+            app:destination="@id/homeProgressFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_fastingFragment"
+            app:destination="@id/fastingFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="ru.point.recipes.ui.RecipesFragment"
+        android:label="RecipesFragment" >
+        <action
+            android:id="@+id/action_recipesFragment_to_homeProgressFragment"
+            app:destination="@id/homeProgressFragment" />
+        <action
+            android:id="@+id/action_recipesFragment_to_fastingFragment"
+            app:destination="@id/fastingFragment" />
+        <action
+            android:id="@+id/action_recipesFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 </navigation>

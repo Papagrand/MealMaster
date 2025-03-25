@@ -43,6 +43,12 @@ android {
     }
 }
 
+kotlin {
+    sourceSets.all {
+        languageSettings.enableLanguageFeature("ExplicitBackingFields")
+    }
+}
+
 dependencies {
     implementation(project(":api"))
     implementation(project(":core"))

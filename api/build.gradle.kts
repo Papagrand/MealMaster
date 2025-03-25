@@ -35,7 +35,6 @@ android {
 
 dependencies {
 
-
     implementation(libs.okHttp3)
     implementation(libs.jakewharton.retrofit)
     implementation(libs.kotlinx.serialization.json)
