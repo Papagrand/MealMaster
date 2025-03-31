@@ -25,10 +25,8 @@ import ru.point.core.ui.BaseFragment
 class CreateProfileFirstStepFragment : BaseFragment<FragmentCreateProfileFirstStepBinding>(),
     OnboardingStep {
 
-    // Общий ViewModel для обмена данными онбординга
     private val onboardingViewModel: OnboardingViewModel by activityViewModels()
 
-    // ViewModel для первого шага
     private val viewModel: CreateProfileFirstStepViewModel by activityViewModels {
         CreateProfileFirstStepViewModelFactory(
             profileValidationUseCase = ProfileValidationUseCase()
@@ -45,9 +43,7 @@ class CreateProfileFirstStepFragment : BaseFragment<FragmentCreateProfileFirstSt
 
         val genders = listOf("Мужской", "Женский")
         val adapter = ArrayAdapter(requireContext(), R.layout.gender_spinner_dropdown_item, genders)
-        val autoCompleteTextView =
-            binding.genderMenu.findViewById<AutoCompleteTextView>(R.id.gender_textview)
-        autoCompleteTextView.setAdapter(adapter)
+        binding.genderTextview.setAdapter(adapter)
 
         // Передаем текст для роста во ViewModel
         binding.heightEdittext.doAfterTextChanged { text ->

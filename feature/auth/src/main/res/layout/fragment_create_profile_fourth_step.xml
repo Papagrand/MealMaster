@@ -170,23 +170,6 @@
             app:layout_constraintEnd_toEndOf="@id/end_diet_group"
             app:layout_constraintTop_toBottomOf="@id/end_diet_textview" />
 
-
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/createProfileButton"-->
-<!--            style="@style/LightPurpleMaterialButton"-->
-<!--            android:layout_width="120dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:clickable="true"-->
-<!--            android:text="Завершить"-->
-<!--            android:textSize="@dimen/top_strings_size_16"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:fontFamily="@font/exo_regular"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/guidelineBottom" />-->
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineBottom"
             android:layout_width="wrap_content"
