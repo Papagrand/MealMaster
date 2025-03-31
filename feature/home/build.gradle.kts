@@ -52,6 +52,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation ("com.mikhaellopez:circularprogressbar:3.1.0"){
+        isTransitive = false
+    }
     implementation("com.cheonjaeung.powerwheelpicker.android:powerwheelpicker:1.0.0") {
         isTransitive = false
     }

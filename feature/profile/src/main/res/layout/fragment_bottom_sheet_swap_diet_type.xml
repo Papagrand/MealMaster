@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineUnderCreateProfileText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/createProfileText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/exo_bold"
+            android:text="Измените цель диеты"
+            android:layout_marginTop="10dp"
+            android:textColor="?attr/android:textColor"
+            android:gravity="center_vertical"
+            app:autoSizeTextType="uniform"
+            app:autoSizePresetSizes="@array/autosize_text_sizes_24"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineUnderCreateProfileText"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <worker8.com.github.radiogroupplus.RadioGroupPlus
+            android:id="@+id/radioGroupGoal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/guidelineUnderCreateProfileText">
+            <!-- Уровень 1 -->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/item_loss"
+                    layout="@layout/item_diet_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:tag="loss"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/loss_radio_button"
+                    app:layout_constraintBottom_toTopOf="@+id/item_gain"
+                    />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/loss_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="?attr/colorTertiary"
+                    android:button="@drawable/custom_radio_button"
+                    android:minWidth="0dp"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/item_loss"
+                    app:layout_constraintTop_toTopOf="@id/item_loss"
+                    app:layout_constraintBottom_toBottomOf="@id/item_loss"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+
+                <include
+                    android:id="@+id/item_gain"
+                    layout="@layout/item_diet_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:tag="gain"
+                    app:layout_constraintTop_toBottomOf="@+id/item_loss"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/gain_radio_button"
+                    app:layout_constraintBottom_toTopOf="@id/item_maintenance"
+                    />
+
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/gain_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="?attr/colorTertiary"
+                    android:button="@drawable/custom_radio_button"
+                    android:minWidth="0dp"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/item_gain"
+                    app:layout_constraintTop_toTopOf="@id/item_gain"
+                    app:layout_constraintBottom_toBottomOf="@id/item_gain"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <include
+                    android:id="@+id/item_maintenance"
+                    layout="@layout/item_diet_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:tag="maintenance"
+                    app:layout_constraintTop_toBottomOf="@+id/item_gain"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/maintenance_radio_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/maintenance_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="?attr/colorTertiary"
+                    android:button="@drawable/custom_radio_button"
+                    android:minWidth="0dp"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/item_maintenance"
+                    app:layout_constraintTop_toTopOf="@id/item_maintenance"
+                    app:layout_constraintBottom_toBottomOf="@id/item_maintenance"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </worker8.com.github.radiogroupplus.RadioGroupPlus>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancelNewDietDataButton"
+            style="@style/DarkPurpleMaterialButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:text="Отменить"
+            android:fontFamily="@font/exo_regular"
+            android:textSize="@dimen/top_strings_size_16"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/saveNewDietDataButton"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/saveNewDietDataButton"
+            style="@style/LightPurpleMaterialButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:text="Сохранить"
+            android:fontFamily="@font/exo_regular"
+            android:textSize="@dimen/top_strings_size_16"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@id/cancelNewDietDataButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

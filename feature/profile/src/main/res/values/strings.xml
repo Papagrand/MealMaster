@@ -1,5 +1,40 @@
 <resources>
-    <string name="app_name">profile</string>
+    <string name="app_name">home</string>
+    <string name="profile_page">Профиль</string>
+    <string name="change_profile">Измените данные профиля</string>
+    <string name="stub_name">Имя Фамилия</string>
+    <string name="goalDiet">Цель диеты: </string>
+    <string name="activityLevel">Уровень активности: </string>
+    <string name="diet_start_date">Дата начала диеты: </string>
+    <string name="diet_end_date">Дата окончания диеты: </string>
+    <string name="stub_userId">userId</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Заголовки уровней активности -->
+    <string name="activity_title_lowest">Очень низкий уровень активности</string>
+    <string name="activity_title_low">Низкий уровень активности</string>
+    <string name="activity_title_medium">Средний уровень активности</string>
+    <string name="activity_title_high">Высокий уровень активности</string>
+    <string name="activity_title_highest">Очень высокий уровень активности</string>
+
+    <!-- Описания уровней активности -->
+    <string name="activity_description_lowest">Преобладание сидячего образа жизни с минимальными физическими нагрузками</string>
+    <string name="activity_description_low">Редкие физические нагрузки, неструктурированные прогулки, отсутствие регулярных занятий спортом</string>
+    <string name="activity_description_medium">Умеренные и стабильные физические нагрузки, например, ежедневные прогулки или лёгкие упражнения</string>
+    <string name="activity_description_high">Регулярные физические занятия средней интенсивности с систематическим подходом к тренировкам</string>
+    <string name="activity_description_highest">Интенсивные тренировки или активное участие в спортивных соревнованиях</string>
+
+
+    <string name="goal_title_loss">Похудение</string>
+    <string name="goal_title_gain">Набор веса и мышечной массы</string>
+    <string name="goal_title_maintenance">Поддержание текущего веса</string>
+
+    <string name="goal_description_loss">Общее количество калорий, потребляемых в день будет снижено.</string>
+    <string name="goal_description_gain">Общее количество калорий, потребляемых в день будет повышено.</string>
+    <string name="goal_description_maintenance">Общее количество калорий, потребляемых в день будет вашей обычной нормой, с учетом уровня физической нагрузки.</string>
+
+    <string name="goal_PFC_loss">Количество БЖУ в отношении общего количества потребляемых калорий: Белки 25%, Жиры 20%, Углеводы 55%</string>
+    <string name="goal_PFC_gain">Количество БЖУ в отношении общего количества потребляемых калорий: Белки 30%, Жиры 25%, Углеводы 45%</string>
+    <string name="goal_PFC_maintenance">Количество БЖУ в отношении общего количества потребляемых калорий: Белки 15%, Жиры 25%, Углеводы 60%</string>
 </resources>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineUnderChangeDataProfileText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <TextView
+            android:id="@+id/changeDataProfileText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/exo_bold"
+            android:gravity="center_vertical"
+            android:text="@string/change_profile"
+            android:textColor="?attr/android:textColor"
+            app:autoSizePresetSizes="@array/autosize_text_sizes_24"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineUnderChangeDataProfileText"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:dividerColor="?attr/colorPrimary"
+            android:paddingVertical="10sp"
+            app:layout_constraintTop_toBottomOf="@id/changeDataProfileText"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileChangeNameEditTextLayout"
+            style="@style/MyOutlinedTextFieldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="10sp"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintTop_toBottomOf="@id/guidelineUnderChangeDataProfileText"
+            app:layout_constraintBottom_toTopOf="@+id/profileChangeSecNameEditTextLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Имя"
+                android:textColor="?attr/android:textColor"
+                android:fontFamily="@font/exo_regular"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileChangeSecNameEditTextLayout"
+            style="@style/MyOutlinedTextFieldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="10sp"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintTop_toBottomOf="@id/profileChangeNameEditTextLayout"
+            app:layout_constraintBottom_toTopOf="@+id/profileChangeAgeEditTextLayout"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Фамилия"
+                android:fontFamily="@font/exo_regular"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileChangeAgeEditTextLayout"
+            style="@style/MyOutlinedTextFieldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="10sp"
+            android:layout_marginEnd="10sp"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintEnd_toStartOf="@id/profileChangeGenderTextLayout"
+            app:layout_constraintTop_toBottomOf="@id/profileChangeSecNameEditTextLayout"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Возраст"
+                android:fontFamily="@font/exo_regular"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/MyExposedDropdownMenu"
+            android:id="@+id/profileChangeGenderTextLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:paddingVertical="10sp"
+            android:textColorHint="?attr/android:textColor"
+            app:layout_constraintTop_toBottomOf="@id/profileChangeSecNameEditTextLayout"
+            app:layout_constraintStart_toEndOf="@id/profileChangeAgeEditTextLayout"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            android:hint="Пол">
+
+
+            <AutoCompleteTextView
+                android:id="@+id/gender_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/android:textColor"
+                android:inputType="none"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/itemActivity_CL"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10sp"
+        android:clickable="true"
+        app:layout_constraintTop_toBottomOf="@id/profileChangeAgeEditTextLayout"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+        app:layout_constraintBottom_toTopOf="@+id/itemGoal_CL"
+        >
+
+        <include
+            android:id="@+id/currentItemActivity"
+            layout="@layout/item_activity_level"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:tag="lowest"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/itemGoal_CL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10sp"
+            android:clickable="true"
+            app:layout_constraintTop_toBottomOf="@id/itemActivity_CL"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintBottom_toTopOf="@+id/profileChangeGoalWeightEditTextLayout"
+            >
+
+            <include
+                android:id="@+id/currentItemGoal"
+                layout="@layout/item_diet_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:tag="lowest"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileChangeGoalWeightEditTextLayout"
+            style="@style/MyOutlinedTextFieldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="10sp"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintTop_toBottomOf="@id/itemGoal_CL"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Цель веса"
+                android:fontFamily="@font/exo_regular"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileChangeGoalTimeEndEditTextLayout"
+            style="@style/MyOutlinedTextFieldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:paddingVertical="10sp"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintTop_toBottomOf="@id/profileChangeGoalWeightEditTextLayout"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Дата окончания диеты"
+                android:fontFamily="@font/exo_regular"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancelNewProfileData"
+            style="@style/DarkPurpleMaterialButton"
+            android:layout_marginTop="20sp"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:text="Отменить"
+            android:textSize="@dimen/top_strings_size_16"
+            android:textColor="@color/white"
+            android:fontFamily="@font/exo_regular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/saveNewProfileData"
+            app:layout_constraintTop_toBottomOf="@+id/profileChangeGoalTimeEndEditTextLayout" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/saveNewProfileData"
+            style="@style/LightPurpleMaterialButton"
+            android:layout_marginTop="20sp"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:fontFamily="@font/exo_regular"
+            android:text="Сохранить"
+            android:textColor="@color/white"
+            android:textSize="@dimen/top_strings_size_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cancelNewProfileData"
+            app:layout_constraintTop_toBottomOf="@+id/profileChangeGoalTimeEndEditTextLayout" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineFourtyPercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

@@ -1,10 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="light_background_color">#FFEDF5</color>
+    <color name="dark_background_color">#191C1E</color>
+
+    <color name="light_water_and_products_buttons">#B4D2E7</color>
+    <color name="dark_water_and_products_buttons">#006688</color>
+
+    <color name="light_main_background_elements">#CECBE6</color>
+    <color name="dark_main_background_elements">#5F5A7D</color>
+
+    <color name="not_full_status_bar">#ADA5DC</color>
+
+    <color name="light_full_status_bar_purple">#5F5A7D</color>
+    <color name="dark_full_status_bar_purple">#E5DEFF</color>
+
+    <color name="foreground_text_purple">#5F5A7D</color>
+
+    <color name="button_and_slider_color">#5F5A7D</color>
+
+    <color name="button_light">#ADA5DC</color>
+    <color name="button_light_pressed">#8E88B4</color>
+
+    <color name="button_light_stroke">#5F5A7D</color>
+    <color name="button_light_stroke_pressed">#534F6D</color>
+
+
+    <color name="bottom_navigation_color">#CCB6DB</color>
+    <color name="text_color_on_light_and_timer">#191C1E</color>
+    <color name="text_color_on_dark">#E5DEFF</color>
+    <!--  Цвета на странице голодания  -->
+    <color name="not_full_circle_diagram_and_center_circle_color">#f098C8ED</color>
+    <color name="full_status_bar_purple_blue">#006688</color>
+    <color name="starving_digits">#006688</color>
+    <color name="on_tracker_button_color">#006688</color>
+    <color name="start_tracker_starving_color">#48B846</color>
+    <color name="stop_tracker_starving_color">#934173</color>
+    <color name="bottom_navigation_background">#F0CCB6DB</color>
 </resources>

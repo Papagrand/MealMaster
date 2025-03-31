@@ -52,6 +52,9 @@ dependencies {
     implementation("com.github.worker8:RadioGroupPlus:1.0.1") {
         isTransitive = false
     }
+    implementation ("com.mikhaellopez:circularprogressbar:3.1.0"){
+        isTransitive = false
+    }
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

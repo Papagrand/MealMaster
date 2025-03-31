@@ -103,6 +103,7 @@ class NavigatorImpl(private val navController: NavController): Navigator {
         navController.navigateSafe(R.id.action_profileFragment_to_fastingFragment)
     }
 
+
     override fun fromLoginFragmentToOnboardingFragment() {
         val navOptions = NavOptions.Builder()
             .setPopUpTo(R.id.loginFragment, inclusive = true)
@@ -123,6 +124,14 @@ class NavigatorImpl(private val navController: NavController): Navigator {
     }
 
 
+    //Временно
+    override fun fromHomeProgressFragmentToMealProductSearchFragment() {
+        navController.navigateSafe(R.id.action_homeProgressFragment_to_mealProductSearchFragment)
+    }
+
+    override fun fromHomeProgressFragmentToSettingSearchedProductFragment() {
+        navController.navigateSafe(R.id.action_homeProgressFragment_to_settingSearchedProductFragment)
+    }
 
 
 }

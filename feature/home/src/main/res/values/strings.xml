@@ -1,5 +1,15 @@
 <resources>
+
+
+
     <string name="app_name">home</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="breakfast">Завтрак</string>
+    <string name="lunch">Обед</string>
+    <string name="dinner">Ужин</string>
+    <string name="snack">Перекус</string>
+    <string name="carbohydrates">Углеводы</string>
+    <string name="proteins">Белки</string>
+    <string name="fats">Жиры</string>
+    <string name="progress_home">Прогресс</string>
 </resources>

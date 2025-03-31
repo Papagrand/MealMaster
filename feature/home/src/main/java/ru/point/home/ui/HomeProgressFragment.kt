@@ -23,6 +23,14 @@ class HomeProgressFragment : BaseFragment<FragmentHomeProgressBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as BottomBarManager).show()
+
+        binding.mealsItem.addBreakfastDishButton.setOnClickListener{
+            navigator.fromHomeProgressFragmentToMealProductSearchFragment()
+        }
+
+        binding.mealsItem.addSnackDishButton.setOnClickListener{
+            navigator.fromHomeProgressFragmentToSettingSearchedProductFragment()
+        }
     }
 
 

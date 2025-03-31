@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Фон карточки -->
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/bg_activity_level" />
+
+    <!-- Иконка -->
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        app:layout_constraintTop_toTopOf="@+id/background"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        android:layout_marginStart="8dp"
+
+        android:src="@drawable/very_low_activity" />
+
+    <!-- Заголовок -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_title_lowest"
+        android:fontFamily="@font/exo_bold"
+        android:textColor="?attr/colorTertiary"
+        android:autoSizeTextType="uniform"
+        android:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintTop_toTopOf="@id/background"
+        app:layout_constraintEnd_toEndOf="@id/background"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp" />
+
+    <!-- Описание -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_description_lowest"
+        android:fontFamily="@font/exo_regular"
+        android:textColor="?attr/colorTertiaryFixed"
+        android:autoSizeTextType="uniform"
+        android:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:maxLines="3"
+        android:ellipsize="end"
+
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintEnd_toEndOf="@id/background"
+        app:layout_constraintBottom_toBottomOf="@id/background"
+
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

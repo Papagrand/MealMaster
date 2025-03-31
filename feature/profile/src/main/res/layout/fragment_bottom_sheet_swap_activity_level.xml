@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineUnderChangeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/createProfileText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/exo_bold"
+            android:text="Измените уровень активности"
+            android:textColor="?attr/android:textColor"
+            android:gravity="center_vertical"
+            app:autoSizeTextType="uniform"
+            app:autoSizePresetSizes="@array/autosize_text_sizes_24"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineUnderChangeText"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+        <worker8.com.github.radiogroupplus.RadioGroupPlus
+            android:id="@+id/radio_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/guidelineUnderChangeText">
+            <!-- Уровень 1 -->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/item_lowest"
+                    layout="@layout/item_activity_level"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:tag="lowest"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/very_low_radio_button"
+                    app:layout_constraintBottom_toTopOf="@+id/item_low"
+                    />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/very_low_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="?attr/colorTertiary"
+                    android:button="@drawable/custom_radio_button"
+                    android:minWidth="0dp"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/item_lowest"
+                    app:layout_constraintTop_toTopOf="@id/item_lowest"
+                    app:layout_constraintBottom_toBottomOf="@id/item_lowest"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+
+                <include
+                    android:id="@+id/item_low"
+                    layout="@layout/item_activity_level"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:tag="low"
+                    app:layout_constraintTop_toBottomOf="@+id/item_lowest"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/low_radio_button"
+                    app:layout_constraintBottom_toTopOf="@id/item_medium"
+                    />
+
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/low_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="?attr/colorTertiary"
+                    android:button="@drawable/custom_radio_button"
+                    android:minWidth="0dp"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/item_low"
+                    app:layout_constraintTop_toTopOf="@id/item_low"
+                    app:layout_constraintBottom_toBottomOf="@id/item_low"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <include
+                    android:id="@+id/item_medium"
+                    layout="@layout/item_activity_level"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:tag="medium"
+                    app:layout_constraintTop_toBottomOf="@+id/item_low"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/medium_radio_button"
+                    app:layout_constraintBottom_toTopOf="@id/item_high"
+                    />
+
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/medium_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="?attr/colorTertiary"
+                    android:button="@drawable/custom_radio_button"
+                    android:minWidth="0dp"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/item_medium"
+                    app:layout_constraintTop_toTopOf="@id/item_medium"
+                    app:layout_constraintBottom_toBottomOf="@id/item_medium"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+
+                <include
+                    android:id="@+id/item_high"
+                    layout="@layout/item_activity_level"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:tag="high"
+                    app:layout_constraintTop_toBottomOf="@+id/item_medium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/high_radio_button"
+                    app:layout_constraintBottom_toTopOf="@id/item_very_high"
+                    />
+
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/high_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="?attr/colorTertiary"
+                    android:button="@drawable/custom_radio_button"
+                    android:minWidth="0dp"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/item_high"
+                    app:layout_constraintTop_toTopOf="@id/item_high"
+                    app:layout_constraintBottom_toBottomOf="@id/item_high"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+
+                <include
+                    android:id="@+id/item_very_high"
+                    layout="@layout/item_activity_level"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:tag="very_high"
+                    app:layout_constraintTop_toBottomOf="@+id/item_high"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/very_high_radio_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/very_high_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="?attr/colorTertiary"
+                    android:button="@drawable/custom_radio_button"
+                    android:minWidth="0dp"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/item_very_high"
+                    app:layout_constraintTop_toTopOf="@id/item_very_high"
+                    app:layout_constraintBottom_toBottomOf="@id/item_very_high"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </worker8.com.github.radiogroupplus.RadioGroupPlus>
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancelNewActivityDataButton"
+            style="@style/DarkPurpleMaterialButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:text="Отменить"
+            android:fontFamily="@font/exo_regular"
+            android:textSize="@dimen/top_strings_size_16"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/saveNewActivityDataButton"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/saveNewActivityDataButton"
+            style="@style/LightPurpleMaterialButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:text="Сохранить"
+            android:fontFamily="@font/exo_regular"
+            android:textSize="@dimen/top_strings_size_16"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@id/cancelNewActivityDataButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

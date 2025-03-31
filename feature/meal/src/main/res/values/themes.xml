@@ -1,16 +1,99 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MealMaster" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    <style name="Base.AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/light_background_color</item>
+        <item name="colorPrimary">@color/light_main_background_elements</item>
+        <item name="colorSecondary">@color/not_full_status_bar</item>
+        <item name="colorTertiary">@color/light_full_status_bar_purple</item>
+        <item name="android:textColor">@color/dark_main_background_elements</item>
+        <item name="colorPrimaryVariant">@color/light_water_and_products_buttons</item>
+        <item name="colorSecondaryVariant">@color/not_full_circle_diagram_and_center_circle_color</item>
+        <item name="colorTertiaryFixed">@color/full_status_bar_purple_blue</item>
+        <item name="colorError">@color/stop_tracker_starving_color</item>
     </style>
+
+
+    <style name="PlusMaterialButton" parent="@style/Widget.Material3.Button.ElevatedButton.Icon">
+        <!-- Цвет фона кнопки -->
+        <item name="android:backgroundTint">@color/foreground_text_purple</item>
+        <!-- Цвет ripple-эффекта -->
+        <item name="rippleColor">?attr/colorPrimary</item>
+        <!-- Если нужно изменить цвет иконки, можно указать -->
+        <item name="iconTint">?attr/colorSecondary</item>
+    </style>
+
+
+    <style name="MyOutlinedTextFieldStyle" parent="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+        <!-- Цвет рамки в нормальном состоянии -->
+        <item name="boxStrokeColor">?attr/android:textColor</item>
+        <!-- Толщина рамки (вне фокуса / при фокусе) -->
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="endIconMode">clear_text</item>
+        <item name="android:fontFamily">@font/exo_regular</item>
+
+        <!-- Цвет фона внутри поля (если хотите) -->
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+
+        <!-- Радиус скругления углов -->
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+
+        <!-- Настройка лейбла (hint) в свернутом и развернутом состоянии -->
+        <item name="hintTextColor">?attr/android:textColor</item>
+
+        <!-- Если есть иконки слева/справа -->
+        <item name="startIconTint">?attr/android:textColor</item>
+        <item name="endIconTint">?attr/android:textColor</item>
+    </style>
+
+
+    <style name="ServingSizeOutlinedTextFieldStyle" parent="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+        <!-- Цвет рамки в нормальном состоянии -->
+        <item name="boxStrokeColor">@color/outlined_box_selector</item>
+        <!-- Толщина рамки (вне фокуса / при фокусе) -->
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="endIconMode">clear_text</item>
+        <item name="android:fontFamily">@font/exo_regular</item>
+
+        <item name="strokeColor">?attr/android:textColor</item>
+
+        <!-- Цвет фона внутри поля (если хотите) -->
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+
+        <!-- Радиус скругления углов -->
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+
+        <!-- Настройка лейбла (hint) в свернутом и развернутом состоянии -->
+        <item name="hintTextColor">?attr/android:textColor</item>
+
+        <!-- Если есть иконки слева/справа -->
+        <item name="startIconTint">?attr/android:textColor</item>
+        <item name="endIconTint">?attr/android:textColor</item>
+    </style>
+
+    <style name="OverlayImageViewStyle">
+        <!-- Назначаем фоновый drawable -->
+        <item name="android:background">@drawable/product_image_bg</item>
+
+        <!-- Если нужно, чтобы ImageView подбирал свои границы при изменении изображения -->
+        <item name="android:adjustViewBounds">true</item>
+
+        <!-- Любые другие нужные атрибуты, например scaleType -->
+    </style>
+
+
+    <style name="DarkPurpleButton" parent="@style/Widget.Material3.Button.IconButton.Outlined">
+        <item name="backgroundTint">?attr/colorTertiary</item>
+        <item name="strokeWidth">2dp</item>
+
+    </style>
+    
+
 </resources>

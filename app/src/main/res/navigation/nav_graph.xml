@@ -75,6 +75,12 @@
         <action
             android:id="@+id/action_homeProgressFragment_to_recipesFragment"
             app:destination="@id/recipesFragment" />
+        <action
+            android:id="@+id/action_homeProgressFragment_to_mealProductSearchFragment"
+            app:destination="@id/mealProductSearchFragment" />
+        <action
+            android:id="@+id/action_homeProgressFragment_to_settingSearchedProductFragment"
+            app:destination="@id/settingSearchedProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -132,4 +138,16 @@
             android:id="@+id/action_recipesFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mealProductSearchFragment"
+        android:name="ru.point.meal.ui.MealProductSearchFragment"
+        android:label="MealProductSearchFragment" >
+        <action
+            android:id="@+id/action_mealProductSearchFragment_to_homeProgressFragment"
+            app:destination="@id/homeProgressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingSearchedProductFragment"
+        android:name="ru.point.setting_searched_product.ui.SettingSearchedProductFragment"
+        android:label="SettingSearchedProductFragment" />
 </navigation>

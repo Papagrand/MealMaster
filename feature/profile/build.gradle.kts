@@ -49,6 +49,9 @@ dependencies {
     implementation("com.cheonjaeung.powerwheelpicker.android:powerwheelpicker:1.0.0") {
         isTransitive = false
     }
+    implementation ("de.hdodenhof:circleimageview:3.1.0") {
+        isTransitive = false
+    }
     implementation("com.github.worker8:RadioGroupPlus:1.0.1") {
         isTransitive = false
     }
