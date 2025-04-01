@@ -33,8 +33,7 @@ class MainActivity : AppCompatActivity(), BottomBarManager, NavigatorProvider {
             v.updatePadding(
                 left = bars.left,
                 top = bars.top,
-                right = bars.right,
-                bottom = bars.bottom,
+                right = bars.right
             )
             WindowInsetsCompat.CONSUMED
         }

@@ -1,14 +1,334 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/motionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.RecipesFragment">
+    app:layoutDescription="@xml/fragment_recipe_search_scene">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/recipesText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/exo_bold"
+        android:gravity="center_vertical"
+        android:text="@string/recipes_page_text"
+        android:textColor="?attr/android:textColor"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_24"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_under_page_text"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_under_page_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchTextInputLayout"
+        style="@style/MyOutlinedTextFieldStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/search_settings"
+        app:endIconTint="?attr/android:textColor"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+        app:layout_constraintTop_toBottomOf="@id/recipesText"
+        app:layout_constraintBottom_toTopOf="@id/add_product_to_meal_button"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchRecipesEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Поиск рецептов"
+            android:textColor="?attr/android:textColor"
+            android:fontFamily="@font/exo_regular"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_product_to_meal_button"
+        style="@style/LightPurpleButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/add_own_recipe_text"
+        android:textSize="@dimen/top_strings_size_16"
+        android:textColor="@color/white"
+        android:fontFamily="@font/exo_regular"
+        app:layout_constraintTop_toBottomOf="@+id/searchTextInputLayout"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+
+        />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/recipesSelectionScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:paddingVertical="20dp"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@+id/add_product_to_meal_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/healthy_breakfasts_imageView"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:src="@drawable/bg_blue_image"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/quick_dinner_imageView"
+                />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/healthy_breakfast_image"
+                android:foreground="@drawable/blue_gradient_background"
+                android:padding="2dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="@id/healthy_breakfasts_imageView"
+                app:layout_constraintBottom_toBottomOf="@id/healthy_breakfasts_imageView"
+                app:layout_constraintStart_toStartOf="@id/healthy_breakfasts_imageView"
+                app:layout_constraintEnd_toEndOf="@id/guidelineSixtyPercent"
+                app:shapeAppearance="@style/MyShapeAppearanceOverlay"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/healthy_breakfast_textView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/exo_extra_light"
+                android:gravity="center_vertical"
+                android:textDirection="rtl"
+                android:layout_margin="5dp"
+                android:maxLines="2"
+                android:text="@string/recipes_healthy_breakfasts_text"
+                android:textColor="@color/dark_water_and_products_buttons"
+                app:autoSizePresetSizes="@array/autosize_text_sizes_24"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="@id/healthy_breakfasts_imageView"
+                app:layout_constraintEnd_toEndOf="@+id/healthy_breakfasts_imageView"
+                app:layout_constraintStart_toStartOf="@id/guidelineSixtyPercent"
+                app:layout_constraintTop_toTopOf="@id/healthy_breakfasts_imageView" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineSixtyPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.6"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineFortyPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.4"/>
+
+            <ImageView
+                android:id="@+id/quick_dinner_imageView"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/bg_purple_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/healthy_breakfasts_imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/less_threeH_dishes_imageView"
+                />
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/quick_dinners_image"
+                android:foreground="@drawable/purple_gradient_background"
+                android:padding="2dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="@id/quick_dinner_imageView"
+                app:layout_constraintBottom_toBottomOf="@id/quick_dinner_imageView"
+                app:layout_constraintStart_toStartOf="@id/guidelineFortyPercent"
+                app:layout_constraintEnd_toEndOf="@id/quick_dinner_imageView"
+                app:shapeAppearance="@style/MyShapeAppearanceOverlay"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/quick_dinner_textView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/exo_extra_light"
+                android:gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:maxLines="2"
+                android:text="@string/recipes_quick_dinners_text"
+                android:textColor="@color/dark_main_background_elements"
+                app:autoSizePresetSizes="@array/autosize_text_sizes_24"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="@id/quick_dinner_imageView"
+                app:layout_constraintStart_toStartOf="@+id/quick_dinner_imageView"
+                app:layout_constraintEnd_toEndOf="@id/guidelineFortyPercent"
+                app:layout_constraintTop_toTopOf="@id/quick_dinner_imageView" />
+
+
+            <ImageView
+                android:id="@+id/less_threeH_dishes_imageView"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/bg_blue_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/quick_dinner_imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/vegan_menu_imageView"
+                />
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/less_three"
+                android:foreground="@drawable/blue_gradient_background"
+                android:padding="2dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="@id/less_threeH_dishes_imageView"
+                app:layout_constraintBottom_toBottomOf="@id/less_threeH_dishes_imageView"
+                app:layout_constraintEnd_toEndOf="@id/guidelineSixtyPercent"
+                app:layout_constraintStart_toStartOf="@id/less_threeH_dishes_imageView"
+                app:shapeAppearance="@style/MyShapeAppearanceOverlay"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/less_threeH_dishes_textView"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:fontFamily="@font/exo_extra_light"
+                android:gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:lines="3"
+                android:textDirection="rtl"
+                android:text="@string/less_threeH_dishes_text"
+                android:textColor="@color/dark_water_and_products_buttons"
+                app:autoSizePresetSizes="@array/autosize_text_sizes_24"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="@id/less_threeH_dishes_imageView"
+                app:layout_constraintStart_toStartOf="@+id/guidelineSixtyPercent"
+                app:layout_constraintEnd_toEndOf="@id/less_threeH_dishes_imageView"
+                app:layout_constraintTop_toTopOf="@id/less_threeH_dishes_imageView" />
+
+
+            <ImageView
+                android:id="@+id/vegan_menu_imageView"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/bg_purple_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/less_threeH_dishes_imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/vegan_menu_image"
+                android:foreground="@drawable/purple_gradient_background"
+                android:padding="2dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="@id/vegan_menu_imageView"
+                app:layout_constraintBottom_toBottomOf="@id/vegan_menu_imageView"
+                app:layout_constraintStart_toStartOf="@id/guidelineFortyPercent"
+                app:layout_constraintEnd_toEndOf="@id/vegan_menu_imageView"
+                app:shapeAppearance="@style/MyShapeAppearanceOverlay"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/vegan_menu_textView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/exo_extra_light"
+                android:gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:maxLines="2"
+                android:text="@string/vegan_menu_text"
+                android:textColor="@color/dark_main_background_elements"
+                app:autoSizePresetSizes="@array/autosize_text_sizes_24"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="@id/vegan_menu_imageView"
+                app:layout_constraintStart_toStartOf="@+id/vegan_menu_imageView"
+                app:layout_constraintEnd_toEndOf="@id/guidelineFortyPercent"
+                app:layout_constraintTop_toTopOf="@id/vegan_menu_imageView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/searchedRecipesScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_blue_dark"
+        app:layout_constraintTop_toBottomOf="@+id/searchTextInputLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight">
+
+        <LinearLayout
+            android:id="@+id/searchedRecipesLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/searchedRecipesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

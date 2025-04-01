@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetTop="2dp"
+    android:insetBottom="2dp">
+    <shape>
+        <gradient
+            android:endColor="@android:color/transparent"
+            android:startColor="?attr/colorSecondary"
+            android:angle="0"
+            android:centerX="@integer/material_motion_duration_long_2"
+            />
+    </shape>
+</inset>

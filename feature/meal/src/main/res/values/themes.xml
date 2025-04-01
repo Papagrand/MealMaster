@@ -92,7 +92,12 @@
     <style name="DarkPurpleButton" parent="@style/Widget.Material3.Button.IconButton.Outlined">
         <item name="backgroundTint">?attr/colorTertiary</item>
         <item name="strokeWidth">2dp</item>
+    </style>
 
+    <style name="LightPurpleButton" parent="@style/Widget.Material3.Button.IconButton.Outlined">
+        <item name="backgroundTint">?attr/colorSecondary</item>
+        <item name="strokeColor">?attr/colorTertiary</item>
+        <item name="strokeWidth">2dp</item>
     </style>
     
 
