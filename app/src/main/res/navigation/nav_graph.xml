@@ -81,6 +81,9 @@
         <action
             android:id="@+id/action_homeProgressFragment_to_settingSearchedProductFragment"
             app:destination="@id/settingSearchedProductFragment" />
+        <action
+            android:id="@+id/action_homeProgressFragment_to_recipeInformationFragment"
+            app:destination="@id/recipeInformationFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -150,4 +153,8 @@
         android:id="@+id/settingSearchedProductFragment"
         android:name="ru.point.setting_searched_product.ui.SettingSearchedProductFragment"
         android:label="SettingSearchedProductFragment" />
+    <fragment
+        android:id="@+id/recipeInformationFragment"
+        android:name="ru.point.recipe_information.ui.RecipeInformationFragment"
+        android:label="RecipeInformationFragment" />
 </navigation>

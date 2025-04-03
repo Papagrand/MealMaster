@@ -133,5 +133,9 @@ class NavigatorImpl(private val navController: NavController): Navigator {
         navController.navigateSafe(R.id.action_homeProgressFragment_to_settingSearchedProductFragment)
     }
 
+    override fun fromHomeProgressFragmentToRecipeInformationFragment() {
+        navController.navigateSafe(R.id.action_homeProgressFragment_to_recipeInformationFragment)
+    }
+
 
 }

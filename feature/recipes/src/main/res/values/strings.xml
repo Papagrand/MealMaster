@@ -64,4 +64,7 @@
     <string name="no">Нет</string>
     <string name="calories_on_hundred_grams_text">Максимальное количество калорий на 100гр:</string>
     <string name="add_own_recipe_text">Добавить собственный рецепт</string>
+    <string name="recipeStepsText">Описание рецепта:</string>
+    <string name="recipeIngredientText">Ингредиенты:</string>
+    <string name="retry_ger_recipe_information">Произошла ошибка при загрузке рецепта, повторите попытку</string>
 </resources>

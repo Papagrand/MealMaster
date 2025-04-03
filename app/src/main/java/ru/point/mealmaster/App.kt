@@ -7,6 +7,7 @@ import ru.point.auth.ui.register.di.RegistrationDepsStore
 import ru.point.core.secure_prefs.SecurePrefs
 import ru.point.mealmaster.di.AppComponent
 import ru.point.mealmaster.di.DaggerAppComponent
+import ru.point.recipe_information.di.RecipeInformationDepsStore
 
 class App : Application() {
     val appComponent: AppComponent by lazy {
@@ -21,5 +22,6 @@ class App : Application() {
         RegistrationDepsStore.deps = appComponent
         LoginDepsStore.deps = appComponent
         OnboardingDepsStore.deps = appComponent
+        RecipeInformationDepsStore.deps = appComponent
     }
 }

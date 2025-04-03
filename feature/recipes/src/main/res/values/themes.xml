@@ -23,6 +23,16 @@
         <item name="iconTint">?attr/colorSecondary</item>
     </style>
 
+    <style name="CollapsedAppBar" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/exo_regular</item>
+    </style>
+
+    <style name="ExpandedAppBar" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/exo_regular</item>
+    </style>
+
 
     <style name="MyOutlinedTextFieldStyle" parent="@style/Widget.Material3.TextInputLayout.OutlinedBox">
         <!-- Цвет рамки в нормальном состоянии -->
@@ -64,6 +74,34 @@
     <style name="MyShapeAppearanceOverlay" parent="@style/ShapeAppearance.Material3.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="OutlinedTextFieldStyle" parent="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+        <!-- Цвет рамки в нормальном состоянии -->
+        <item name="boxStrokeColor">@color/outlined_box_selector</item>
+        <!-- Толщина рамки (вне фокуса / при фокусе) -->
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="endIconMode">clear_text</item>
+        <item name="android:fontFamily">@font/exo_regular</item>
+
+        <item name="strokeColor">?attr/android:textColor</item>
+
+        <!-- Цвет фона внутри поля (если хотите) -->
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+
+        <!-- Радиус скругления углов -->
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+
+        <!-- Настройка лейбла (hint) в свернутом и развернутом состоянии -->
+        <item name="hintTextColor">?attr/android:textColor</item>
+
+        <!-- Если есть иконки слева/справа -->
+        <item name="startIconTint">?attr/android:textColor</item>
+        <item name="endIconTint">?attr/android:textColor</item>
     </style>
 
 

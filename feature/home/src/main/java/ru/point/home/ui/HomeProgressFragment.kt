@@ -31,6 +31,10 @@ class HomeProgressFragment : BaseFragment<FragmentHomeProgressBinding>() {
         binding.mealsItem.addSnackDishButton.setOnClickListener{
             navigator.fromHomeProgressFragmentToSettingSearchedProductFragment()
         }
+
+        binding.mealsItem.addLunchDishButton.setOnClickListener{
+            navigator.fromHomeProgressFragmentToRecipeInformationFragment()
+        }
     }
 
 

@@ -29,4 +29,5 @@ interface Navigator {
     //Временно
     fun fromHomeProgressFragmentToMealProductSearchFragment()
     fun fromHomeProgressFragmentToSettingSearchedProductFragment()
+    fun fromHomeProgressFragmentToRecipeInformationFragment()
 }
