@@ -68,6 +68,12 @@ class RecipeInformationFragment : BaseFragment<FragmentRecipeInformationBinding>
 
         val recipeId = "r-ht38c1nmo75r"
         viewModel.loadRecipe(recipeId)
+
+        binding.errorRetryButton.setOnClickListener{
+            collectUiState()
+            collectUiEvent()
+            viewModel.loadRecipe(recipeId)
+        }
     }
 
 
