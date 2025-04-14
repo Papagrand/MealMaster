@@ -38,6 +38,20 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/exo_bold"
+        android:text="Название"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toEndOf="@id/productCard"
+        app:layout_constraintTop_toTopOf="@+id/mealProductBackgroundImage" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/productProteinTextView"
         android:layout_width="0dp"
@@ -48,7 +62,7 @@
         android:textColor="?attr/colorTertiary"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
         app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@id/productCard"
+        app:layout_constraintStart_toEndOf="@id/guidelineFourtyPercentVertical"
         app:layout_constraintTop_toTopOf="@+id/mealProductBackgroundImage"
         app:layout_constraintBottom_toTopOf="@+id/productFatTextView"/>
 
@@ -63,7 +77,7 @@
         android:textColor="?attr/colorTertiary"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
         app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@id/productCard"
+        app:layout_constraintStart_toEndOf="@id/guidelineFourtyPercentVertical"
         app:layout_constraintTop_toBottomOf="@+id/productProteinTextView"
         app:layout_constraintBottom_toTopOf="@+id/productCarbohydratesTextView"/>
 
@@ -77,7 +91,7 @@
         android:textColor="?attr/colorTertiary"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
         app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@id/productCard"
+        app:layout_constraintStart_toEndOf="@id/guidelineFourtyPercentVertical"
         app:layout_constraintTop_toBottomOf="@+id/productFatTextView"
         app:layout_constraintBottom_toBottomOf="@+id/mealProductBackgroundImage" />
 
@@ -127,14 +141,14 @@
         android:layout_height="match_parent"
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/exo_bold"
-        android:gravity="end"
+        android:gravity="start"
         android:text="@string/meal_product_serving_size"
         android:textColor="?attr/colorTertiary"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@+id/productServingCcal"
         app:layout_constraintEnd_toEndOf="@+id/mealProductBackgroundImage"
-        app:layout_constraintStart_toStartOf="@id/guidelineFiftyPercentVertical"
+        app:layout_constraintStart_toStartOf="@id/guidelineSeventyPercentVertical"
         app:layout_constraintTop_toTopOf="@+id/mealProductBackgroundImage" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -143,21 +157,28 @@
         android:layout_height="match_parent"
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/exo_bold"
-        android:gravity="end"
+        android:gravity="start"
         android:text="@string/meal_product_ccal"
         android:textColor="?attr/colorTertiary"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/productServingSize"
         app:layout_constraintEnd_toEndOf="@+id/mealProductBackgroundImage"
-        app:layout_constraintStart_toStartOf="@id/guidelineFiftyPercentVertical"
+        app:layout_constraintStart_toStartOf="@id/guidelineSeventyPercentVertical"
         app:layout_constraintTop_toBottomOf="@+id/mealProductBackgroundImage" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineFiftyPercentVertical"
+        android:id="@+id/guidelineFourtyPercentVertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineSeventyPercentVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -115,7 +115,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="ru.point.profile.ui.ProfileFragment"
+        android:name="ru.point.profile.ui.profile.ProfileFragment"
         android:label="ProfileFragment" >
         <action
             android:id="@+id/action_profileFragment_to_homeProgressFragment"
@@ -126,6 +126,9 @@
         <action
             android:id="@+id/action_profileFragment_to_recipesFragment"
             app:destination="@id/recipesFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_updateProfileInformationFragment"
+            app:destination="@id/updateProfileInformationFragment" />
     </fragment>
     <fragment
         android:id="@+id/recipesFragment"
@@ -157,4 +160,12 @@
         android:id="@+id/recipeInformationFragment"
         android:name="ru.point.recipe_information.ui.RecipeInformationFragment"
         android:label="RecipeInformationFragment" />
+    <fragment
+        android:id="@+id/updateProfileInformationFragment"
+        android:name="ru.point.profile.ui.update_profile_information.UpdateProfileInformationFragment"
+        android:label="UpdateProfileInformationFragment" >
+        <action
+            android:id="@+id/action_updateProfileInformationFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 </navigation>

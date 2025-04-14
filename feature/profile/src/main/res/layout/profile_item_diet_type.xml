@@ -9,37 +9,26 @@
     <ImageView
         android:id="@+id/background"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="170dp"
         android:scaleType="fitXY"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/bg_activity_level" />
+        android:src="@drawable/bg_diet_type" />
 
-    <!-- Иконка -->
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        app:layout_constraintTop_toTopOf="@+id/background"
-        app:layout_constraintStart_toStartOf="@+id/background"
-        app:layout_constraintBottom_toBottomOf="@+id/background"
-        android:layout_marginStart="8dp"
-
-        android:src="@drawable/very_low_activity" />
 
     <!-- Заголовок -->
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/title"
+        android:id="@+id/goalTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/activity_title_lowest"
+        android:text="@string/goal_title_loss"
         android:fontFamily="@font/exo_bold"
-        android:textColor="?attr/colorTertiary"
+        android:textColor="?attr/colorTertiaryFixed"
         android:autoSizeTextType="uniform"
         android:autoSizePresetSizes="@array/autosize_text_sizes_12"
-        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/background"
         app:layout_constraintEnd_toEndOf="@id/background"
         android:layout_marginStart="8dp"
@@ -48,22 +37,37 @@
 
     <!-- Описание -->
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/description"
+        android:id="@+id/goalDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/activity_description_lowest"
+        android:text="@string/goal_description_loss"
         android:fontFamily="@font/exo_regular"
-        android:textColor="?attr/colorTertiaryFixed"
+        android:textColor="?attr/colorTertiary"
         android:autoSizeTextType="uniform"
         android:autoSizePresetSizes="@array/autosize_text_sizes_12"
         android:maxLines="3"
         android:ellipsize="end"
-
-        app:layout_constraintStart_toStartOf="@id/title"
-        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="@id/goalTitle"
+        app:layout_constraintTop_toBottomOf="@id/goalTitle"
         app:layout_constraintEnd_toEndOf="@id/background"
-        app:layout_constraintBottom_toBottomOf="@id/background"
+        app:layout_constraintBottom_toTopOf="@id/goalPfc_text"
+        android:layout_marginEnd="16dp" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/goalPfc_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/goal_PFC_loss"
+        android:fontFamily="@font/exo_bold"
+        android:textColor="?attr/colorTertiary"
+        android:autoSizeTextType="uniform"
+        android:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:maxLines="5"
+        android:ellipsize="end"
+        app:layout_constraintStart_toStartOf="@id/goalDescription"
+        app:layout_constraintTop_toBottomOf="@id/goalDescription"
+        app:layout_constraintEnd_toEndOf="@id/background"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp" />
 

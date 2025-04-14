@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/profile_scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -36,36 +37,58 @@
             android:id="@+id/buttonExit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@null"
             android:clickable="true"
+            android:src="@drawable/exit_svgrepo_com"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineUnderCreateProfileText"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/guidelineUnderCreateProfileText"
-            android:src="@drawable/exit_svgrepo_com"
-            android:background="@null"
-            app:tint="?attr/colorError"
-            />
+            app:tint="?attr/colorError" />
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <!--        <de.hdodenhof.circleimageview.CircleImageView-->
+        <!--            android:id="@+id/profilePictureImage"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:src="@drawable/default_avatar"-->
+        <!--            android:padding="10dp"-->
+        <!--            app:civ_border_width="5dp"-->
+        <!--            app:civ_border_color="?attr/colorSecondary"-->
+        <!--            app:layout_constraintStart_toStartOf="@id/guidelineLeft"-->
+        <!--            app:layout_constraintEnd_toEndOf="@id/guidelineRight"-->
+        <!--            app:layout_constraintTop_toTopOf="@id/guidelineUnderCreateProfileText"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@id/guidelineFourtyPercent"-->
+        <!--            />-->
+
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/profilePictureImage"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/default_avatar"
             android:padding="10dp"
-            app:civ_border_width="5dp"
-            app:civ_border_color="?attr/colorSecondary"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintTop_toTopOf="@id/guidelineUnderCreateProfileText"
+            android:src="@drawable/default_avatar"
             app:layout_constraintBottom_toBottomOf="@id/guidelineFourtyPercent"
-            />
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toTopOf="@id/guidelineUnderCreateProfileText" />
+
+        <ImageButton
+            android:id="@+id/change_image_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="80dp"
+            android:backgroundTint="@android:color/transparent"
+            android:clickable="true"
+            android:src="@drawable/pen"
+            app:layout_constraintBottom_toBottomOf="@+id/profilePictureImage"
+            app:layout_constraintEnd_toEndOf="@+id/profilePictureImage"
+            app:tint="?attr/android:textColor" />
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            app:layout_constraintTop_toBottomOf="@id/profilePictureImage"
             app:dividerColor="?attr/colorPrimary"
-            />
+            app:layout_constraintTop_toBottomOf="@id/profilePictureImage" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/userIdTextView"
             android:layout_width="0dp"
@@ -76,11 +99,10 @@
             android:textColor="?attr/colorSecondary"
             app:autoSizePresetSizes="@array/autosize_text_sizes_18"
             app:autoSizeTextType="uniform"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintTop_toTopOf="@id/guidelineFourtyPercent"
             app:layout_constraintBottom_toTopOf="@id/firstLastNameTextView"
-            />
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toTopOf="@id/guidelineFourtyPercent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/firstLastNameTextView"
@@ -91,18 +113,16 @@
             android:text="@string/stub_name"
             app:autoSizePresetSizes="@array/autosize_text_sizes_18"
             app:autoSizeTextType="uniform"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintTop_toBottomOf="@id/userIdTextView"
             app:layout_constraintBottom_toTopOf="@+id/dietGoalTextView"
-            />
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/userIdTextView" />
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            app:layout_constraintTop_toBottomOf="@id/firstLastNameTextView"
             app:dividerColor="?attr/colorPrimary"
-            />
+            app:layout_constraintTop_toBottomOf="@id/firstLastNameTextView" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/dietGoalTextView"
@@ -113,11 +133,10 @@
             android:text="@string/goalDiet"
             app:autoSizePresetSizes="@array/autosize_text_sizes_18"
             app:autoSizeTextType="uniform"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintTop_toBottomOf="@id/firstLastNameTextView"
             app:layout_constraintBottom_toTopOf="@+id/activityLevelTextView"
-            />
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/firstLastNameTextView" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/activityLevelTextView"
@@ -128,11 +147,10 @@
             android:text="@string/activityLevel"
             app:autoSizePresetSizes="@array/autosize_text_sizes_18"
             app:autoSizeTextType="uniform"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintTop_toBottomOf="@id/dietGoalTextView"
             app:layout_constraintBottom_toTopOf="@+id/profileWeightEditTextLayout"
-            />
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/dietGoalTextView" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -142,16 +160,15 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="20sp"
-            app:layout_constraintTop_toBottomOf="@id/activityLevelTextView"
+            app:layout_constraintEnd_toStartOf="@id/profileHeightEditTextLayout"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintEnd_toStartOf="@id/profileHeightEditTextLayout">
+            app:layout_constraintTop_toBottomOf="@id/activityLevelTextView">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Вес"
                 android:fontFamily="@font/exo_regular"
-                />
+                android:hint="Вес" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -162,16 +179,15 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="20sp"
-            app:layout_constraintTop_toBottomOf="@id/activityLevelTextView"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintStart_toEndOf="@id/profileWeightEditTextLayout"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight">
+            app:layout_constraintTop_toBottomOf="@id/activityLevelTextView">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Рост"
                 android:fontFamily="@font/exo_regular"
-                />
+                android:hint="Рост" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -184,11 +200,10 @@
             android:text="@string/diet_start_date"
             app:autoSizePresetSizes="@array/autosize_text_sizes_18"
             app:autoSizeTextType="uniform"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintTop_toBottomOf="@id/profileWeightEditTextLayout"
             app:layout_constraintBottom_toTopOf="@+id/dateEndDietTextView"
-            />
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/profileWeightEditTextLayout" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/dateEndDietTextView"
@@ -199,8 +214,8 @@
             android:text="@string/diet_end_date"
             app:autoSizePresetSizes="@array/autosize_text_sizes_18"
             app:autoSizeTextType="uniform"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintTop_toBottomOf="@id/dateStartDietTextView"
 
             />
@@ -209,11 +224,11 @@
             android:id="@+id/settingsList"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="20sp"
-            app:layout_constraintTop_toBottomOf="@id/dateEndDietTextView"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight">
+            app:layout_constraintTop_toBottomOf="@id/dateEndDietTextView">
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -225,7 +240,6 @@
                 android:id="@+id/editDataItem"
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
-
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground">
 
@@ -233,26 +247,26 @@
                     android:id="@+id/editDataText"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:text="Изменить данные"
                     android:fontFamily="@font/exo_regular"
                     android:gravity="center_vertical"
+                    android:text="Изменить данные"
+                    android:textAppearance="?attr/textAppearanceBody1"
                     app:autoSizePresetSizes="@array/autosize_text_sizes_18"
                     app:autoSizeTextType="uniform"
-                    android:textAppearance="?attr/textAppearanceBody1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/arrowIcon"/>
+                    app:layout_constraintEnd_toStartOf="@+id/goToUpdateInformation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/arrowIcon"
+                    android:id="@+id/goToUpdateInformation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/arrow_forward"
                     android:rotation="180"
+                    android:src="@drawable/arrow_forward"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.divider.MaterialDivider
@@ -269,15 +283,15 @@
                     android:id="@+id/themeText"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:text="Темная тема"
                     android:fontFamily="@font/exo_regular"
                     android:gravity="center_vertical"
+                    android:text="Темная тема"
                     app:autoSizePresetSizes="@array/autosize_text_sizes_18"
                     app:autoSizeTextType="uniform"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/themeSwitch"/>
+                    app:layout_constraintEnd_toStartOf="@id/themeSwitch"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.materialswitch.MaterialSwitch
                     android:id="@+id/themeSwitch"
@@ -285,9 +299,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.divider.MaterialDivider
@@ -297,6 +311,21 @@
 
         </LinearLayout>
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/lineGraphWeightText"
+            android:layout_width="0dp"
+            android:layout_height="50sp"
+            android:fontFamily="@font/exo_regular"
+            android:gravity="center_vertical"
+            android:text="График потребления калорий"
+            app:autoSizePresetSizes="@array/autosize_text_sizes_18"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/settingsList"
+            />
+
+
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineFourtyPercent"
@@ -304,10 +333,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.25" />
-
-
-
-
 
 
         <!--        <com.google.android.material.button.MaterialButton-->
@@ -332,7 +357,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.05" />
-
 
 
         <androidx.constraintlayout.widget.Guideline

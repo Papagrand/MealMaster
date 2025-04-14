@@ -10,7 +10,7 @@
         android:id="@+id/foodBackgroundImage"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:src="@drawable/bg_purple_image"
+        android:src="@drawable/bg_purple_meal_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,5 +1,6 @@
 package ru.point.mealmaster
 
+import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import ru.point.core.navigation.Navigator
@@ -101,6 +102,17 @@ class NavigatorImpl(private val navController: NavController): Navigator {
 
     override fun fromProfileFragmentToFastingFragment() {
         navController.navigateSafe(R.id.action_profileFragment_to_fastingFragment)
+    }
+
+    override fun fromProfileFragmentToUpdateProfileInformationFragment(bundle: Bundle) {
+        navController.navigateSafe(R.id.action_profileFragment_to_updateProfileInformationFragment, bundle)
+    }
+
+    override fun fromUpdateProfileInformationFragmentToProfileFragment() {
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.onboardingFragment, inclusive = true)
+            .build()
+        navController.navigate(R.id.action_updateProfileInformationFragment_to_profileFragment, null, navOptions)
     }
 
 

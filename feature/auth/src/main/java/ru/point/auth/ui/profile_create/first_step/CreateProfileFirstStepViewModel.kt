@@ -22,8 +22,6 @@ class CreateProfileFirstStepViewModel(
     val state: StateFlow<FirstStepState>
         field = MutableStateFlow(FirstStepState())
 
-    // Сырой ввод, который мы будем валидировать (можно и без них,
-    // но иногда удобно хранить отдельно от "финального" значения).
     private val _rawHeightInput = MutableStateFlow("")
     private val _rawWeightInput = MutableStateFlow("")
 

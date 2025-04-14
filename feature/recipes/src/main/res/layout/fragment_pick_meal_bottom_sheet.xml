@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Контейнер с закруглёнными верхними углами -->
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_shape_for_bottom_sheets"
+        android:padding="16dp">
+
+        <RadioGroup
+            android:id="@+id/radioGroupPortions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioButtonBreakfast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:buttonTint="?attr/colorTertiary"
+                android:button="@drawable/custom_radio_button"
+                android:paddingStart="10dp"
+                android:minWidth="0dp"
+                android:checked="false"
+                android:fontFamily="@font/exo_regular"
+                android:text="@string/breakfast"
+                android:textColor="?attr/colorTertiary"
+                app:autoSizePresetSizes="@array/autosize_text_sizes_16"
+                app:autoSizeTextType="uniform" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioButtonLunch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:buttonTint="?attr/colorTertiary"
+                android:button="@drawable/custom_radio_button"
+                android:paddingStart="10dp"
+                android:minWidth="0dp"
+                android:checked="false"
+                android:fontFamily="@font/exo_regular"
+                android:textColor="?attr/colorTertiary"
+                app:autoSizePresetSizes="@array/autosize_text_sizes_16"
+                app:autoSizeTextType="uniform"
+                android:text="@string/lunch" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioButtonDinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:buttonTint="?attr/colorTertiary"
+                android:button="@drawable/custom_radio_button"
+                android:paddingStart="10dp"
+                android:minWidth="0dp"
+                android:checked="false"
+                android:fontFamily="@font/exo_regular"
+                android:textColor="?attr/colorTertiary"
+                app:autoSizePresetSizes="@array/autosize_text_sizes_16"
+                app:autoSizeTextType="uniform"
+                android:text="@string/dinner" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioButtonSnack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:buttonTint="?attr/colorTertiary"
+                android:button="@drawable/custom_radio_button"
+                android:paddingStart="10dp"
+                android:minWidth="0dp"
+                android:checked="false"
+                android:fontFamily="@font/exo_regular"
+                android:textColor="?attr/colorTertiary"
+                app:autoSizePresetSizes="@array/autosize_text_sizes_16"
+                app:autoSizeTextType="uniform"
+                android:text="@string/snack" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonBack"
+                style="@style/LightPurpleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="Назад" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonConfirm"
+                style="@style/DarkPurpleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Подтвердить"
+                android:textColor="@android:color/white"
+                android:layout_marginStart="16dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Ручка сверху. Обратите внимание, что она объявлена после контейнера -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/topToggleImage"
+        android:layout_width="70dp"
+        android:layout_height="10dp"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="10dp"
+        android:elevation="4dp"
+        android:background="@color/dark_main_background_elements"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.ExtraSmall" />
+
+</FrameLayout>

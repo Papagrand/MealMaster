@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface ProfileService {
+interface ProfileCreateService {
     @POST("/user/create_profile")
     suspend fun createProfile(@Body request: CreateProfileRequest): CreateProfileResponse
 }
@@ -35,7 +35,7 @@ data class CreateProfileResponse(
     val message: String? = null
 )
 
-fun createProfileService(apiBaseUrl: String = "http://192.168.1.101:8080"): ProfileService {
+fun createProfileCreateService(apiBaseUrl: String = "http://192.168.1.101:8080"): ProfileCreateService {
     val okHttpClient = OkHttpClient.Builder()
         .build()
 
@@ -48,5 +48,5 @@ fun createProfileService(apiBaseUrl: String = "http://192.168.1.101:8080"): Prof
         .addConverterFactory(json.asConverterFactory(contentType))
         .build()
 
-    return retrofit.create(ProfileService::class.java)
+    return retrofit.create(ProfileCreateService::class.java)
 }

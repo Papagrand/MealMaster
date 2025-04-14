@@ -10,7 +10,7 @@
         <item name="colorPrimaryVariant">@color/light_water_and_products_buttons</item>
         <item name="colorSecondaryVariant">@color/not_full_circle_diagram_and_center_circle_color</item>
         <item name="colorTertiaryFixed">@color/full_status_bar_purple_blue</item>
-        <item name="colorError">@color/stop_tracker_starving_color</item>
+        <item name="colorError">@color/stop_tracker_fasting_color</item>
     </style>
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">

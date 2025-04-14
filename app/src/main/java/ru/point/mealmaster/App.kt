@@ -7,6 +7,8 @@ import ru.point.auth.ui.register.di.RegistrationDepsStore
 import ru.point.core.secure_prefs.SecurePrefs
 import ru.point.mealmaster.di.AppComponent
 import ru.point.mealmaster.di.DaggerAppComponent
+import ru.point.profile.di.ProfileDepsStore
+import ru.point.profile.di.UpdateProfileDepsStore
 import ru.point.recipe_information.di.RecipeInformationDepsStore
 
 class App : Application() {
@@ -23,5 +25,7 @@ class App : Application() {
         LoginDepsStore.deps = appComponent
         OnboardingDepsStore.deps = appComponent
         RecipeInformationDepsStore.deps = appComponent
+        ProfileDepsStore.deps = appComponent
+        UpdateProfileDepsStore.deps = appComponent
     }
 }

@@ -47,12 +47,20 @@ dependencies {
 
 
     kapt(libs.kapt)
+    implementation(libs.androidx.constraintlayout)
     implementation(libs.retrofit)
     implementation(libs.dagger)
     implementation(libs.bundles.navigation)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation ("androidx.viewpager2:viewpager2:1.0.0"){
+        isTransitive = false
+    }
+
+    implementation ("com.mikhaellopez:circularprogressbar:3.1.0"){
+        isTransitive = false
+    }
     implementation("com.cheonjaeung.powerwheelpicker.android:powerwheelpicker:1.0.0") {
         isTransitive = false
     }

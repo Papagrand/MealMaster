@@ -8,11 +8,11 @@ import ru.point.api.recipes.domain.models.RecipeStepData
 import ru.point.api.recipes.domain.models.StepImageData
 
 class RecipeRepositoryImpl(
-    private val service: RecipeService
+    private val recipeService: RecipeService
 ) : RecipeRepository {
     override suspend fun getFullRecipeData(recipeId: String): Result<FullResponseRecipeData<FullRecipeData>> {
         return try {
-            val response = service.getRecipeData(recipeId)
+            val response = recipeService.getRecipeData(recipeId)
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null && body.success && body.data != null) {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="most_high_textSize_42">42sp</dimen>
+    <dimen name="last_calories_and_timer_size_32">32sp</dimen>
+    <dimen name="eated_and_burned_calories">16sp</dimen>
+    <dimen name="breakfast_lunch_dinner_size">16sp</dimen>
+    <dimen name="normal_text_size_24">24sp</dimen>
+    <dimen name="huge_text_size_32">32sp</dimen>
+    <dimen name="top_strings_size_16">16sp</dimen>
+    <dimen name="size_14">14sp</dimen>
+    <dimen name="size_20">20sp</dimen>
+    <dimen name="size_12">12sp</dimen>
+    <dimen name="size_8">8sp</dimen>
+    <dimen name="theme_of_element_size">12sp</dimen>
+    <dimen name="main_information_size">12sp</dimen>
+    <dimen name="minimal_text_size_10">10sp</dimen>
+    <dimen name="navigation_text_size_12">12sp</dimen>
+    <dimen name="calories_digits">14sp</dimen>
+    <dimen name="fab_margin">16sp</dimen>
+</resources>

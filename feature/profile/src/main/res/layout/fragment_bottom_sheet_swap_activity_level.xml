@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rounded_shape_for_bottom_sheets"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineUnderChangeText"
@@ -37,7 +36,7 @@
 
 
         <worker8.com.github.radiogroupplus.RadioGroupPlus
-            android:id="@+id/radio_group"
+            android:id="@+id/radio_change_activity_group"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -54,7 +53,7 @@
 
                 <include
                     android:id="@+id/item_lowest"
-                    layout="@layout/item_activity_level"
+                    layout="@layout/profile_item_activity_level"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:tag="lowest"
@@ -82,7 +81,7 @@
 
                 <include
                     android:id="@+id/item_low"
-                    layout="@layout/item_activity_level"
+                    layout="@layout/profile_item_activity_level"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -111,7 +110,7 @@
 
                 <include
                     android:id="@+id/item_medium"
-                    layout="@layout/item_activity_level"
+                    layout="@layout/profile_item_activity_level"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -141,7 +140,7 @@
 
                 <include
                     android:id="@+id/item_high"
-                    layout="@layout/item_activity_level"
+                    layout="@layout/profile_item_activity_level"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -171,7 +170,7 @@
 
                 <include
                     android:id="@+id/item_very_high"
-                    layout="@layout/item_activity_level"
+                    layout="@layout/profile_item_activity_level"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -216,6 +215,7 @@
             android:fontFamily="@font/exo_regular"
             android:textSize="@dimen/top_strings_size_16"
             android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/radio_change_activity_group"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/saveNewActivityDataButton"
             app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"/>
@@ -231,6 +231,7 @@
             android:fontFamily="@font/exo_regular"
             android:textSize="@dimen/top_strings_size_16"
             android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/radio_change_activity_group"
             app:layout_constraintStart_toEndOf="@id/cancelNewActivityDataButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"/>

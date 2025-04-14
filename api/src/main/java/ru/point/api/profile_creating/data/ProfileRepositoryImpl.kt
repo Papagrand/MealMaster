@@ -5,7 +5,7 @@ import ru.point.api.profile_creating.domain.ProfileRepository
 
 
 class ProfileRepositoryImpl(
-    private val profileService: ProfileService
+    private val profileCreateService: ProfileCreateService
 ) : ProfileRepository {
 
     override suspend fun createProfile(
@@ -13,7 +13,7 @@ class ProfileRepositoryImpl(
         profileData: OnboardingProfileData
     ): ProfileCreateResult {
         return try {
-            val response = profileService.createProfile(
+            val response = profileCreateService.createProfile(
                 CreateProfileRequest(
                     userProfileId = userProfileId,
                     name = profileData.firstName,

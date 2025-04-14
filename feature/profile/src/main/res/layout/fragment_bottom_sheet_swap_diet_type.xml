@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/rounded_shape_for_bottom_sheets"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineUnderCreateProfileText"
@@ -53,7 +53,7 @@
 
                 <include
                     android:id="@+id/item_loss"
-                    layout="@layout/item_diet_type"
+                    layout="@layout/profile_item_diet_type"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:tag="loss"
@@ -81,7 +81,7 @@
 
                 <include
                     android:id="@+id/item_gain"
-                    layout="@layout/item_diet_type"
+                    layout="@layout/profile_item_diet_type"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -110,7 +110,7 @@
 
                 <include
                     android:id="@+id/item_maintenance"
-                    layout="@layout/item_diet_type"
+                    layout="@layout/profile_item_diet_type"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -154,6 +154,7 @@
             android:fontFamily="@font/exo_regular"
             android:textSize="@dimen/top_strings_size_16"
             android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupGoal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/saveNewDietDataButton"
             app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"/>
@@ -169,6 +170,7 @@
             android:fontFamily="@font/exo_regular"
             android:textSize="@dimen/top_strings_size_16"
             android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupGoal"
             app:layout_constraintStart_toEndOf="@id/cancelNewDietDataButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"/>

@@ -33,13 +33,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            app:dividerColor="?attr/colorPrimary"
             android:paddingVertical="10sp"
-            app:layout_constraintTop_toBottomOf="@id/changeDataProfileText"/>
+            app:dividerColor="?attr/colorPrimary"
+            app:layout_constraintTop_toBottomOf="@id/changeDataProfileText" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/profileChangeNameEditTextLayout"
@@ -48,18 +47,17 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingVertical="10sp"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintBottom_toTopOf="@+id/profileChangeSecNameEditTextLayout"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintTop_toBottomOf="@id/guidelineUnderChangeDataProfileText"
-            app:layout_constraintBottom_toTopOf="@+id/profileChangeSecNameEditTextLayout">
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/guidelineUnderChangeDataProfileText">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Имя"
-                android:textColor="?attr/android:textColor"
                 android:fontFamily="@font/exo_regular"
-                />
+                android:hint="Имя"
+                android:textColor="?attr/android:textColor" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,18 +69,16 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingVertical="10sp"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintTop_toBottomOf="@id/profileChangeNameEditTextLayout"
             app:layout_constraintBottom_toTopOf="@+id/profileChangeAgeEditTextLayout"
-            >
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/profileChangeNameEditTextLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Фамилия"
                 android:fontFamily="@font/exo_regular"
-                />
+                android:hint="Фамилия" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,97 +88,86 @@
             style="@style/MyOutlinedTextFieldStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingVertical="10sp"
             android:layout_marginEnd="10sp"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            android:gravity="center"
+            android:paddingTop="10sp"
             app:layout_constraintEnd_toStartOf="@id/profileChangeGenderTextLayout"
-            app:layout_constraintTop_toBottomOf="@id/profileChangeSecNameEditTextLayout"
-            >
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/profileChangeSecNameEditTextLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Возраст"
                 android:fontFamily="@font/exo_regular"
-                />
+                android:hint="Возраст" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/MyExposedDropdownMenu"
             android:id="@+id/profileChangeGenderTextLayout"
+            style="@style/MyExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10sp"
-            android:paddingVertical="10sp"
+            android:hint="Пол"
+            android:paddingTop="10sp"
             android:textColorHint="?attr/android:textColor"
-            app:layout_constraintTop_toBottomOf="@id/profileChangeSecNameEditTextLayout"
-            app:layout_constraintStart_toEndOf="@id/profileChangeAgeEditTextLayout"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            android:hint="Пол">
+            app:layout_constraintStart_toEndOf="@id/profileChangeAgeEditTextLayout"
+            app:layout_constraintTop_toBottomOf="@id/profileChangeSecNameEditTextLayout">
 
 
             <AutoCompleteTextView
                 android:id="@+id/gender_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/android:textColor"
                 android:inputType="none"
-                />
+                android:textColor="?attr/android:textColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/itemActivity_CL"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingVertical="10sp"
-        android:clickable="true"
-        app:layout_constraintTop_toBottomOf="@id/profileChangeAgeEditTextLayout"
-        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-        app:layout_constraintBottom_toTopOf="@+id/itemGoal_CL"
-        >
-
-        <include
-            android:id="@+id/currentItemActivity"
-            layout="@layout/item_activity_level"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ItemActivityCL"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:tag="lowest"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/ItemGoalCL"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/profileChangeAgeEditTextLayout"
+            >
+            <include
+                android:id="@+id/currentItemActivity"
+                layout="@layout/profile_item_activity_level"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/itemGoal_CL"
+            android:id="@+id/ItemGoalCL"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingVertical="10sp"
+            android:layout_height="170dp"
+            android:layout_marginVertical="20dp"
             android:clickable="true"
-            app:layout_constraintTop_toBottomOf="@id/itemActivity_CL"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintBottom_toTopOf="@+id/profileChangeGoalWeightEditTextLayout"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/ItemActivityCL"
             >
-
             <include
                 android:id="@+id/currentItemGoal"
-                layout="@layout/item_diet_type"
+                layout="@layout/profile_item_diet_type"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:tag="lowest"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
-
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -193,18 +178,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingVertical="10sp"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            android:layout_marginVertical="20dp"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintTop_toBottomOf="@id/itemGoal_CL"
-            >
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/ItemGoalCL">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Цель веса"
                 android:fontFamily="@font/exo_regular"
-                />
+                android:hint="Цель веса" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -215,19 +198,20 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-
-            android:paddingVertical="10sp"
-            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            android:layout_marginVertical="20dp"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-            app:layout_constraintTop_toBottomOf="@id/profileChangeGoalWeightEditTextLayout"
-            >
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/profileChangeGoalWeightEditTextLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Дата окончания диеты"
                 android:fontFamily="@font/exo_regular"
-                />
+                android:hint="Дата окончания диеты"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:clickable="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -235,25 +219,25 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/cancelNewProfileData"
             style="@style/DarkPurpleMaterialButton"
-            android:layout_marginTop="20sp"
             android:layout_width="120dp"
             android:layout_height="50dp"
+            android:layout_marginTop="20sp"
             android:clickable="true"
-            android:text="Отменить"
-            android:textSize="@dimen/top_strings_size_16"
-            android:textColor="@color/white"
             android:fontFamily="@font/exo_regular"
+            android:text="Отменить"
+            android:textColor="@color/white"
+            android:textSize="@dimen/top_strings_size_16"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/saveNewProfileData"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profileChangeGoalTimeEndEditTextLayout" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/saveNewProfileData"
             style="@style/LightPurpleMaterialButton"
-            android:layout_marginTop="20sp"
             android:layout_width="120dp"
             android:layout_height="50dp"
+            android:layout_marginTop="20sp"
             android:clickable="true"
             android:fontFamily="@font/exo_regular"
             android:text="Сохранить"
@@ -279,7 +263,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.05" />
-
 
 
         <androidx.constraintlayout.widget.Guideline

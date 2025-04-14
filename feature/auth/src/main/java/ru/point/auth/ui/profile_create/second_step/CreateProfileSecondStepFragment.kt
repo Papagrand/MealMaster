@@ -107,7 +107,7 @@ class CreateProfileSecondStepFragment : BaseFragment<FragmentCreateProfileSecond
         // Инициализация текстовых полей и иконок для каждого элемента
         for (i in includes.indices) {
             val itemView = includes[i]
-            val title = itemView.findViewById<TextView>(R.id.title)
+            val title = itemView.findViewById<TextView>(R.id.goalTitle)
             val description = itemView.findViewById<TextView>(R.id.description)
             val icon = itemView.findViewById<ImageView>(R.id.icon)
 

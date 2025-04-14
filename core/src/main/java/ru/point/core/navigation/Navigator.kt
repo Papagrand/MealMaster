@@ -1,5 +1,7 @@
 package ru.point.core.navigation
 
+import android.os.Bundle
+
 interface Navigator {
     fun popBackStack()
     fun fromLoginFragmentToRegisterFragment()
@@ -25,6 +27,8 @@ interface Navigator {
     fun fromProfileFragmentToHomeProgressFragment()
     fun fromProfileFragmentToRecipesFragment()
     fun fromProfileFragmentToFastingFragment()
+    fun fromProfileFragmentToUpdateProfileInformationFragment(bundle: Bundle)
+    fun fromUpdateProfileInformationFragmentToProfileFragment()
 
     //Временно
     fun fromHomeProgressFragmentToMealProductSearchFragment()

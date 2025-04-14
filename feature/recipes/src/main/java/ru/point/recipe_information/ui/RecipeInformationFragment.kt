@@ -15,6 +15,7 @@ import ru.point.recipes.R
 import kotlinx.coroutines.launch
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.ui.BaseFragment
+import ru.point.pick_meal.ui.PickMealBottomSheetFragment
 import ru.point.recipe_information.di.DaggerRecipeInformationComponent
 import ru.point.recipe_information.di.RecipeInformationDepsProvider
 import ru.point.recipe_information.ui.adapters.RecipeIngredientsAdapter
@@ -73,6 +74,11 @@ class RecipeInformationFragment : BaseFragment<FragmentRecipeInformationBinding>
             collectUiState()
             collectUiEvent()
             viewModel.loadRecipe(recipeId)
+        }
+
+        binding.addRecipeToMealButton.setOnClickListener {
+            val bottomSheet = PickMealBottomSheetFragment()
+            bottomSheet.show(childFragmentManager, bottomSheet.tag)
         }
     }
 

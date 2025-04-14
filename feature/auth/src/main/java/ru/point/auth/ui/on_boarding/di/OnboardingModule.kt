@@ -3,7 +3,7 @@ package ru.point.auth.ui.on_boarding.di
 import dagger.Module
 import dagger.Provides
 import ru.point.api.profile_creating.data.ProfileRepositoryImpl
-import ru.point.api.profile_creating.data.ProfileService
+import ru.point.api.profile_creating.data.ProfileCreateService
 import ru.point.auth.ui.on_boarding.domain.CheckMassRateUseCase
 import ru.point.auth.ui.on_boarding.domain.CreateProfileUseCase
 import ru.point.api.profile_creating.domain.ProfileRepository
@@ -14,9 +14,9 @@ object OnboardingModule {
 
     @Provides
     fun provideProfileRepository(
-        profileService: ProfileService
+        profileCreateService: ProfileCreateService
     ): ProfileRepository {
-        return ProfileRepositoryImpl(profileService)
+        return ProfileRepositoryImpl(profileCreateService)
     }
 
     @Provides

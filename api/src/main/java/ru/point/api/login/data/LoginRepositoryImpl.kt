@@ -21,7 +21,7 @@ class LoginRepositoryImpl (
                 }
                 403 -> {
                     // user not found
-                    LoginCheckResult.Error("Пользователь не существует (403)")
+                    LoginCheckResult.Error("Пользователь не существует")
                 }
                 else -> {
                     val msg = response.errorBody()?.string() ?: "Unexpected error"

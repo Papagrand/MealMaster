@@ -55,7 +55,10 @@ dependencies {
     implementation ("com.mikhaellopez:circularprogressbar:3.1.0"){
         isTransitive = false
     }
+    testImplementation("io.mockk:mockk:1.13.3")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
     testImplementation(libs.junit)
+    androidTestImplementation("io.mockk:mockk-android:1.13.3")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

@@ -76,7 +76,8 @@ class CreateProfileThirdStepFragment : BaseFragment<FragmentCreateProfileThirdSt
             getString(R.string.goal_PFC_maintenance)
         )
 
-        val radioGroup = view.findViewById<RadioGroupPlus>(R.id.radioGroupGoal)
+
+        val radioGroup: RadioGroupPlus = binding.radioGroupGoal
 
         val constraintLayout = radioGroup.getChildAt(0) as ConstraintLayout
 
@@ -94,7 +95,7 @@ class CreateProfileThirdStepFragment : BaseFragment<FragmentCreateProfileThirdSt
 
         for (i in includes.indices) {
             val itemView = includes[i]
-            val title = itemView.findViewById<TextView>(R.id.title)
+            val title = itemView.findViewById<TextView>(R.id.goalTitle)
             val description = itemView.findViewById<TextView>(R.id.description)
             val pfc = itemView.findViewById<TextView>(R.id.pfc_text)
 

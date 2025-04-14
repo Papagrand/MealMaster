@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
     id("kotlin-kapt")
 }
 
@@ -40,8 +41,10 @@ dependencies {
     implementation(project(":api"))
 
     kapt(libs.kapt)
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit)
     implementation(libs.dagger)
+    implementation(libs.coil)
     implementation(libs.bundles.navigation)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -55,7 +58,10 @@ dependencies {
     implementation("com.github.worker8:RadioGroupPlus:1.0.1") {
         isTransitive = false
     }
+    testImplementation("io.mockk:mockk:1.13.3")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
     testImplementation(libs.junit)
+    androidTestImplementation("io.mockk:mockk-android:1.13.3")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

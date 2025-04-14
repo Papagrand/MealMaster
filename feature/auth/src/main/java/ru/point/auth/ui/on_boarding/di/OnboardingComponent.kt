@@ -1,7 +1,7 @@
 package ru.point.auth.ui.on_boarding.di
 
 import dagger.Component
-import ru.point.api.profile_creating.data.ProfileService
+import ru.point.api.profile_creating.data.ProfileCreateService
 import ru.point.auth.ui.on_boarding.ui.OnboardingFragment
 import kotlin.properties.Delegates.notNull
 
@@ -18,7 +18,7 @@ internal interface OnboardingComponent {
 
 
 interface OnboardingDeps {
-    val profileService: ProfileService
+    val profileCreateService: ProfileCreateService
 }
 
 interface OnboardingDepsProvider {
