@@ -2,6 +2,7 @@ package ru.point.api.profile_data.data
 
 import ru.point.api.profile_data.domain.ProfileDataRepository
 import ru.point.api.profile_data.domain.UpdateProfileResult
+import ru.point.api.profile_data.domain.models.MainMaxNutrientsDataModel
 import ru.point.api.profile_data.domain.models.ProfileDataModel
 import ru.point.api.profile_data.domain.models.ProfileMainDataModel
 import ru.point.core.enums.ActivityLevel
@@ -32,6 +33,64 @@ class ProfileDataRepositoryImpl(
                                 goalTimeStart = body.data.goalTimeStart,
                                 goalTimeEnd = body.data.goalTimeEnd,
                                 profilePicture = body.data.profilePicture
+                            )
+                        Result.success(ProfileDataModel(success = true, data = domainModel))
+                    } else {
+                        Result.failure(Throwable(body?.message ?: "Unexpected fault"))
+                    }
+                }
+
+                403 -> {
+                    Result.failure(Throwable(body?.message ?: "Profile not found"))
+                }
+
+                else -> {
+                    Result.failure(Throwable(body?.message ?: "Unexpected error"))
+                }
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun getMainMaxNutrientsData(userProfileId: String): Result<ProfileDataModel<MainMaxNutrientsDataModel>> {
+        return try {
+            val response = profileDataService.getMainNutrientsData(userProfileId)
+            val body = response.body()
+            when (response.code()) {
+                200 -> {
+                    if (body != null && body.success && body.data != null) {
+                        val domainModel =
+                            MainMaxNutrientsDataModel(
+                                maxCalories = body.data.maxCalories,
+                                maxBreakfastCalories = body.data.maxBreakfastCalories,
+                                maxLunchCalories = body.data.maxLunchCalories,
+                                maxDinnerCalories = body.data.maxDinnerCalories,
+                                maxSnackCalories = body.data.maxSnackCalories,
+                                maxProtein = body.data.maxProtein,
+                                maxCarbohydrates = body.data.maxCarbohydrates,
+                                maxFat = body.data.maxFat,
+                                maxDietaryFiber = body.data.maxDietaryFiber,
+                                maxSugars = body.data.maxSugars,
+                                maxStarchDextrins = body.data.maxStarchDextrins,
+                                maxPotassium = body.data.maxPotassium,
+                                maxCalcium = body.data.maxCalcium,
+                                maxSilicon = body.data.maxSilicon,
+                                maxMagnesium = body.data.maxMagnesium,
+                                maxSodium = body.data.maxSodium,
+                                maxSulfur = body.data.maxSulfur,
+                                maxPhosphorus = body.data.maxPhosphorus,
+                                maxChlorine = body.data.maxChlorine,
+                                maxIron = body.data.maxIron,
+                                maxZinc = body.data.maxZinc,
+                                maxOmega3 = body.data.maxOmega3,
+                                maxOmega6 = body.data.maxOmega6,
+                                maxVitaminA = body.data.maxVitaminA,
+                                maxVitaminB1 = body.data.maxVitaminB1,
+                                maxVitaminB2 = body.data.maxVitaminB2,
+                                maxVitaminB4 = body.data.maxVitaminB4,
+                                maxVitaminC = body.data.maxVitaminC,
+                                maxVitaminD = body.data.maxVitaminD,
                             )
                         Result.success(ProfileDataModel(success = true, data = domainModel))
                     } else {

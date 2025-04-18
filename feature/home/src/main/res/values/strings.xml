@@ -12,4 +12,6 @@
     <string name="proteins">Белки</string>
     <string name="fats">Жиры</string>
     <string name="progress_home">Прогресс</string>
+    <string name="summary">Сводка</string>
+    <string name="meals_consumption">Приемы пищи</string>
 </resources>

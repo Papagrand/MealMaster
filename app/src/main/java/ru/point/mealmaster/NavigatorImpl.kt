@@ -115,6 +115,13 @@ class NavigatorImpl(private val navController: NavController): Navigator {
         navController.navigate(R.id.action_updateProfileInformationFragment_to_profileFragment, null, navOptions)
     }
 
+    override fun fromMealFragmentToHomeProgressFragment() {
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.onboardingFragment, inclusive = true)
+            .build()
+        navController.navigate(R.id.action_mealProductSearchFragment_to_homeProgressFragment, null, navOptions)
+    }
+
 
     override fun fromLoginFragmentToOnboardingFragment() {
         val navOptions = NavOptions.Builder()
@@ -135,12 +142,12 @@ class NavigatorImpl(private val navController: NavController): Navigator {
         navController.navigateSafe(R.id.action_createProfileThirdStepFragment_to_createProfileFourthStepFragment)
     }
 
-
-    //Временно
-    override fun fromHomeProgressFragmentToMealProductSearchFragment() {
-        navController.navigateSafe(R.id.action_homeProgressFragment_to_mealProductSearchFragment)
+    override fun fromHomeProgressFragmentToMealProductSearchFragment(bundle: Bundle) {
+        navController.navigateSafe(R.id.action_homeProgressFragment_to_mealProductSearchFragment, bundle)
     }
 
+
+    //Временно
     override fun fromHomeProgressFragmentToSettingSearchedProductFragment() {
         navController.navigateSafe(R.id.action_homeProgressFragment_to_settingSearchedProductFragment)
     }

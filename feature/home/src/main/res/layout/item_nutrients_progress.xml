@@ -4,16 +4,13 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
-    android:paddingVertical="20dp"
     >
 
     <ImageView
         android:id="@+id/progressNutrientsBackgroundImage"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginBottom="20dp"
         android:src="@drawable/bg_blue_image"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +20,7 @@
         android:id="@+id/circularProgressBarCalories"
         android:layout_width="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="30dp"
         android:layout_height="0dp"
         app:cpb_progress="1"
         app:cpb_progress_max="1919"
@@ -38,25 +35,10 @@
         app:cpb_progressbar_width="10dp"
         app:cpb_round_border="true" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineFiftyPercentVertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5"
 
-        />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineFourtyPercentHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4"
-
-        />
 
     <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/center_circle_divider"
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:rotation="-60"
@@ -69,42 +51,38 @@
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/last_calories"
+        android:id="@+id/eated_calories_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_bold"
-        android:text="max"
-        android:gravity="start"
-        android:padding="5dp"
+        android:text="0"
         android:textColor="?attr/colorTertiary"
         app:autoSizeTextType="uniform"
         app:autoSizePresetSizes="@array/autosize_text_sizes_14"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintTop_toTopOf="@id/guidelineFourtyPercentHorizontal"
-        app:layout_constraintStart_toStartOf="@id/guidelineFiftyPercentVertical"
+        app:layout_constraintBottom_toTopOf="@id/center_circle_divider"
+        app:layout_constraintStart_toStartOf="@id/center_circle_divider"
         />
 
-    <TextView
-        android:id="@+id/last_calories_text"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/max_calories_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/exo_bold"
-        android:text="current"
+        android:text="0"
         android:gravity="end"
-        android:padding="5dp"
         android:textColor="?attr/colorTertiary"
         app:autoSizeTextType="uniform"
         app:autoSizePresetSizes="@array/autosize_text_sizes_14"
-        app:layout_constraintEnd_toEndOf="@id/guidelineFiftyPercentVertical"
-        app:layout_constraintBottom_toBottomOf="@id/guidelineFourtyPercentHorizontal"
+        app:layout_constraintEnd_toEndOf="@id/center_circle_divider"
+        app:layout_constraintTop_toBottomOf="@id/center_circle_divider"
         />
 
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/carbon_proteins_fats_group"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/circularProgressBarCalories"
+        android:layout_height="0dp"
+        android:layout_marginBottom="25dp"
         app:layout_constraintStart_toStartOf="@id/progressNutrientsBackgroundImage"
         app:layout_constraintEnd_toEndOf="@id/progressNutrientsBackgroundImage"
         app:layout_constraintBottom_toBottomOf="@id/progressNutrientsBackgroundImage"
@@ -115,7 +93,6 @@
         android:id="@+id/carbons_group"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:layout_marginRight="20dp"
         app:layout_constraintTop_toTopOf="@id/carbon_proteins_fats_group"
         app:layout_constraintStart_toStartOf="@id/carbon_proteins_fats_group"
@@ -127,7 +104,6 @@
         android:id="@+id/proteins_group"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         app:layout_constraintTop_toTopOf="@id/carbon_proteins_fats_group"
         app:layout_constraintStart_toEndOf="@id/carbons_group"
         app:layout_constraintEnd_toStartOf="@id/fats_group"
@@ -138,7 +114,6 @@
         android:id="@+id/fats_group"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:layout_marginLeft="20dp"
         app:layout_constraintTop_toTopOf="@id/carbon_proteins_fats_group"
         app:layout_constraintStart_toEndOf="@id/proteins_group"
@@ -183,8 +158,22 @@
         app:layout_constraintBottom_toBottomOf="@+id/carbons_group"
         app:layout_constraintTop_toBottomOf="@id/carbons_progress_bar"
         app:layout_constraintStart_toStartOf="@+id/carbons_group"
+        app:layout_constraintEnd_toStartOf="@+id/max_carbons_grams"
+        android:text="0"
+        android:gravity="center"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:textColor="@color/button_and_slider_color"
+        android:fontFamily="@font/exo_regular"/>
+
+    <TextView
+        android:id="@+id/max_carbons_grams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/carbons_progress_bar"
+        app:layout_constraintStart_toEndOf="@+id/carbons_grams"
         app:layout_constraintEnd_toEndOf="@+id/carbons_group"
-        android:text="0 / 100г"
+        android:text="100г"
         android:gravity="center"
         app:autoSizeTextType="uniform"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
@@ -225,12 +214,26 @@
         app:layout_constraintBottom_toBottomOf="@+id/proteins_group"
         app:layout_constraintTop_toBottomOf="@id/proteins_progress_bar"
         app:layout_constraintStart_toStartOf="@+id/proteins_group"
-        app:layout_constraintEnd_toEndOf="@+id/proteins_group"
+        app:layout_constraintEnd_toStartOf="@+id/max_proteins_grams"
         app:autoSizeTextType="uniform"
         android:gravity="center"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
         android:textColor="@color/button_and_slider_color"
-        android:text="0 / 94г"
+        android:text="0"
+        android:fontFamily="@font/exo_regular"/>
+
+    <TextView
+        android:id="@+id/max_proteins_grams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/proteins_progress_bar"
+        app:layout_constraintStart_toEndOf="@+id/proteins_grams"
+        app:layout_constraintEnd_toEndOf="@+id/proteins_group"
+        android:text="100г"
+        android:gravity="center"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:textColor="@color/button_and_slider_color"
         android:fontFamily="@font/exo_regular"/>
 
     <TextView
@@ -268,12 +271,26 @@
         app:layout_constraintBottom_toBottomOf="@+id/fats_group"
         app:layout_constraintTop_toBottomOf="@id/fats_progress_bar"
         app:layout_constraintStart_toStartOf="@+id/fats_group"
-        app:layout_constraintEnd_toEndOf="@+id/fats_group"
+        app:layout_constraintEnd_toStartOf="@+id/max_fats_grams"
         android:textColor="@color/button_and_slider_color"
         app:autoSizeTextType="uniform"
         android:gravity="center"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
-        android:text="0 / 62г"
+        android:text="0"
+        android:fontFamily="@font/exo_regular"/>
+
+    <TextView
+        android:id="@+id/max_fats_grams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fats_progress_bar"
+        app:layout_constraintStart_toEndOf="@+id/fats_grams"
+        app:layout_constraintEnd_toEndOf="@+id/fats_group"
+        android:text="100г"
+        android:gravity="center"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:textColor="@color/button_and_slider_color"
         android:fontFamily="@font/exo_regular"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.55" />
 
     <com.mikhaellopez.circularprogressbar.CircularProgressBar
         android:id="@+id/circularProgressBarBreakfast"
@@ -41,7 +41,7 @@
         android:layout_height="0dp"
         app:cpb_background_progressbar_color="@color/light_main_background_elements"
         app:cpb_background_progressbar_width="7dp"
-        app:cpb_progress="255"
+        app:cpb_progress="1"
         app:cpb_progress_direction="to_right"
         app:cpb_progress_max="576"
         app:cpb_progressbar_color="?attr/colorTertiary"
@@ -56,6 +56,7 @@
         android:id="@+id/breakfast_text_group"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="5dp"
         app:constraint_referenced_ids="breakfast_text, max_breakfast_calories_text"
         app:layout_constraintBottom_toBottomOf="@+id/meal_group_breakfast"
         app:layout_constraintStart_toEndOf="@+id/guideline_ccal"
@@ -71,11 +72,26 @@
         android:textColor="?attr/colorTertiary"
         app:autoSizeTextType="uniform"
         app:autoSizePresetSizes="@array/autosize_text_sizes_14"
-        app:layout_constraintBottom_toTopOf="@id/max_breakfast_calories_text"
+        app:layout_constraintBottom_toTopOf="@id/breakfast_calories_text"
         app:layout_constraintStart_toStartOf="@+id/breakfast_text_group"
         app:layout_constraintEnd_toEndOf="@id/breakfast_text_group"
         app:layout_constraintTop_toTopOf="@+id/breakfast_text_group" />
 
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/breakfast_calories_text"
+        android:layout_width="wrap_content"
+        android:layout_height="20sp"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 из"
+        android:gravity="center_vertical"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:layout_constraintBottom_toBottomOf="@+id/breakfast_text_group"
+        app:layout_constraintStart_toStartOf="@+id/breakfast_text_group"
+        app:layout_constraintTop_toBottomOf="@id/breakfast_text"
+        app:layout_constraintEnd_toStartOf="@id/max_breakfast_calories_text"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/max_breakfast_calories_text"
@@ -87,9 +103,9 @@
         android:textColor="?attr/colorTertiary"
         app:autoSizeTextType="uniform"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
-        app:layout_constraintBottom_toBottomOf="@+id/breakfast_text_group"
-        app:layout_constraintStart_toStartOf="@+id/breakfast_text_group"
-        app:layout_constraintTop_toBottomOf="@id/breakfast_text"
+        app:layout_constraintBottom_toBottomOf="@+id/breakfast_calories_text"
+        app:layout_constraintStart_toEndOf="@+id/breakfast_calories_text"
+        app:layout_constraintTop_toTopOf="@id/breakfast_calories_text"
         app:layout_constraintEnd_toEndOf="@id/breakfast_text_group"/>
 
 
@@ -128,7 +144,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.24" />
+        app:layout_constraintGuide_percent="0.20" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/drawline_1"
@@ -156,7 +172,7 @@
         android:layout_height="0dp"
         app:cpb_background_progressbar_color="@color/light_main_background_elements"
         app:cpb_background_progressbar_width="7dp"
-        app:cpb_progress="255"
+        app:cpb_progress="1"
         app:cpb_progress_direction="to_right"
         app:cpb_progress_max="576"
         app:cpb_progressbar_color="?attr/colorTertiary"
@@ -171,6 +187,7 @@
         android:id="@+id/lunch_text_group"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="5dp"
         app:constraint_referenced_ids="lunch_text, max_lunch_calories_text"
         app:layout_constraintBottom_toBottomOf="@+id/meal_group_lunch"
         app:layout_constraintStart_toEndOf="@+id/guideline_ccal"
@@ -186,11 +203,26 @@
         android:textColor="?attr/colorTertiary"
         app:autoSizeTextType="uniform"
         app:autoSizePresetSizes="@array/autosize_text_sizes_14"
-        app:layout_constraintBottom_toTopOf="@id/max_lunch_calories_text"
+        app:layout_constraintBottom_toTopOf="@id/lunch_calories_text"
         app:layout_constraintStart_toStartOf="@+id/lunch_text_group"
         app:layout_constraintEnd_toEndOf="@id/lunch_text_group"
         app:layout_constraintTop_toTopOf="@+id/lunch_text_group" />
 
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lunch_calories_text"
+        android:layout_width="wrap_content"
+        android:layout_height="20sp"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 из"
+        android:gravity="center_vertical"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:layout_constraintBottom_toBottomOf="@+id/lunch_text_group"
+        app:layout_constraintStart_toStartOf="@+id/lunch_text_group"
+        app:layout_constraintTop_toBottomOf="@id/lunch_text"
+        app:layout_constraintEnd_toStartOf="@id/max_lunch_calories_text"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/max_lunch_calories_text"
@@ -202,9 +234,9 @@
         android:textColor="?attr/colorTertiary"
         app:autoSizeTextType="uniform"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
-        app:layout_constraintBottom_toBottomOf="@+id/lunch_text_group"
-        app:layout_constraintStart_toStartOf="@+id/lunch_text_group"
-        app:layout_constraintTop_toBottomOf="@id/lunch_text"
+        app:layout_constraintBottom_toBottomOf="@+id/lunch_calories_text"
+        app:layout_constraintStart_toEndOf="@+id/lunch_calories_text"
+        app:layout_constraintTop_toTopOf="@id/lunch_calories_text"
         app:layout_constraintEnd_toEndOf="@id/lunch_text_group"/>
 
 
@@ -255,7 +287,7 @@
         android:layout_height="0dp"
         app:cpb_background_progressbar_color="@color/light_main_background_elements"
         app:cpb_background_progressbar_width="7dp"
-        app:cpb_progress="255"
+        app:cpb_progress="1"
         app:cpb_progress_direction="to_right"
         app:cpb_progress_max="576"
         app:cpb_progressbar_color="?attr/colorTertiary"
@@ -270,6 +302,7 @@
         android:id="@+id/dinner_text_group"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="5dp"
         app:constraint_referenced_ids="dinner_text, max_dinner_calories_text"
         app:layout_constraintBottom_toBottomOf="@+id/meal_group_dinner"
         app:layout_constraintStart_toEndOf="@+id/guideline_ccal"
@@ -285,11 +318,26 @@
         android:textColor="?attr/colorTertiary"
         app:autoSizeTextType="uniform"
         app:autoSizePresetSizes="@array/autosize_text_sizes_14"
-        app:layout_constraintBottom_toTopOf="@id/max_dinner_calories_text"
+        app:layout_constraintBottom_toTopOf="@id/dinner_calories_text"
         app:layout_constraintStart_toStartOf="@+id/dinner_text_group"
         app:layout_constraintEnd_toEndOf="@id/dinner_text_group"
         app:layout_constraintTop_toTopOf="@+id/dinner_text_group" />
 
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/dinner_calories_text"
+        android:layout_width="wrap_content"
+        android:layout_height="20sp"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 из"
+        android:gravity="center_vertical"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:layout_constraintBottom_toBottomOf="@+id/dinner_text_group"
+        app:layout_constraintStart_toStartOf="@+id/dinner_text_group"
+        app:layout_constraintTop_toBottomOf="@id/dinner_text"
+        app:layout_constraintEnd_toStartOf="@id/max_dinner_calories_text"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/max_dinner_calories_text"
@@ -301,9 +349,9 @@
         android:textColor="?attr/colorTertiary"
         app:autoSizeTextType="uniform"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
-        app:layout_constraintBottom_toBottomOf="@+id/dinner_text_group"
-        app:layout_constraintStart_toStartOf="@+id/dinner_text_group"
-        app:layout_constraintTop_toBottomOf="@id/dinner_text"
+        app:layout_constraintBottom_toBottomOf="@+id/dinner_calories_text"
+        app:layout_constraintStart_toEndOf="@+id/dinner_calories_text"
+        app:layout_constraintTop_toTopOf="@id/dinner_calories_text"
         app:layout_constraintEnd_toEndOf="@id/dinner_text_group"/>
 
 
@@ -375,7 +423,7 @@
         android:layout_height="0dp"
         app:cpb_background_progressbar_color="@color/light_main_background_elements"
         app:cpb_background_progressbar_width="7dp"
-        app:cpb_progress="255"
+        app:cpb_progress="1"
         app:cpb_progress_direction="to_right"
         app:cpb_progress_max="576"
         app:cpb_progressbar_color="?attr/colorTertiary"
@@ -390,6 +438,7 @@
         android:id="@+id/snack_text_group"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="5dp"
         app:constraint_referenced_ids="snack_text, max_snack_calories_text"
         app:layout_constraintBottom_toBottomOf="@+id/meal_group_snack"
         app:layout_constraintStart_toEndOf="@+id/guideline_ccal"
@@ -405,11 +454,26 @@
         android:textColor="?attr/colorTertiary"
         app:autoSizeTextType="uniform"
         app:autoSizePresetSizes="@array/autosize_text_sizes_14"
-        app:layout_constraintBottom_toTopOf="@id/max_snack_calories_text"
+        app:layout_constraintBottom_toTopOf="@id/snack_calories_text"
         app:layout_constraintStart_toStartOf="@+id/snack_text_group"
         app:layout_constraintEnd_toEndOf="@id/snack_text_group"
         app:layout_constraintTop_toTopOf="@+id/snack_text_group" />
 
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/snack_calories_text"
+        android:layout_width="wrap_content"
+        android:layout_height="20sp"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 из"
+        android:gravity="center_vertical"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:layout_constraintBottom_toBottomOf="@+id/snack_text_group"
+        app:layout_constraintStart_toStartOf="@+id/snack_text_group"
+        app:layout_constraintTop_toBottomOf="@id/snack_text"
+        app:layout_constraintEnd_toStartOf="@id/max_snack_calories_text"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/max_snack_calories_text"
@@ -421,9 +485,9 @@
         android:textColor="?attr/colorTertiary"
         app:autoSizeTextType="uniform"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
-        app:layout_constraintBottom_toBottomOf="@+id/snack_text_group"
-        app:layout_constraintStart_toStartOf="@+id/snack_text_group"
-        app:layout_constraintTop_toBottomOf="@id/snack_text"
+        app:layout_constraintBottom_toBottomOf="@+id/snack_calories_text"
+        app:layout_constraintStart_toEndOf="@+id/snack_calories_text"
+        app:layout_constraintTop_toTopOf="@id/snack_calories_text"
         app:layout_constraintEnd_toEndOf="@id/snack_text_group"/>
 
 

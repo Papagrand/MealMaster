@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginVertical="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/mealProductBackgroundImage"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:src="@drawable/bg_purple_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/veganImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/vegan"
+        app:tint="@color/dark_green"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/mealProductBackgroundImage"
+        app:layout_constraintTop_toTopOf="@+id/mealProductBackgroundImage"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
+        />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/productCard"
-        android:layout_width="76dp"
-        android:layout_height="57dp"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
         android:foreground="?attr/colorTertiary"
         android:foregroundTintMode="src_in"
         app:cardPreventCornerOverlap="true"
@@ -31,13 +45,12 @@
 
         <ImageView
             android:id="@+id/overlayImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/temp_product" />
 
     </com.google.android.material.card.MaterialCardView>
-
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/productNameTextView"
@@ -53,47 +66,147 @@
         app:layout_constraintTop_toTopOf="@+id/mealProductBackgroundImage" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productServingSize"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/exo_bold"
+        android:gravity="start"
+        android:text="@string/meal_product_serving_size"
+        android:textColor="?attr/colorTertiary"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/productProteinTextView"
+        app:layout_constraintStart_toEndOf="@id/productCard"
+        app:layout_constraintTop_toBottomOf="@+id/productNameTextView" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productServingSizeValue"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 г."
+        android:textColor="?attr/colorTertiary"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/productServingSize"
+        app:layout_constraintStart_toEndOf="@id/productServingSize"
+        app:layout_constraintTop_toTopOf="@+id/productServingSize" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productServingCcal"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/exo_bold"
+        android:gravity="start"
+        android:layout_marginStart="20dp"
+        android:text="@string/meal_product_ccal"
+        android:textColor="?attr/colorTertiary"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/productProteinTextView"
+        app:layout_constraintStart_toEndOf="@id/productServingSizeValue"
+        app:layout_constraintTop_toBottomOf="@+id/productNameTextView" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productServingCcalValue"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/exo_regular"
+        android:gravity="start"
+        android:text="0 ккал."
+        android:textColor="?attr/colorTertiary"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/mealProductBackgroundImage"
+        app:layout_constraintStart_toEndOf="@id/productServingCcal"
+        app:layout_constraintBottom_toBottomOf="@+id/productServingCcal"
+        app:layout_constraintTop_toTopOf="@+id/productServingCcal" />
+
+
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/productProteinTextView"
         android:layout_width="0dp"
-        android:layout_marginStart="10dp"
         android:layout_height="match_parent"
-        android:fontFamily="@font/exo_regular"
+        android:fontFamily="@font/exo_bold"
         android:text="@string/product_protein_text"
         android:textColor="?attr/colorTertiary"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
         app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@id/guidelineFourtyPercentVertical"
-        app:layout_constraintTop_toTopOf="@+id/mealProductBackgroundImage"
-        app:layout_constraintBottom_toTopOf="@+id/productFatTextView"/>
+        app:layout_constraintStart_toEndOf="@id/productCard"
+        app:layout_constraintTop_toBottomOf="@+id/productServingSize"
+        app:layout_constraintBottom_toBottomOf="@+id/mealProductBackgroundImage"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productProteinValueTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 г."
+        android:textColor="?attr/colorTertiary"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toEndOf="@id/productProteinTextView"
+        app:layout_constraintTop_toBottomOf="@+id/productServingSize"
+        app:layout_constraintBottom_toBottomOf="@+id/mealProductBackgroundImage"/>
 
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/productFatTextView"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
-        android:fontFamily="@font/exo_regular"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/exo_bold"
         android:text="@string/product_fat_text"
+        android:gravity="end"
         android:textColor="?attr/colorTertiary"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
         app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@id/guidelineFourtyPercentVertical"
-        app:layout_constraintTop_toBottomOf="@+id/productProteinTextView"
-        app:layout_constraintBottom_toTopOf="@+id/productCarbohydratesTextView"/>
+        app:layout_constraintStart_toEndOf="@id/productProteinValueTextView"
+        app:layout_constraintTop_toBottomOf="@+id/productServingSize"
+        app:layout_constraintEnd_toStartOf="@+id/productFatValueTextView"
+        app:layout_constraintBottom_toBottomOf="@+id/mealProductBackgroundImage"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productFatValueTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 г."
+        android:gravity="start"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toEndOf="@id/productFatTextView"
+        app:layout_constraintTop_toBottomOf="@+id/productServingSize"
+        app:layout_constraintEnd_toStartOf="@+id/productCarbohydratesTextView"
+        app:layout_constraintBottom_toBottomOf="@+id/mealProductBackgroundImage"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/productCarbohydratesTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:fontFamily="@font/exo_regular"
+        android:fontFamily="@font/exo_bold"
         android:text="@string/product_carbohydrates_text"
         android:textColor="?attr/colorTertiary"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
         app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@id/guidelineFourtyPercentVertical"
-        app:layout_constraintTop_toBottomOf="@+id/productFatTextView"
-        app:layout_constraintBottom_toBottomOf="@+id/mealProductBackgroundImage" />
+        app:layout_constraintEnd_toStartOf="@+id/productCarbohydratesValueTextView"
+        app:layout_constraintTop_toBottomOf="@+id/productServingSize"
+        app:layout_constraintBottom_toBottomOf="@+id/mealProductBackgroundImage"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productCarbohydratesValueTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 г."
+        android:layout_marginEnd="10dp"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintTop_toBottomOf="@+id/productServingSize"
+        app:layout_constraintBottom_toBottomOf="@+id/mealProductBackgroundImage"
+        app:layout_constraintEnd_toEndOf="@+id/mealProductBackgroundImage"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/productProteinValue"
@@ -135,50 +248,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/productCarbohydratesTextView"/>
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/productServingSize"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="10dp"
-        android:fontFamily="@font/exo_bold"
-        android:gravity="start"
-        android:text="@string/meal_product_serving_size"
-        android:textColor="?attr/colorTertiary"
-        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toTopOf="@+id/productServingCcal"
-        app:layout_constraintEnd_toEndOf="@+id/mealProductBackgroundImage"
-        app:layout_constraintStart_toStartOf="@id/guidelineSeventyPercentVertical"
-        app:layout_constraintTop_toTopOf="@+id/mealProductBackgroundImage" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/productServingCcal"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="10dp"
-        android:fontFamily="@font/exo_bold"
-        android:gravity="start"
-        android:text="@string/meal_product_ccal"
-        android:textColor="?attr/colorTertiary"
-        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="@+id/productServingSize"
-        app:layout_constraintEnd_toEndOf="@+id/mealProductBackgroundImage"
-        app:layout_constraintStart_toStartOf="@id/guidelineSeventyPercentVertical"
-        app:layout_constraintTop_toBottomOf="@+id/mealProductBackgroundImage" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineFourtyPercentVertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.35" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineSeventyPercentVertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

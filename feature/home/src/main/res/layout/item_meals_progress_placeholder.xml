@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:id="@+id/foodBackgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/bg_purple_meal_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/meal_group_breakfast"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        app:constraint_referenced_ids="circularProgressBarBreakfast, breakfast_text_group,breakfast_text, add_breakfast_dish_button, breakfast_dishes_text "
+        app:layout_constraintBottom_toTopOf="@+id/meal_group_lunch"
+        app:layout_constraintStart_toStartOf="@+id/foodBackgroundImage"
+        app:layout_constraintEnd_toEndOf="@+id/foodBackgroundImage"
+        app:layout_constraintTop_toTopOf="@+id/foodBackgroundImage" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_fifty_percent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:id="@+id/circularProgressBarBreakfast"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:cpb_background_progressbar_color="@color/light_main_background_elements"
+        app:cpb_background_progressbar_width="7dp"
+        app:cpb_progress="255"
+        app:cpb_progress_direction="to_right"
+        app:cpb_progress_max="576"
+        app:cpb_progressbar_color="?attr/colorTertiary"
+        app:cpb_progressbar_width="7dp"
+        app:cpb_round_border="true"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_breakfast"
+        app:layout_constraintStart_toStartOf="@+id/meal_group_breakfast"
+        app:layout_constraintEnd_toStartOf="@id/guideline_ccal"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_breakfast" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/breakfast_text_group"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="breakfast_text, max_breakfast_calories_text"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_breakfast"
+        app:layout_constraintStart_toEndOf="@+id/guideline_ccal"
+        app:layout_constraintEnd_toStartOf="@id/guideline_fifty_percent"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_breakfast" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/breakfast_text"
+        android:layout_width="0dp"
+        android:layout_height="30sp"
+        android:fontFamily="@font/exo_bold"
+        android:text="@string/breakfast"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_14"
+        app:layout_constraintBottom_toTopOf="@id/max_breakfast_calories_text"
+        app:layout_constraintStart_toStartOf="@+id/breakfast_text_group"
+        app:layout_constraintEnd_toEndOf="@id/breakfast_text_group"
+        app:layout_constraintTop_toTopOf="@+id/breakfast_text_group" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/max_breakfast_calories_text"
+        android:layout_width="0dp"
+        android:layout_height="20sp"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 ккал"
+        android:gravity="center_vertical"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:layout_constraintBottom_toBottomOf="@+id/breakfast_text_group"
+        app:layout_constraintStart_toStartOf="@+id/breakfast_text_group"
+        app:layout_constraintTop_toBottomOf="@id/breakfast_text"
+        app:layout_constraintEnd_toEndOf="@id/breakfast_text_group"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        app:icon="@drawable/add_icon"
+        style="@style/PlusMaterialButton"
+        android:id="@+id/add_breakfast_dish_button"
+        android:layout_width="25dp"
+        android:layout_height="30dp"
+        app:iconGravity="textEnd"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_breakfast"
+        app:layout_constraintEnd_toEndOf="@+id/meal_group_breakfast"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_breakfast" />
+
+    <TextView
+        android:id="@+id/breakfast_dishes_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginRight="20dp"
+        android:ellipsize="none"
+        android:fontFamily="@font/exo_regular"
+        android:maxLength="50"
+        android:maxLines="2"
+        android:gravity="center_vertical"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_breakfast"
+        app:layout_constraintStart_toEndOf="@id/guideline_fifty_percent"
+        app:layout_constraintEnd_toStartOf="@id/add_breakfast_dish_button"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_breakfast" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_ccal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/drawline_1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:dividerColor="@color/foreground_text_purple"
+        app:layout_constraintStart_toStartOf="@id/meal_group_breakfast"
+        app:layout_constraintEnd_toEndOf="@id/meal_group_breakfast"
+        app:layout_constraintTop_toBottomOf="@id/meal_group_breakfast"
+        app:layout_constraintBottom_toTopOf="@id/meal_group_lunch"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/meal_group_lunch"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/meal_group_dinner"
+        app:layout_constraintStart_toStartOf="@+id/foodBackgroundImage"
+        app:layout_constraintEnd_toEndOf="@+id/foodBackgroundImage"
+        app:layout_constraintTop_toBottomOf="@id/meal_group_breakfast" />
+
+    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:id="@+id/circularProgressBarLunch"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:cpb_background_progressbar_color="@color/light_main_background_elements"
+        app:cpb_background_progressbar_width="7dp"
+        app:cpb_progress="255"
+        app:cpb_progress_direction="to_right"
+        app:cpb_progress_max="576"
+        app:cpb_progressbar_color="?attr/colorTertiary"
+        app:cpb_progressbar_width="7dp"
+        app:cpb_round_border="true"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_lunch"
+        app:layout_constraintStart_toStartOf="@+id/meal_group_lunch"
+        app:layout_constraintEnd_toStartOf="@id/guideline_ccal"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_lunch" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/lunch_text_group"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="lunch_text, max_lunch_calories_text"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_lunch"
+        app:layout_constraintStart_toEndOf="@+id/guideline_ccal"
+        app:layout_constraintEnd_toStartOf="@id/guideline_fifty_percent"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_lunch" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lunch_text"
+        android:layout_width="0dp"
+        android:layout_height="30sp"
+        android:fontFamily="@font/exo_bold"
+        android:text="@string/lunch"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_14"
+        app:layout_constraintBottom_toTopOf="@id/max_lunch_calories_text"
+        app:layout_constraintStart_toStartOf="@+id/lunch_text_group"
+        app:layout_constraintEnd_toEndOf="@id/lunch_text_group"
+        app:layout_constraintTop_toTopOf="@+id/lunch_text_group" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/max_lunch_calories_text"
+        android:layout_width="0dp"
+        android:layout_height="20sp"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 ккал"
+        android:gravity="center_vertical"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:layout_constraintBottom_toBottomOf="@+id/lunch_text_group"
+        app:layout_constraintStart_toStartOf="@+id/lunch_text_group"
+        app:layout_constraintTop_toBottomOf="@id/lunch_text"
+        app:layout_constraintEnd_toEndOf="@id/lunch_text_group"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        app:icon="@drawable/add_icon"
+        style="@style/PlusMaterialButton"
+        android:id="@+id/add_lunch_dish_button"
+        android:layout_width="25dp"
+        android:layout_height="30dp"
+        app:iconGravity="textEnd"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_lunch"
+        app:layout_constraintEnd_toEndOf="@+id/meal_group_lunch"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_lunch" />
+
+    <TextView
+        android:id="@+id/lunch_dishes_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginRight="20dp"
+        android:ellipsize="none"
+        android:fontFamily="@font/exo_regular"
+        android:maxLength="50"
+        android:maxLines="2"
+        android:gravity="center_vertical"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_lunch"
+        app:layout_constraintStart_toEndOf="@id/guideline_fifty_percent"
+        app:layout_constraintEnd_toStartOf="@id/add_lunch_dish_button"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_lunch" />
+
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/meal_group_dinner"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/meal_group_snack"
+        app:layout_constraintStart_toStartOf="@+id/foodBackgroundImage"
+        app:layout_constraintEnd_toEndOf="@+id/foodBackgroundImage"
+        app:layout_constraintTop_toBottomOf="@+id/meal_group_lunch" />
+
+    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:id="@+id/circularProgressBarDinner"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:cpb_background_progressbar_color="@color/light_main_background_elements"
+        app:cpb_background_progressbar_width="7dp"
+        app:cpb_progress="255"
+        app:cpb_progress_direction="to_right"
+        app:cpb_progress_max="576"
+        app:cpb_progressbar_color="?attr/colorTertiary"
+        app:cpb_progressbar_width="7dp"
+        app:cpb_round_border="true"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_dinner"
+        app:layout_constraintStart_toStartOf="@+id/meal_group_dinner"
+        app:layout_constraintEnd_toStartOf="@id/guideline_ccal"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_dinner" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/dinner_text_group"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="dinner_text, max_dinner_calories_text"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_dinner"
+        app:layout_constraintStart_toEndOf="@+id/guideline_ccal"
+        app:layout_constraintEnd_toStartOf="@id/guideline_fifty_percent"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_dinner" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/dinner_text"
+        android:layout_width="0dp"
+        android:layout_height="30sp"
+        android:fontFamily="@font/exo_bold"
+        android:text="@string/dinner"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_14"
+        app:layout_constraintBottom_toTopOf="@id/max_dinner_calories_text"
+        app:layout_constraintStart_toStartOf="@+id/dinner_text_group"
+        app:layout_constraintEnd_toEndOf="@id/dinner_text_group"
+        app:layout_constraintTop_toTopOf="@+id/dinner_text_group" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/max_dinner_calories_text"
+        android:layout_width="0dp"
+        android:layout_height="20sp"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 ккал"
+        android:gravity="center_vertical"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:layout_constraintBottom_toBottomOf="@+id/dinner_text_group"
+        app:layout_constraintStart_toStartOf="@+id/dinner_text_group"
+        app:layout_constraintTop_toBottomOf="@id/dinner_text"
+        app:layout_constraintEnd_toEndOf="@id/dinner_text_group"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        app:icon="@drawable/add_icon"
+        style="@style/PlusMaterialButton"
+        android:id="@+id/add_dinner_dish_button"
+        android:layout_width="25dp"
+        android:layout_height="30dp"
+        app:iconGravity="textEnd"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_dinner"
+        app:layout_constraintEnd_toEndOf="@+id/meal_group_dinner"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_dinner" />
+
+    <TextView
+        android:id="@+id/dinner_dishes_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginRight="20dp"
+        android:ellipsize="none"
+        android:fontFamily="@font/exo_regular"
+        android:maxLength="50"
+        android:maxLines="2"
+        android:gravity="center_vertical"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_dinner"
+        app:layout_constraintStart_toEndOf="@id/guideline_fifty_percent"
+        app:layout_constraintEnd_toStartOf="@id/add_dinner_dish_button"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_dinner" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/drawline_3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:dividerColor="@color/foreground_text_purple"
+        app:layout_constraintStart_toStartOf="@id/meal_group_dinner"
+        app:layout_constraintEnd_toEndOf="@id/meal_group_dinner"
+        app:layout_constraintTop_toBottomOf="@id/meal_group_dinner"
+        app:layout_constraintBottom_toTopOf="@id/meal_group_snack"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/drawline_2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:dividerColor="@color/foreground_text_purple"
+        app:layout_constraintStart_toStartOf="@id/meal_group_lunch"
+        app:layout_constraintEnd_toEndOf="@id/meal_group_lunch"
+        app:layout_constraintTop_toBottomOf="@id/meal_group_lunch"
+        app:layout_constraintBottom_toTopOf="@id/meal_group_dinner"/>
+
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/meal_group_snack"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/foodBackgroundImage"
+        app:layout_constraintStart_toStartOf="@+id/foodBackgroundImage"
+        app:layout_constraintEnd_toEndOf="@+id/foodBackgroundImage"
+        app:layout_constraintTop_toBottomOf="@+id/meal_group_dinner" />
+
+
+    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:id="@+id/circularProgressBarSnack"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:cpb_background_progressbar_color="@color/light_main_background_elements"
+        app:cpb_background_progressbar_width="7dp"
+        app:cpb_progress="255"
+        app:cpb_progress_direction="to_right"
+        app:cpb_progress_max="576"
+        app:cpb_progressbar_color="?attr/colorTertiary"
+        app:cpb_progressbar_width="7dp"
+        app:cpb_round_border="true"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_snack"
+        app:layout_constraintStart_toStartOf="@+id/meal_group_snack"
+        app:layout_constraintEnd_toStartOf="@id/guideline_ccal"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_snack" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/snack_text_group"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="snack_text, max_snack_calories_text"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_snack"
+        app:layout_constraintStart_toEndOf="@+id/guideline_ccal"
+        app:layout_constraintEnd_toStartOf="@id/guideline_fifty_percent"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_snack" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/snack_text"
+        android:layout_width="0dp"
+        android:layout_height="30sp"
+        android:fontFamily="@font/exo_bold"
+        android:text="@string/snack"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_14"
+        app:layout_constraintBottom_toTopOf="@id/max_snack_calories_text"
+        app:layout_constraintStart_toStartOf="@+id/snack_text_group"
+        app:layout_constraintEnd_toEndOf="@id/snack_text_group"
+        app:layout_constraintTop_toTopOf="@+id/snack_text_group" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/max_snack_calories_text"
+        android:layout_width="0dp"
+        android:layout_height="20sp"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 ккал"
+        android:gravity="center_vertical"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:layout_constraintBottom_toBottomOf="@+id/snack_text_group"
+        app:layout_constraintStart_toStartOf="@+id/snack_text_group"
+        app:layout_constraintTop_toBottomOf="@id/snack_text"
+        app:layout_constraintEnd_toEndOf="@id/snack_text_group"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        app:icon="@drawable/add_icon"
+        style="@style/PlusMaterialButton"
+        android:id="@+id/add_snack_dish_button"
+        android:layout_width="25dp"
+        android:layout_height="30dp"
+        app:iconGravity="textEnd"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_snack"
+        app:layout_constraintEnd_toEndOf="@+id/meal_group_snack"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_snack" />
+
+    <TextView
+        android:id="@+id/snack_dishes_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginRight="20dp"
+        android:ellipsize="none"
+        android:fontFamily="@font/exo_regular"
+        android:maxLength="50"
+        android:maxLines="2"
+        android:gravity="center_vertical"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizeTextType="uniform"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_group_snack"
+        app:layout_constraintStart_toEndOf="@id/guideline_fifty_percent"
+        app:layout_constraintEnd_toStartOf="@id/add_snack_dish_button"
+        app:layout_constraintTop_toTopOf="@+id/meal_group_snack" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

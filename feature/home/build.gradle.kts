@@ -52,6 +52,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation("com.facebook.shimmer:shimmer:0.5.0@aar"){
+        isTransitive = false
+    }
     implementation ("com.mikhaellopez:circularprogressbar:3.1.0"){
         isTransitive = false
     }

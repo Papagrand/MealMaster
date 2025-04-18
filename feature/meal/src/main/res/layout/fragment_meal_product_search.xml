@@ -29,14 +29,50 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.05" />
 
-    <include
-        android:id="@+id/nutrientsItem"
-        layout="@layout/item_meal_nutrients_progress"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mealNutrientsItemCL"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toTopOf="@id/guideline_under_page_text" />
+        android:layout_marginVertical="10dp"
+        app:layout_constraintTop_toTopOf="@id/guideline_under_page_text"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
+        >
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_nutrients"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:shimmer_auto_start="true"
+            app:shimmer_duration="1500"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+            <!-- Внутри shimmer-контейнера разместим сам шаблон для nutrientsItem -->
+            <include
+                android:id="@+id/nutrientsItemPlaceholder"
+                layout="@layout/item_meal_nutrients_progress_placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <include
+            android:id="@+id/nutrientsItem"
+            layout="@layout/item_meal_nutrients_progress"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -45,9 +81,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="10dp"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/search_settings"
+        app:endIconTint="?attr/android:textColor"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-        app:layout_constraintTop_toBottomOf="@id/nutrientsItem">
+        app:layout_constraintTop_toBottomOf="@id/mealNutrientsItemCL">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searchEditText"
@@ -60,13 +100,28 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ScrollView
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/productsInMeal"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:fontFamily="@font/exo_bold"
+        android:gravity="center_vertical"
+        android:text="@string/items_in_meal"
+        android:visibility="invisible"
+        android:textColor="?attr/android:textColor"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@id/mealProductScrollView"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft" />
+
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/mealProductScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/holo_blue_dark"
+        android:layout_marginTop="30dp"
         app:layout_constraintTop_toBottomOf="@+id/searchTextInputLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
@@ -84,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false" />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <ScrollView
         android:id="@+id/mealSearchResultScrollView"
@@ -92,7 +147,6 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         android:layout_marginTop="20dp"
-        android:background="@android:color/holo_red_dark"
         app:layout_constraintTop_toBottomOf="@+id/searchTextInputLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"

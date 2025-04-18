@@ -13,11 +13,11 @@
     <string name="progress_home">Прогресс</string>
     <string name="meal_settings">Настройка приема пищи</string>
     <string name="meal_product_name">Продукт</string>
-    <string name="meal_product_serving_size">Размер порции</string>
-    <string name="meal_product_ccal">Калории</string>
-    <string name="product_protein_text">"Белки: "</string>
-    <string name="product_carbohydrates_text">"Углеводы: "</string>
-    <string name="product_fat_text">"Жиры: "</string>
+    <string name="meal_product_serving_size">Размер порции:</string>
+    <string name="meal_product_ccal">Калории:</string>
+    <string name="product_protein_text">"Б: "</string>
+    <string name="product_carbohydrates_text">"У: "</string>
+    <string name="product_fat_text">"Ж: "</string>
     <string name="default_product_portion">"Порция по умолчанию (гр): "</string>
     <string name="product_settings">Настройте параметры продукта (вес или Ккал)</string>
     <string name="minor_product_information">Подробная информация о продукте</string>
@@ -47,4 +47,10 @@
     <string name="product_vitaminB4_label">Витамин B4 (мг):</string>
     <string name="product_vitaminC_label">Витамин C (мг):</string>
     <string name="product_vitaminD_label">Витамин D (мкг):</string>
+    <string name="items_in_meal">Продукты в приеме пищи:</string>
+    <string name="only_vegan">Только веганские продукты</string>
+    <string name="sortCaloriesType">Тип сортировки по калориям на 100гр:</string>
+    <string name="ascending">По возрастанию</string>
+    <string name="descending">По убыванию</string>
+    <string name="offSort">Без сортировки</string>
 </resources>
