@@ -7,11 +7,11 @@
     <Transition
         motion:constraintSetStart="@+id/start"
         motion:constraintSetEnd="@+id/end"
-        motion:duration="400">
+        motion:duration="200">
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
-        <Constraint android:id="@+id/changeDataProfileText">
+        <Constraint android:id="@+id/settingMealText">
             <PropertySet
                 android:alpha="1"
                 android:visibility="visible"/>
@@ -43,6 +43,24 @@
                 />
         </Constraint>
 
+
+
+        <Constraint android:id="@+id/closeSearchLayout">
+            <PropertySet
+                android:alpha="0"
+                android:visibility="invisible"/>
+            <Layout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_back"
+                android:visibility="invisible"
+                android:clickable="false"
+                app:layout_constraintEnd_toStartOf="@id/searchTextInputLayout"
+                app:layout_constraintBottom_toBottomOf="@id/searchTextInputLayout"
+                app:layout_constraintTop_toTopOf="@id/searchTextInputLayout"
+                />
+        </Constraint>
+
         <Constraint android:id="@+id/searchTextInputLayout">
             <PropertySet
                 android:alpha="1"
@@ -61,7 +79,7 @@
         <Constraint android:id="@+id/productsInMeal">
             <PropertySet
                 android:alpha="1"
-                android:visibility="invisible"/>
+                android:visibility="visible"/>
             <Layout
                 android:layout_width="0dp"
                 android:layout_height="20dp"
@@ -96,16 +114,16 @@
         <Constraint android:id="@+id/mealSearchResultScrollView">
             <PropertySet
                 android:alpha="0"
-                android:visibility="gone"/>
+                android:visibility="invisible"/>
         </Constraint>
 
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
-        <Constraint android:id="@+id/changeDataProfileText">
+        <Constraint android:id="@+id/settingMealText">
             <PropertySet
                 android:alpha="0"
-                android:visibility="gone"/>
+                android:visibility="invisible"/>
         </Constraint>
 
         <Constraint android:id="@+id/mealNutrientsItemCL">
@@ -125,16 +143,35 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+                app:layout_constraintStart_toEndOf="@id/closeSearchLayout"
                 app:layout_constraintEnd_toEndOf="@id/guidelineRight"
                 app:layout_constraintTop_toTopOf="parent"
                 />
         </Constraint>
 
-        <Constraint android:id="@+id/productsInMeal">
+
+        <Constraint android:id="@+id/closeSearchLayout">
             <PropertySet
                 android:alpha="1"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
+            <Layout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_back"
+                android:clickable="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/searchTextInputLayout"
+                app:layout_constraintBottom_toBottomOf="@id/searchTextInputLayout"
+                app:layout_constraintTop_toTopOf="@id/searchTextInputLayout"
+                />
+        </Constraint>
+
+        <Constraint android:id="@+id/productsInMeal">
+            <PropertySet
+                android:alpha="0"
+                android:visibility="visible"/>
             <Layout
                 android:layout_width="0dp"
                 android:layout_height="20dp"
@@ -153,7 +190,7 @@
         <Constraint android:id="@+id/mealProductScrollView">
             <PropertySet
                 android:alpha="0"
-                android:visibility="gone"/>
+                android:visibility="invisible"/>
         </Constraint>
 
         <Constraint android:id="@+id/guidelineLeft" />

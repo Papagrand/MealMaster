@@ -15,6 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="3dp"
             android:visibility="visible"
+            android:indeterminate="true"
             app:trackColor="?attr/colorSecondary"
             app:indicatorColor="?attr/android:textColor"
             app:layout_constraintTop_toTopOf="parent"

@@ -5,6 +5,8 @@ import dagger.Provides
 import ru.point.api.daily_consumption_and_product.data.DailyConsumptionRepositoryImpl
 import ru.point.api.daily_consumption_and_product.data.DailyConsumptionService
 import ru.point.api.daily_consumption_and_product.domain.DailyConsumptionRepository
+import ru.point.setting_searched_product.domain.AddProductToMealUseCase
+import ru.point.setting_searched_product.domain.CalculateProductDataUseCase
 import ru.point.setting_searched_product.domain.GetProductInformationUseCase
 import ru.point.setting_searched_product.ui.SettingSearchedProductViewModelFactory
 
@@ -12,7 +14,7 @@ import ru.point.setting_searched_product.ui.SettingSearchedProductViewModelFacto
 object SettingSearchedProductModule {
 
     @Provides
-    fun provideDailyConsumptionRepository(dailyConsumptionService: DailyConsumptionService) : DailyConsumptionRepository{
+    fun provideDailyConsumptionRepository(dailyConsumptionService: DailyConsumptionService): DailyConsumptionRepository {
         return DailyConsumptionRepositoryImpl(dailyConsumptionService)
     }
 
@@ -21,9 +23,21 @@ object SettingSearchedProductModule {
         GetProductInformationUseCase(dailyConsumptionRepository)
 
     @Provides
+    fun provideCalculateProductDataUseCase() =
+        CalculateProductDataUseCase()
+
+    @Provides
+    fun provideAddProductToMealUseCase(dailyConsumptionRepository: DailyConsumptionRepository) =
+        AddProductToMealUseCase(dailyConsumptionRepository)
+
+    @Provides
     fun provideSettingSearchedProductViewModelFactory(
-        getProductInformationUseCase: GetProductInformationUseCase
+        getProductInformationUseCase: GetProductInformationUseCase,
+        calculateProductDataUseCase: CalculateProductDataUseCase,
+        addProductToMealUseCase: AddProductToMealUseCase
     ) = SettingSearchedProductViewModelFactory(
-        getProductInformationUseCaseProvider = { getProductInformationUseCase }
+        getProductInformationUseCaseProvider = { getProductInformationUseCase },
+        calculateProductDataUseCaseProvider = { calculateProductDataUseCase },
+        addProductToMealUseCaseProvider = { addProductToMealUseCase }
     )
 }

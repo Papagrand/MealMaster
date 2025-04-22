@@ -146,12 +146,29 @@ class NavigatorImpl(private val navController: NavController): Navigator {
         navController.navigateSafe(R.id.action_homeProgressFragment_to_mealProductSearchFragment, bundle)
     }
 
+    override fun fromMealFragmentToSearchedProductFragment(bundle: Bundle) {
+        val navOptions = NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setRestoreState(true)
+            .build()
 
-    //Временно
-    override fun fromHomeProgressFragmentToSettingSearchedProductFragment() {
-        navController.navigateSafe(R.id.action_homeProgressFragment_to_settingSearchedProductFragment)
+        navController.navigate(
+            R.id.action_mealProductSearchFragment_to_settingSearchedProductFragment,
+            bundle,
+            navOptions
+        )
     }
 
+    override fun fromSearchedProductFragmentToMealFragment(resultBundle: Bundle) {
+        navController.previousBackStackEntry
+            ?.savedStateHandle
+            ?.set("product_selection_result", resultBundle)
+
+        navController.popBackStack()
+    }
+
+
+    //Временно
     override fun fromHomeProgressFragmentToRecipeInformationFragment() {
         navController.navigateSafe(R.id.action_homeProgressFragment_to_recipeInformationFragment)
     }

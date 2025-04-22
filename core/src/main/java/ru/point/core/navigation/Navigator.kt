@@ -31,8 +31,8 @@ interface Navigator {
     fun fromUpdateProfileInformationFragmentToProfileFragment()
     fun fromMealFragmentToHomeProgressFragment()
     fun fromHomeProgressFragmentToMealProductSearchFragment(bundle: Bundle)
-
+    fun fromMealFragmentToSearchedProductFragment(bundle: Bundle)
+    fun fromSearchedProductFragmentToMealFragment(bundle: Bundle)
     //Временно
-    fun fromHomeProgressFragmentToSettingSearchedProductFragment()
     fun fromHomeProgressFragmentToRecipeInformationFragment()
 }

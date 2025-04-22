@@ -7,7 +7,10 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PATCH
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface DailyConsumptionService {
@@ -21,6 +24,10 @@ interface DailyConsumptionService {
     suspend fun getProductById(
         @Query("productId") productId: String
     ): Response<ProductSuccessResponse<ProductDataResponse>>
+
+    @POST("/user/daily_consumption/addFoodItem")
+    suspend fun addProductToMeal(@Body request: AddProductToMealRequest
+    ) : AddProductToMealResponse
 }
 
 @Serializable
@@ -106,6 +113,19 @@ data class ProductDataResponse(
     val productIsVegan: Boolean,
     val productBackdrop: String,
     val approved: Boolean,
+)
+
+@Serializable
+data class AddProductToMealRequest(
+    val mealId: String,
+    val productId: String,
+    val servingSize: Double
+)
+
+@Serializable
+data class AddProductToMealResponse(
+    val success: Boolean,
+    val message: String? = null
 )
 
 fun createDailyConsumptionService(apiBaseUrl: String = "http://192.168.1.101:8080"): DailyConsumptionService {

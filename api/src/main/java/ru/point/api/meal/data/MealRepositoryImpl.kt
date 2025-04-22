@@ -21,6 +21,7 @@ class MealRepositoryImpl(
                     if (body != null && body.success && body.data != null) {
                         val domainModel =
                             MealItemsModel(
+                                mealId = body.data.mealId,
                                 sumMealCarbohydrates = body.data.sumMealCarbohydrates,
                                 sumMealProteins = body.data.sumMealProteins,
                                 sumMealFats = body.data.sumMealFats,

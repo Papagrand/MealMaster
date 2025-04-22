@@ -4,13 +4,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressIndicator"
+            style="@style/Widget.Material3.CircularProgressIndicator.ExtraSmall"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:visibility="visible"
+            android:indeterminate="true"
+            app:trackColor="?attr/colorSecondary"
+            app:indicatorColor="?attr/android:textColor"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:indicatorSize="48dp"
+            app:indicatorInset="8dp" />
+
+        <!-- Контейнер для ошибки (по умолчанию скрыт) -->
+        <LinearLayout
+            android:id="@+id/errorContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/errorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:text="@string/retry_get_product_information"
+                android:fontFamily="@font/exo_regular"
+                android:textColor="?attr/android:textColor"
+                app:autoSizePresetSizes="@array/autosize_text_sizes_24"
+                app:autoSizeTextType="uniform"
+                android:gravity="center" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/errorRetryButton"
+                style="@style/LightPurpleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Повторить"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <!-- Верхняя панель с изображением и названием продукта -->
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/productAppBarLayout"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/productCollapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:collapsedTitleTextColor="@color/white"
@@ -50,8 +110,10 @@
 
     <!-- Основное содержимое страницы -->
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/productScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -77,33 +139,18 @@
 
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/portion_size"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:fontFamily="@font/exo_regular"
-                android:text="@string/default_product_portion"
-                android:textColor="?attr/android:textColor"
-                app:autoSizePresetSizes="@array/autosize_text_sizes_16"
-                app:autoSizeTextType="uniform"
-                app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-                app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/productProteinTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/exo_regular"
-                android:text="@string/product_protein_text"
+                android:text="@string/searched_product_protein_text"
                 android:textColor="?attr/android:textColor"
                 app:autoSizePresetSizes="@array/autosize_text_sizes_16"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-                app:layout_constraintTop_toBottomOf="@id/portion_size" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/productProteinValue"
@@ -115,14 +162,15 @@
                 app:autoSizePresetSizes="@array/autosize_text_sizes_16"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintStart_toEndOf="@id/productProteinTextView"
-                app:layout_constraintTop_toTopOf="@id/productProteinTextView" />
+                app:layout_constraintTop_toTopOf="@id/productProteinTextView"
+                app:layout_constraintBottom_toBottomOf="@id/productProteinTextView"/>
 
             <!-- Текст и значение для Жиров -->
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/productFatTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/product_fat_text"
+                android:text="@string/searched_product_fat_text"
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/exo_regular"
                 android:textColor="?attr/android:textColor"
@@ -130,7 +178,7 @@
                 app:autoSizeTextType="uniform"
                 app:layout_constraintStart_toEndOf="@id/productProteinValue"
                 app:layout_constraintEnd_toStartOf="@+id/productFatValue"
-                app:layout_constraintTop_toBottomOf="@+id/portion_size"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintHorizontal_chainStyle="packed"/>
 
             <com.google.android.material.textview.MaterialTextView
@@ -144,21 +192,23 @@
                 app:autoSizeTextType="uniform"
                 app:layout_constraintStart_toEndOf="@id/productFatTextView"
                 app:layout_constraintTop_toTopOf="@id/productProteinTextView"
-                app:layout_constraintEnd_toStartOf="@+id/productCarbohydratesTextView"/>
+                app:layout_constraintEnd_toStartOf="@+id/productCarbohydratesTextView"
+                app:layout_constraintBottom_toBottomOf="@+id/productFatTextView"
+                />
 
             <!-- Текст и значение для Углеводов -->
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/productCarbohydratesTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/product_carbohydrates_text"
+                android:text="@string/searched_product_carbohydrates_text"
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/exo_regular"
                 android:textColor="?attr/android:textColor"
                 app:autoSizePresetSizes="@array/autosize_text_sizes_16"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintEnd_toStartOf="@id/productCarbohydratesValue"
-                app:layout_constraintTop_toBottomOf="@+id/portion_size" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/productCarbohydratesValue"
@@ -171,7 +221,8 @@
                 app:autoSizePresetSizes="@array/autosize_text_sizes_16"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-                app:layout_constraintTop_toTopOf="@id/productProteinTextView" />
+                app:layout_constraintTop_toTopOf="@id/productProteinTextView"
+                app:layout_constraintBottom_toBottomOf="@id/productCarbohydratesTextView"/>
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/mainProductInformationDivider"
@@ -210,10 +261,10 @@
                 app:layout_constraintTop_toBottomOf="@id/changeProductDataText"
                 >
 
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
                     android:hint="Вес (гр)"
                     android:fontFamily="@font/exo_regular"
                     />
@@ -235,6 +286,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
                     android:hint="Калорийность"
                     android:fontFamily="@font/exo_regular"
                     />
@@ -1351,6 +1403,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/add_product_to_meal_button"
         style="@style/DarkPurpleButton"
+        android:visibility="invisible"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginBottom="20dp"

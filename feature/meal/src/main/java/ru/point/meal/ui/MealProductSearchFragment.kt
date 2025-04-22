@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import ru.point.core.navigation.BottomBarManager
@@ -20,7 +21,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import ru.point.meal.databinding.FragmentMealProductSearchBinding
 import ru.point.meal.di.DaggerMealProductSearchComponent
-import ru.point.meal.di.MealProductSearchFragmentDeps
 import ru.point.meal.di.MealProductSearchFragmentDepsProvider
 import ru.point.meal.ui.adapters.MealPickedAdapter
 import ru.point.meal.ui.adapters.SearchedProductsAdapter
@@ -39,9 +39,12 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
     private val mealProductAdapter by lazy { MealPickedAdapter() }
 
     private val searchedAdapter by lazy {
-        SearchedProductsAdapter { productModel ->
-            // Обработка клика по найденному продукту (например, добавить в приём)
-            //viewModel.addProductToMeal(productModel)
+        SearchedProductsAdapter { mealId, productId ->
+            val bundle = Bundle().apply {
+                putString("mealId", mealId)
+                putString("productId", productId)
+            }
+            navigator.fromMealFragmentToSearchedProductFragment(bundle)
         }
     }
 
@@ -66,6 +69,51 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as BottomBarManager).hide()
 
+        val dailyConsumptionId = arguments?.getString("dailyConsumptionId")
+        val mealType = arguments?.getString("mealType")
+        val maxMealCarbons = arguments?.getDouble("mealCarbons")!!.toInt()
+        val maxMealProteins = arguments?.getDouble("mealProteins")!!.toInt()
+        val maxMealFats = arguments?.getDouble("mealFats")!!.toInt()
+        val maxMealCalories = arguments?.getDouble("maxCalories")!!.toInt()
+
+
+
+        val handle = findNavController().currentBackStackEntry?.savedStateHandle
+        val clearFlag = handle?.remove<String>("clearSearch")
+        if (clearFlag == "YES") {
+            viewModel.updateSearchSettings(
+                viewModel.searchSettings.value.copy(searchText = null)
+            )
+            binding.searchTextInputLayout.post{
+                binding.searchTextInputLayout.editText?.setText("")
+            }
+
+            binding.motionLayout.setProgress(0f)
+        }
+
+        if (viewModel.searchSettings.value.searchText != null) {
+            binding.motionLayout.setTransitionDuration(0)
+            binding.motionLayout.transitionToEnd()
+            binding.motionLayout.setTransitionDuration(200)
+        }
+
+        handle
+            ?.getLiveData<String>("clearSearch")
+            ?.observe(viewLifecycleOwner) { clear ->
+                if (clear == "YES") {
+                    viewModel.updateSearchSettings(
+                        viewModel.searchSettings.value.copy(searchText = null)
+                    )
+                    binding.searchTextInputLayout.post{
+                        binding.searchTextInputLayout.editText?.setText("")
+
+                    }
+
+                    binding.motionLayout.setProgress(0f)
+                    handle.remove<String>("clearSearch")
+                }
+            }
+
         binding.mealProductRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = mealProductAdapter
@@ -74,14 +122,6 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
             layoutManager = LinearLayoutManager(requireContext())
             adapter = searchedAdapter
         }
-
-        //Возможно придется перенести в lateinit в другую функцию жц
-        val dailyConsumptionId = arguments?.getString("dailyConsumptionId")
-        val mealType = arguments?.getString("mealType")
-        val maxMealCarbons = arguments?.getDouble("mealCarbons")!!.toInt()
-        val maxMealProteins = arguments?.getDouble("mealProteins")!!.toInt()
-        val maxMealFats = arguments?.getDouble("mealFats")!!.toInt()
-        val maxMealCalories = arguments?.getDouble("maxCalories")!!.toInt()
 
         if (dailyConsumptionId != null && mealType != null)
             viewModel.getMealInformation(dailyConsumptionId, mealType)
@@ -108,6 +148,7 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
 
         binding.searchEditText.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
+                searchedAdapter.clear()
                 binding.motionLayout.transitionToEnd()
             }
         }
@@ -167,13 +208,9 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
                 }
             }
         )
-
-
         collectUiState()
         collectUiEvent()
-
     }
-
 
     private fun collectUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -182,7 +219,6 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
                     if (mealInfo.mealItemsList.isNotEmpty()) {
                         binding.productsInMeal.isVisible = true
                     }
-
                     binding.nutrientsItem.circularProgressBarCalories.progress =
                         mealInfo.sumMealCalories.toFloat()
                     binding.nutrientsItem.eatedCaloriesText.text =
@@ -201,7 +237,11 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
                     binding.nutrientsItem.fatsGrams.text = mealInfo.sumMealFats.toInt().toString()
 
                     mealProductAdapter.submitList(mealInfo.mealItemsList)
+
+                    searchedAdapter.updateMealId(mealInfo.mealId)
                 }
+
+
 
                 state.searchedData?.let { results ->
                     searchedAdapter.submitList(results)

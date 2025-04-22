@@ -79,9 +79,6 @@
             android:id="@+id/action_homeProgressFragment_to_mealProductSearchFragment"
             app:destination="@id/mealProductSearchFragment" />
         <action
-            android:id="@+id/action_homeProgressFragment_to_settingSearchedProductFragment"
-            app:destination="@id/settingSearchedProductFragment" />
-        <action
             android:id="@+id/action_homeProgressFragment_to_recipeInformationFragment"
             app:destination="@id/recipeInformationFragment" />
     </fragment>
@@ -151,11 +148,19 @@
         <action
             android:id="@+id/action_mealProductSearchFragment_to_homeProgressFragment"
             app:destination="@id/homeProgressFragment" />
+        <action
+            android:id="@+id/action_mealProductSearchFragment_to_settingSearchedProductFragment"
+            app:destination="@id/settingSearchedProductFragment"
+            app:popUpToSaveState="true"/>
     </fragment>
     <fragment
         android:id="@+id/settingSearchedProductFragment"
         android:name="ru.point.setting_searched_product.ui.SettingSearchedProductFragment"
-        android:label="SettingSearchedProductFragment" />
+        android:label="SettingSearchedProductFragment" >
+        <action
+            android:id="@+id/action_settingSearchedProductFragment_to_mealProductSearchFragment"
+            app:destination="@id/mealProductSearchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/recipeInformationFragment"
         android:name="ru.point.recipe_information.ui.RecipeInformationFragment"

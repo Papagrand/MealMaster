@@ -8,7 +8,7 @@
     app:layoutDescription="@xml/fragment_meal_product_search_scene">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/changeDataProfileText"
+        android:id="@+id/settingMealText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="@font/exo_bold"
@@ -94,11 +94,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Поиск продуктов"
+            android:text=""
             android:textColor="?attr/android:textColor"
             android:fontFamily="@font/exo_regular"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/closeSearchLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_back"
+        android:visibility="invisible"
+        android:clickable="false"
+        app:layout_constraintEnd_toStartOf="@id/searchTextInputLayout"
+        app:layout_constraintBottom_toBottomOf="@id/searchTextInputLayout"
+        app:layout_constraintTop_toTopOf="@id/searchTextInputLayout"
+        />
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -108,7 +121,7 @@
         android:fontFamily="@font/exo_bold"
         android:gravity="center_vertical"
         android:text="@string/items_in_meal"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:textColor="?attr/android:textColor"
         app:autoSizePresetSizes="@array/autosize_text_sizes_12"
         app:autoSizeTextType="uniform"

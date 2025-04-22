@@ -11,10 +11,21 @@ import ru.point.api.meal.domain.models.ProductItemModel
 import ru.point.meal.databinding.ItemSearchedProductBinding
 
 class SearchedProductsAdapter(
-    private val onItemClick: (ProductItemModel) -> Unit  // если нужно обрабатывать клики
+    private val onItemClick: (mealId: String, productId: String) -> Unit  // если нужно обрабатывать клики
 ) : ListAdapter<ProductItemModel, SearchedProductsAdapter.SearchedProductViewHolder>(
     DIFF_CALLBACK
 ) {
+
+    private var currentMealId: String = ""
+
+    fun clear() {
+        currentMealId = ""
+        submitList(emptyList())
+    }
+
+    fun updateMealId(newId: String) {
+        currentMealId = newId
+    }
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ProductItemModel>() {
@@ -57,6 +68,10 @@ class SearchedProductsAdapter(
             binding.productCarbohydratesValueTextView.text = "${item.productCarbohydrates} г"
             binding.veganImage.isVisible = item.productIsVegan
 
+            binding.root.setOnClickListener {
+                onItemClick(currentMealId, item.productId)
+            }
+
             val productItemPictureString = item.productBackdrop
 
             if (productItemPictureString.startsWith("data:image", ignoreCase = true)) {
@@ -71,10 +86,6 @@ class SearchedProductsAdapter(
                     crossfade(true)
                     allowHardware(false)
                 }
-            }
-
-            binding.root.setOnClickListener {
-                onItemClick(item)
             }
         }
     }

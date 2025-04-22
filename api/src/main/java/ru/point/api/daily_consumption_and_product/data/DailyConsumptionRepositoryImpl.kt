@@ -1,5 +1,6 @@
 package ru.point.api.daily_consumption_and_product.data
 
+import ru.point.api.daily_consumption_and_product.domain.AddProductResult
 import ru.point.api.daily_consumption_and_product.domain.DailyConsumptionRepository
 import ru.point.api.daily_consumption_and_product.domain.models.DailyConsumptionDataModel
 import ru.point.api.daily_consumption_and_product.domain.models.DailyConsumptionSuccessModel
@@ -139,6 +140,25 @@ class DailyConsumptionRepositoryImpl(
             }
         } catch (e: Exception) {
             Result.failure(e)
+        }
+    }
+
+    override suspend fun addProductToMeal(
+        mealId: String,
+        productId: String,
+        servingSize: Double
+    ): AddProductResult {
+        return try {
+            val response: AddProductToMealResponse = dailyConsumptionService.addProductToMeal(
+                AddProductToMealRequest(mealId, productId, servingSize)
+            )
+            if (response.success) {
+                AddProductResult.Success
+            } else {
+                AddProductResult.Failure(response.message ?: "Ошибка введенных данных")
+            }
+        } catch (e: Exception){
+            AddProductResult.Failure("Неизвестная ошибка: ${e.localizedMessage}")
         }
     }
 }

@@ -38,6 +38,7 @@ data class MealSuccessResponse<T>(
 
 @Serializable
 data class MealDataResponse(
+    val mealId: String,
     val sumMealCarbohydrates: Double,
     val sumMealProteins: Double,
     val sumMealFats: Double,

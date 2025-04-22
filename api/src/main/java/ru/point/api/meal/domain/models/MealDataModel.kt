@@ -10,6 +10,7 @@ data class MealSuccessModel<T>(
 
 @Serializable
 data class MealItemsModel (
+    val mealId: String,
     val sumMealCarbohydrates: Double,
     val sumMealProteins: Double,
     val sumMealFats: Double,

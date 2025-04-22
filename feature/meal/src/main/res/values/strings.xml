@@ -18,9 +18,12 @@
     <string name="product_protein_text">"Б: "</string>
     <string name="product_carbohydrates_text">"У: "</string>
     <string name="product_fat_text">"Ж: "</string>
+    <string name="searched_product_protein_text">"Белки: "</string>
+    <string name="searched_product_carbohydrates_text">"Углеводы: "</string>
+    <string name="searched_product_fat_text">"Жиры: "</string>
     <string name="default_product_portion">"Порция по умолчанию (гр): "</string>
-    <string name="product_settings">Настройте параметры продукта (вес или Ккал)</string>
-    <string name="minor_product_information">Подробная информация о продукте</string>
+    <string name="product_settings">Настройте параметры продукта (вес или ккал)</string>
+    <string name="minor_product_information">Количество нутриентов в N гр. продукта:</string>
     <string name="product_calories_label">"Калории: "</string>
     <string name="product_serving_size_label">"Размер порции: "</string>
     <string name="product_protein_label">Белки (гр):</string>
@@ -53,4 +56,6 @@
     <string name="ascending">По возрастанию</string>
     <string name="descending">По убыванию</string>
     <string name="offSort">Без сортировки</string>
+    <string name="retry_get_product_information">Произошла ошибка при загрузке рецепта, повторите попытку</string>
+    <string name="update_or_delete_item">Измените или удалите продукт из приема пищи</string>
 </resources>
