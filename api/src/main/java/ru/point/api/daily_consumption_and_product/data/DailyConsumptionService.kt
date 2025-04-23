@@ -9,7 +9,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -26,8 +25,10 @@ interface DailyConsumptionService {
     ): Response<ProductSuccessResponse<ProductDataResponse>>
 
     @POST("/user/daily_consumption/addFoodItem")
-    suspend fun addProductToMeal(@Body request: AddProductToMealRequest
-    ) : AddProductToMealResponse
+    suspend fun addProductToMeal(
+        @Body request: AddProductToMealRequest
+    ): AddProductToMealResponse
+
 }
 
 @Serializable

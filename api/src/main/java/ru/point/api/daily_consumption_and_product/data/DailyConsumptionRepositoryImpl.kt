@@ -6,7 +6,6 @@ import ru.point.api.daily_consumption_and_product.domain.models.DailyConsumption
 import ru.point.api.daily_consumption_and_product.domain.models.DailyConsumptionSuccessModel
 import ru.point.api.daily_consumption_and_product.domain.models.ProductDataModel
 import ru.point.api.daily_consumption_and_product.domain.models.ProductSuccessModel
-import ru.point.api.meal.domain.models.ProductItemModel
 
 class DailyConsumptionRepositoryImpl(
     private val dailyConsumptionService: DailyConsumptionService
@@ -56,7 +55,12 @@ class DailyConsumptionRepositoryImpl(
                                 totalVitaminC = body.data.totalVitaminC,
                                 totalVitaminD = body.data.totalVitaminD
                             )
-                        Result.success(DailyConsumptionSuccessModel(success = true, data = domainModel))
+                        Result.success(
+                            DailyConsumptionSuccessModel(
+                                success = true,
+                                data = domainModel
+                            )
+                        )
                     } else {
                         Result.failure(Throwable(body?.message ?: "Unexpected fault"))
                     }
@@ -157,8 +161,9 @@ class DailyConsumptionRepositoryImpl(
             } else {
                 AddProductResult.Failure(response.message ?: "Ошибка введенных данных")
             }
-        } catch (e: Exception){
+        } catch (e: Exception) {
             AddProductResult.Failure("Неизвестная ошибка: ${e.localizedMessage}")
         }
     }
+
 }

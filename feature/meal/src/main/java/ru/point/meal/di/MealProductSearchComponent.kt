@@ -3,6 +3,7 @@ package ru.point.meal.di
 import dagger.Component
 import ru.point.api.meal.data.MealService
 import ru.point.meal.ui.MealProductSearchFragment
+import ru.point.meal.ui.bottom_sheets.UpdateDeleteItemBottomSheetFragment
 
 import kotlin.properties.Delegates.notNull
 
@@ -12,6 +13,7 @@ import kotlin.properties.Delegates.notNull
 )
 internal interface MealProductSearchComponent {
     fun inject(fragment: MealProductSearchFragment)
+    fun inject(bottomSheet: UpdateDeleteItemBottomSheetFragment)
 
     @Component.Builder
     interface Builder {

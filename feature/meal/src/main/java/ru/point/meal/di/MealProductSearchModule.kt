@@ -7,7 +7,9 @@ import ru.point.api.meal.data.MealService
 import ru.point.api.meal.domain.MealRepository
 import ru.point.meal.domain.GetDailyConsumptionMealItemsUseCase
 import ru.point.meal.domain.SearchProductsUseCase
+import ru.point.meal.domain.UpdateItemMealUseCase
 import ru.point.meal.ui.MealProductSearchViewModelFactory
+import ru.point.meal.ui.UpdateDeleteItemViewModelFactory
 
 
 @Module
@@ -33,6 +35,19 @@ object MealProductSearchModule {
     ) = MealProductSearchViewModelFactory(
         getDailyConsumptionMealItemsUseCaseProvider = { getDailyConsumptionMealItemsUseCase },
         searchProductsUseCaseProvider = { searchProductsUseCase }
+    )
+
+    @Provides
+    fun provideUpdateItemMealUseCase(
+        mealRepository: MealRepository
+    ): UpdateItemMealUseCase =
+        UpdateItemMealUseCase(mealRepository)
+
+    @Provides
+    fun provideUpdateDeleteItemViewModelFactory(
+        updateItemMealUseCase: UpdateItemMealUseCase
+    ) = UpdateDeleteItemViewModelFactory(
+        updateItemMealUseCaseProvider = { updateItemMealUseCase }
     )
 
 }

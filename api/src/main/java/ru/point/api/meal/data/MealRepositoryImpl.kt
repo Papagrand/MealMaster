@@ -1,6 +1,7 @@
 package ru.point.api.meal.data
 
 import ru.point.api.meal.domain.MealRepository
+import ru.point.api.meal.domain.UpdateMealItemResult
 import ru.point.api.meal.domain.models.MealItemsModel
 import ru.point.api.meal.domain.models.MealSuccessModel
 import ru.point.api.meal.domain.models.ProductItemModel
@@ -96,6 +97,24 @@ class MealRepositoryImpl(
             }
         } catch (e: Exception) {
             Result.failure(e)
+        }
+    }
+
+    override suspend fun updateProductInMeal(
+        productItemId: String,
+        newServingSize: Double
+    ): UpdateMealItemResult {
+        return try {
+            val response: UpdateMealItemServingSizeCaloriesResponse = mealService.updateServingSizeOrCalories(
+                UpdateMealItemServingSizeCaloriesRequest(productItemId, newServingSize)
+            )
+            if (response.success){
+                UpdateMealItemResult.Success
+            } else {
+                UpdateMealItemResult.Failure(response.message ?: "Ошибка введенных данных")
+            }
+        } catch (e: Exception){
+            UpdateMealItemResult.Failure("Неизвестная ошибка: ${e.localizedMessage}")
         }
     }
 

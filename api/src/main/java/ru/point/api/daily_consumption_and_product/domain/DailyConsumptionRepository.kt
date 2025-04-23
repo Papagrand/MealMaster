@@ -17,4 +17,6 @@ interface DailyConsumptionRepository {
     ): Result<ProductSuccessModel<ProductDataModel>>
 
     suspend fun addProductToMeal(mealId: String, productId: String, servingSize: Double): AddProductResult
+
+
 }

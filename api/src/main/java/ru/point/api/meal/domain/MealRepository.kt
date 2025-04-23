@@ -18,4 +18,7 @@ interface MealRepository {
         page: Int?,
         pagesize: Int?
     ): Result<SearchedProductsSuccessModel<ProductItemModel>>
+
+    suspend fun updateProductInMeal(productItemId: String, newServingSize: Double): UpdateMealItemResult
+
 }

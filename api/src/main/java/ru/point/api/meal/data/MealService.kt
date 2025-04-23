@@ -7,7 +7,9 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.Query
 import ru.point.api.meal.domain.models.FoodItemModel
 
@@ -27,7 +29,25 @@ interface MealService {
         @Query("pagesize") pagesize: Int,
     ) : Response<SearchedProductsResponse<ProductItemResponse>>
 
+    @PATCH("/user/daily_consumption/updateFoodItem")
+    suspend fun updateServingSizeOrCalories(
+        @Body request: UpdateMealItemServingSizeCaloriesRequest
+    ): UpdateMealItemServingSizeCaloriesResponse
+
 }
+
+
+@Serializable
+data class UpdateMealItemServingSizeCaloriesRequest(
+    val productItemId: String,
+    val newServingSize: Double
+)
+
+@Serializable
+data class UpdateMealItemServingSizeCaloriesResponse(
+    val success: Boolean,
+    val message: String? = null
+)
 
 @Serializable
 data class MealSuccessResponse<T>(
