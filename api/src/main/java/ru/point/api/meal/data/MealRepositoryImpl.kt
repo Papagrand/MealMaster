@@ -105,7 +105,7 @@ class MealRepositoryImpl(
         newServingSize: Double
     ): UpdateMealItemResult {
         return try {
-            val response: UpdateMealItemServingSizeCaloriesResponse = mealService.updateServingSizeOrCalories(
+            val response: UpdateDeleteMealItemResponse = mealService.updateServingSizeOrCalories(
                 UpdateMealItemServingSizeCaloriesRequest(productItemId, newServingSize)
             )
             if (response.success){
@@ -114,6 +114,19 @@ class MealRepositoryImpl(
                 UpdateMealItemResult.Failure(response.message ?: "Ошибка введенных данных")
             }
         } catch (e: Exception){
+            UpdateMealItemResult.Failure("Неизвестная ошибка: ${e.localizedMessage}")
+        }
+    }
+
+    override suspend fun deleteProductFromMeal(itemId: String): UpdateMealItemResult {
+        return try {
+            val response: UpdateDeleteMealItemResponse = mealService.deleteItemFromMeal(itemId)
+            if (response.success){
+                UpdateMealItemResult.Success
+            }else{
+                UpdateMealItemResult.Failure(response.message ?: "Непредвиденная ошибка удаления")
+            }
+        }catch (e: Exception){
             UpdateMealItemResult.Failure("Неизвестная ошибка: ${e.localizedMessage}")
         }
     }

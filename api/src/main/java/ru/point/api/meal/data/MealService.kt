@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.Query
@@ -32,19 +33,28 @@ interface MealService {
     @PATCH("/user/daily_consumption/updateFoodItem")
     suspend fun updateServingSizeOrCalories(
         @Body request: UpdateMealItemServingSizeCaloriesRequest
-    ): UpdateMealItemServingSizeCaloriesResponse
+    ): UpdateDeleteMealItemResponse
 
+    @DELETE("/user/daily_consumption/deleteFoodItem")
+    suspend fun deleteItemFromMeal(
+        @Query("itemId") itemId: String
+    ): UpdateDeleteMealItemResponse
 }
+
+@Serializable
+data class DeleteMealItemRequest(
+    val itemId: String
+)
 
 
 @Serializable
 data class UpdateMealItemServingSizeCaloriesRequest(
-    val productItemId: String,
-    val newServingSize: Double
+    val itemId: String,
+    val servingSize: Double
 )
 
 @Serializable
-data class UpdateMealItemServingSizeCaloriesResponse(
+data class UpdateDeleteMealItemResponse(
     val success: Boolean,
     val message: String? = null
 )

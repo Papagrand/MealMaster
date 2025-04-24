@@ -21,4 +21,6 @@ interface MealRepository {
 
     suspend fun updateProductInMeal(productItemId: String, newServingSize: Double): UpdateMealItemResult
 
+    suspend fun deleteProductFromMeal(itemId: String): UpdateMealItemResult
+
 }

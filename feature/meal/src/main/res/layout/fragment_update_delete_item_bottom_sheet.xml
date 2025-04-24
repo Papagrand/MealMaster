@@ -77,12 +77,13 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/deleteItemButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:clickable="true"
                 android:src="@drawable/delete"
-                android:tint="?attr/colorError"
+                android:tint="@color/stop_tracker_starving_color"
                 android:backgroundTint="@android:color/transparent"
                 />
 

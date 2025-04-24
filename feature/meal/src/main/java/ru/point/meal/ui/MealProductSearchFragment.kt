@@ -23,8 +23,10 @@ import ru.point.meal.databinding.FragmentMealProductSearchBinding
 import ru.point.meal.di.DaggerMealProductSearchComponent
 import ru.point.meal.di.MealProductSearchFragmentDepsProvider
 import ru.point.meal.ui.adapters.MealPickedAdapter
+import ru.point.meal.ui.adapters.MealProductData
 import ru.point.meal.ui.adapters.SearchedProductsAdapter
 import ru.point.meal.ui.bottom_sheets.SearchProductsSettingsBottomSheetFragment
+import ru.point.meal.ui.bottom_sheets.UpdateDeleteItemBottomSheetFragment
 
 class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>() {
 
@@ -36,7 +38,16 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
         mealProductSearchViewModelFactory
     }
 
-    private val mealProductAdapter by lazy { MealPickedAdapter() }
+    private val mealProductAdapter by lazy {
+        MealPickedAdapter { foodItem ->
+            val bottomSheet = UpdateDeleteItemBottomSheetFragment.newInstance(
+                itemId = foodItem.itemId,
+                servingSize = foodItem.currentServingSize,
+                calories = foodItem.currentCalories
+            )
+            bottomSheet.show(childFragmentManager, UpdateDeleteItemBottomSheetFragment.TAG)
+        }
+    }
 
     private val searchedAdapter by lazy {
         SearchedProductsAdapter { mealId, productId ->
@@ -77,14 +88,13 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
         val maxMealCalories = arguments?.getDouble("maxCalories")!!.toInt()
 
 
-
         val handle = findNavController().currentBackStackEntry?.savedStateHandle
         val clearFlag = handle?.remove<String>("clearSearch")
         if (clearFlag == "YES") {
             viewModel.updateSearchSettings(
                 viewModel.searchSettings.value.copy(searchText = null)
             )
-            binding.searchTextInputLayout.post{
+            binding.searchTextInputLayout.post {
                 binding.searchTextInputLayout.editText?.setText("")
             }
 
@@ -104,7 +114,7 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
                     viewModel.updateSearchSettings(
                         viewModel.searchSettings.value.copy(searchText = null)
                     )
-                    binding.searchTextInputLayout.post{
+                    binding.searchTextInputLayout.post {
                         binding.searchTextInputLayout.editText?.setText("")
 
                     }
@@ -113,6 +123,13 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
                     handle.remove<String>("clearSearch")
                 }
             }
+
+        childFragmentManager.setFragmentResultListener(
+            "itemUpdated",
+            viewLifecycleOwner
+        ) { _, bundle ->
+            viewModel.getMealInformation(dailyConsumptionId!!, mealType!!)
+        }
 
         binding.mealProductRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -236,7 +253,15 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
                         mealInfo.sumMealProteins.toInt().toString()
                     binding.nutrientsItem.fatsGrams.text = mealInfo.sumMealFats.toInt().toString()
 
-                    mealProductAdapter.submitList(mealInfo.mealItemsList)
+                    val uiList = mealInfo.mealItemsList.map { food ->
+                        MealProductData(
+                            itemId = food.itemId,
+                            productName = food.itemName,
+                            servingSize = "${food.itemServingSize.toInt()} гр.",
+                            servingCcal = "${food.itemCalories.toInt()} ккал"
+                        )
+                    }
+                    mealProductAdapter.submitList(uiList)
 
                     searchedAdapter.updateMealId(mealInfo.mealId)
                 }

@@ -2,57 +2,78 @@ package ru.point.meal.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import ru.point.api.meal.domain.models.FoodItemModel
+import ru.point.api.meal.data.ItemInMealDataModel
 import ru.point.meal.databinding.ItemRecyclerViewMealProductsBinding
-
-class MealPickedAdapter(
-) : RecyclerView.Adapter<MealPickedAdapter.MealProductViewHolder>() {
-
-    private val items = mutableListOf<MealProductData>()
-
-    fun submitList(newItems: List<FoodItemModel>) {
-        items.clear()
-
-        newItems.forEach { itemData ->
-            items.add(
-                MealProductData(
-                    productName = itemData.itemName,
-                    servingSize = "${itemData.itemServingSize.toInt()} гр.",
-                    servingCcal = "${itemData.itemCalories.toInt()} ккал"
-                )
-            )
-
-        }
-        notifyDataSetChanged()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealProductViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemRecyclerViewMealProductsBinding.inflate(inflater, parent, false)
-        return MealProductViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: MealProductViewHolder, position: Int) {
-        holder.bind(items[position])
-    }
-
-    override fun getItemCount(): Int = items.size
-
-    class MealProductViewHolder(
-        private val binding: ItemRecyclerViewMealProductsBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(item: MealProductData) {
-            binding.productName.text = item.productName
-            binding.productServingSize.text = item.servingSize
-            binding.productServingCcal.text = item.servingCcal
-        }
-    }
-}
+import ru.point.meal.ui.adapters.MealPickedAdapter.MealProductViewHolder
 
 data class MealProductData(
+    val itemId: String,
     val productName: String,
     val servingSize: String,
     val servingCcal: String
 )
+
+class MealPickedAdapter(
+    private val onUpdateClick: (ItemInMealDataModel) -> Unit
+) : ListAdapter<MealProductData, MealProductViewHolder>(DIFF_CALLBACK) {
+
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MealProductData>() {
+            override fun areItemsTheSame(
+                oldItem: MealProductData,
+                newItem: MealProductData
+            ): Boolean = oldItem.itemId == newItem.itemId
+
+            override fun areContentsTheSame(
+                oldItem: MealProductData,
+                newItem: MealProductData
+            ): Boolean = oldItem == newItem
+        }
+    }
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): MealProductViewHolder {
+        val binding = ItemRecyclerViewMealProductsBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false)
+        return MealProductViewHolder(binding, onUpdateClick)
+    }
+
+    override fun onBindViewHolder(holder: MealProductViewHolder, position: Int) {
+        holder.bind(getItem(position))
+    }
+
+    class MealProductViewHolder(
+        private val binding: ItemRecyclerViewMealProductsBinding,
+        private val onUpdateClick: (ItemInMealDataModel) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(mealItem: MealProductData) {
+            binding.productName.text = mealItem.productName
+            binding.productServingSize.text = mealItem.servingSize
+            binding.productServingCcal.text = mealItem.servingCcal
+
+            // парсим из строк нужные Double
+            val parsedServing = mealItem.servingSize
+                .substringBefore(" ")
+                .toDoubleOrNull() ?: 0.0
+            val parsedCalories = mealItem.servingCcal
+                .substringBefore(" ")
+                .toDoubleOrNull() ?: 0.0
+
+            val item = ItemInMealDataModel(
+                itemId = mealItem.itemId,
+                currentServingSize = parsedServing,
+                currentCalories = parsedCalories
+            )
+
+            binding.updateMealProductInformation.setOnClickListener {
+                onUpdateClick(item)
+            }
+        }
+    }
+}

@@ -10,14 +10,12 @@ class CalculateProductDataUseCase {
         newServingSize: Double? = null,
         newCalories: Double? = null
     ): ProductDataModel {
-        // решаем, по чему масштабируем: либо по весу, либо по калориям
         val factor = when {
             newServingSize != null -> newServingSize / original.productServingSizeDefault
             newCalories != null -> newCalories / original.productCalories
             else -> 1.0
         }
 
-        // новая порция (гр) и новая калорийность (ккал)
         val updatedServingSize = when {
             newServingSize != null -> newServingSize
             newCalories != null -> original.productServingSizeDefault * factor
@@ -30,7 +28,6 @@ class CalculateProductDataUseCase {
         }
 
         return original.copy(
-            // если задали newServingSize — обновляем его, иначе оставляем старый
             productServingSizeDefault = updatedServingSize.round(1),
             productCalories = updatedCalories.round(1),
             productProtein = (original.productProtein * factor).round(1),
