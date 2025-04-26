@@ -18,6 +18,9 @@
     <string name="product_protein_text">"Белки: "</string>
     <string name="product_carbohydrates_text">"Углеводы: "</string>
     <string name="product_fat_text">"Жиры: "</string>
+    <string name="recipe_protein_text">"Белки: "</string>
+    <string name="recipe_carbohydrates_text">"Углеводы: "</string>
+    <string name="recipe_fat_text">"Жиры: "</string>
     <string name="default_product_portion">"Порция по умолчанию (гр): "</string>
     <string name="product_settings">Настройте параметры продукта (вес или Ккал)</string>
     <string name="minor_product_information">Подробная информация о продукте</string>
@@ -67,4 +70,5 @@
     <string name="recipeStepsText">Описание рецепта:</string>
     <string name="recipeIngredientText">Ингредиенты:</string>
     <string name="retry_ger_recipe_information">Произошла ошибка при загрузке рецепта, повторите попытку</string>
+    <string name="recipeServingSize">Калорийность на 100 гр.:</string>
 </resources>

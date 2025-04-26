@@ -15,7 +15,40 @@ interface RecipeService {
     suspend fun getRecipeData(
         @Query("recipeId") recipeId: String
     ): Response<RecipeResponse<RecipeResponseMain>>
+
+    @GET("/recipes/search")
+    suspend fun searchRecipes(
+        @Query("recipeName") recipeName: String,
+        @Query("isVegan") isVegan: Boolean,
+        @Query("cookingTime") cookingTime: Int,
+        @Query("difficulty") difficulty: Int,
+        @Query("maxCalories") maxCalories: Double,
+        @Query("page") page: Int,
+        @Query("pagesize") pagesize: Int,
+    ) : Response<SearchedRecipesResponse<RecipeItemResponse>>
 }
+
+@Serializable
+data class SearchedRecipesResponse<T>(
+    val success: Boolean,
+    val data: List<T>? = null,
+    val message: String? = null
+)
+
+@Serializable
+data class RecipeItemResponse(
+    val recipeId: String,
+    val recipeName: String,
+    val recipeBackdrop: String,
+    val recipeCookingTime: Int,
+    val recipeDifficulty: Int,
+    val recipeIsVegan: Boolean,
+    val recipeServingSize: Double,
+    val recipeCalories: Double,
+    val recipeProtein: Double,
+    val recipeFat: Double,
+    val recipeCarbohydrate: Double
+)
 
 @Serializable
 data class RecipeResponse<T>(

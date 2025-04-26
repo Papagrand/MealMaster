@@ -176,7 +176,6 @@
                     app:buttonTint="?attr/android:textColor"
                     android:button="@drawable/custom_radio_button"
                     android:minWidth="0dp"
-                    android:checked="true"
                     app:layout_constraintEnd_toEndOf="@+id/any_minutes_textView"
                     app:layout_constraintStart_toStartOf="@+id/any_minutes_textView"
                     app:layout_constraintTop_toBottomOf="@+id/any_minutes_textView"
@@ -393,7 +392,6 @@
                     app:buttonTint="?attr/android:textColor"
                     android:button="@drawable/custom_radio_button"
                     android:minWidth="0dp"
-                    android:checked="true"
                     app:layout_constraintEnd_toEndOf="@+id/any_level_difficulty_textView"
                     app:layout_constraintStart_toStartOf="@+id/any_level_difficulty_textView"
                     app:layout_constraintTop_toBottomOf="@+id/any_level_difficulty_textView"
@@ -494,7 +492,6 @@
                     app:buttonTint="?attr/android:textColor"
                     android:button="@drawable/custom_radio_button"
                     android:minWidth="0dp"
-                    android:checked="true"
                     app:layout_constraintEnd_toEndOf="@+id/is_vegan_no_textView"
                     app:layout_constraintStart_toStartOf="@+id/is_vegan_no_textView"
                     app:layout_constraintTop_toBottomOf="@+id/is_vegan_no_textView"
@@ -593,7 +590,7 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintEnd_toEndOf="@id/guidelineHalf"
             app:layout_constraintTop_toBottomOf="@id/slider_left_value"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttonsLinearLayout"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -605,6 +602,38 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:id="@+id/buttonsLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintTop_toBottomOf="@id/servingSizeEditTextLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonBack"
+                style="@style/LightPurpleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Назад"
+                android:textColor="@android:color/white" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonConfirm"
+                style="@style/DarkPurpleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Подтвердить"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

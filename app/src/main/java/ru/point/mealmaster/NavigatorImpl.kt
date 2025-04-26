@@ -167,10 +167,17 @@ class NavigatorImpl(private val navController: NavController): Navigator {
         navController.popBackStack()
     }
 
+    override fun fromRecipeFragmentToRecipeInformationFragment(bundle: Bundle) {
+        val navOptions = NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setRestoreState(true)
+            .build()
 
-    //Временно
-    override fun fromHomeProgressFragmentToRecipeInformationFragment() {
-        navController.navigateSafe(R.id.action_homeProgressFragment_to_recipeInformationFragment)
+        navController.navigate(
+            R.id.action_recipesFragment_to_recipeInformationFragment,
+            bundle,
+            navOptions
+        )
     }
 
 

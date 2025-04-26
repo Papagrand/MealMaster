@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginVertical="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/recipeProductBackgroundImage"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:src="@drawable/bg_purple_recipes_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/veganImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/vegan"
+        app:tint="@color/dark_green"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/recipeProductBackgroundImage"
+        app:layout_constraintTop_toTopOf="@+id/recipeProductBackgroundImage"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/recipeCard"
+        android:layout_width="112dp"
+        android:layout_height="84dp"
+        android:foreground="?attr/colorTertiary"
+        android:foregroundTintMode="src_in"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintStart_toStartOf="@id/recipeProductBackgroundImage"
+        app:layout_constraintTop_toBottomOf="@id/recipeNameTextView"
+        app:strokeColor="?attr/colorTertiary"
+        app:strokeWidth="2dp">
+        <!-- или другой стиль, если хотите настроить радиус/скругления -->
+
+        <ImageView
+            android:id="@+id/overlayImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/recipeNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/exo_bold"
+        android:lines="2"
+        android:text="Название"
+        android:textColor="?attr/colorTertiary"
+        android:textSize="@dimen/size_12"
+        app:layout_constraintBottom_toTopOf="@id/recipeCard"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_for_name"
+        app:layout_constraintStart_toStartOf="@id/recipeProductBackgroundImage"
+        app:layout_constraintTop_toTopOf="@id/recipeProductBackgroundImage" />
+    
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_for_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/cookingTimeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="@id/guideline_for_name"
+        app:layout_constraintTop_toTopOf="@id/recipeProductBackgroundImage"
+        android:src="@drawable/cooking_time"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/cookingTimeValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_regular"
+        android:text="45 мин"
+        android:textColor="?attr/colorTertiary"
+        android:textSize="@dimen/size_12"
+        app:layout_constraintBottom_toBottomOf="@+id/cookingTimeImage"
+        app:layout_constraintStart_toEndOf="@id/cookingTimeImage"
+        app:layout_constraintTop_toTopOf="@id/cookingTimeImage" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/difficultyImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@id/cookingTimeValue"
+        app:layout_constraintTop_toTopOf="@id/recipeProductBackgroundImage"
+        android:src="@drawable/difficulty"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/difficultyValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_regular"
+        android:text="2 уровень"
+        android:textColor="?attr/colorTertiary"
+        android:textSize="@dimen/size_12"
+        app:layout_constraintBottom_toBottomOf="@+id/difficultyImage"
+        app:layout_constraintEnd_toStartOf="@+id/veganImage"
+        app:layout_constraintStart_toEndOf="@id/difficultyImage"
+        app:layout_constraintTop_toTopOf="@id/difficultyImage" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/recipeCalories"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/exo_bold"
+        android:gravity="start"
+        android:text="@string/recipeServingSize"
+        android:textColor="?attr/colorTertiary"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/recipeProteinTextView"
+        app:layout_constraintStart_toEndOf="@id/recipeCard"
+        app:layout_constraintTop_toBottomOf="@+id/recipeNameTextView" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/recipeCaloriesValue"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 г."
+        android:textColor="?attr/colorTertiary"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeCalories"
+        app:layout_constraintStart_toEndOf="@id/recipeCalories"
+        app:layout_constraintTop_toTopOf="@+id/recipeCalories" />
+
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/recipeProteinTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/exo_bold"
+        android:text="@string/product_protein_text"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toEndOf="@id/recipeCard"
+        app:layout_constraintTop_toBottomOf="@+id/recipeCalories"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeProductBackgroundImage"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/recipeProteinValueTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 г."
+        android:textColor="?attr/colorTertiary"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toEndOf="@id/recipeProteinTextView"
+        app:layout_constraintTop_toBottomOf="@+id/recipeCalories"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeProductBackgroundImage"/>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/recipeFatTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/exo_bold"
+        android:text="@string/product_fat_text"
+        android:gravity="end"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toEndOf="@id/recipeProteinValueTextView"
+        app:layout_constraintTop_toBottomOf="@+id/recipeCalories"
+        app:layout_constraintEnd_toStartOf="@+id/recipeFatValueTextView"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeProductBackgroundImage"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/recipeFatValueTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 г."
+        android:gravity="start"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toEndOf="@id/recipeFatTextView"
+        app:layout_constraintTop_toBottomOf="@+id/recipeCalories"
+        app:layout_constraintEnd_toStartOf="@+id/recipeCarbohydratesTextView"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeProductBackgroundImage"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/recipeCarbohydratesTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/exo_bold"
+        android:text="@string/product_carbohydrates_text"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toStartOf="@+id/recipeCarbohydratesValueTextView"
+        app:layout_constraintTop_toBottomOf="@+id/recipeCalories"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeProductBackgroundImage"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/recipeCarbohydratesValueTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/exo_regular"
+        android:text="0 г."
+        android:layout_marginEnd="10dp"
+        android:textColor="?attr/colorTertiary"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintTop_toBottomOf="@+id/recipeCalories"
+        app:layout_constraintBottom_toBottomOf="@+id/recipeProductBackgroundImage"
+        app:layout_constraintEnd_toEndOf="@+id/recipeProductBackgroundImage"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

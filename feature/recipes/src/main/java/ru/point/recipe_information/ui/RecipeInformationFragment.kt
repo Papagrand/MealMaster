@@ -28,7 +28,6 @@ class RecipeInformationFragment : BaseFragment<FragmentRecipeInformationBinding>
     @Inject
     lateinit var recipeViewModelFactory: RecipeInformationViewModelFactory
 
-    // Инициализируем ViewModel через activityViewModels
     private val viewModel: RecipeInformationViewModel by activityViewModels {
         recipeViewModelFactory
     }
@@ -42,7 +41,6 @@ class RecipeInformationFragment : BaseFragment<FragmentRecipeInformationBinding>
         super.onAttach(context)
     }
 
-    // Пример: два адаптера, один для шагов, другой для ингредиентов
     private val stepsAdapter by lazy { RecipeStepsAdapter() }
     private val ingredientsAdapter by lazy { RecipeIngredientsAdapter() }
 
@@ -67,8 +65,8 @@ class RecipeInformationFragment : BaseFragment<FragmentRecipeInformationBinding>
         collectUiState()
         collectUiEvent()
 
-        val recipeId = "r-ht38c1nmo75r"
-        viewModel.loadRecipe(recipeId)
+        val recipeId = arguments?.getString("recipeId")
+        viewModel.loadRecipe(recipeId!!)
 
         binding.errorRetryButton.setOnClickListener{
             collectUiState()

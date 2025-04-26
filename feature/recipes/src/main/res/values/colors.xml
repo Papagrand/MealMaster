@@ -37,6 +37,7 @@
     <color name="starving_digits">#006688</color>
     <color name="on_tracker_button_color">#006688</color>
     <color name="start_tracker_starving_color">#48B846</color>
+    <color name="dark_green">#3E9D3D</color>
     <color name="stop_tracker_starving_color">#934173</color>
     <color name="bottom_navigation_background">#F0CCB6DB</color>
 </resources>

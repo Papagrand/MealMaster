@@ -41,11 +41,6 @@ interface MealService {
     ): UpdateDeleteMealItemResponse
 }
 
-@Serializable
-data class DeleteMealItemRequest(
-    val itemId: String
-)
-
 
 @Serializable
 data class UpdateMealItemServingSizeCaloriesRequest(

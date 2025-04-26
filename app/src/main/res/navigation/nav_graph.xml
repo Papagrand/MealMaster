@@ -78,9 +78,6 @@
         <action
             android:id="@+id/action_homeProgressFragment_to_mealProductSearchFragment"
             app:destination="@id/mealProductSearchFragment" />
-        <action
-            android:id="@+id/action_homeProgressFragment_to_recipeInformationFragment"
-            app:destination="@id/recipeInformationFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -140,6 +137,9 @@
         <action
             android:id="@+id/action_recipesFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_recipesFragment_to_recipeInformationFragment"
+            app:destination="@id/recipeInformationFragment" />
     </fragment>
     <fragment
         android:id="@+id/mealProductSearchFragment"
@@ -164,7 +164,14 @@
     <fragment
         android:id="@+id/recipeInformationFragment"
         android:name="ru.point.recipe_information.ui.RecipeInformationFragment"
-        android:label="RecipeInformationFragment" />
+        android:label="RecipeInformationFragment" >
+        <action
+            android:id="@+id/action_recipeInformationFragment_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
+        <action
+            android:id="@+id/action_recipeInformationFragment_to_mealProductSearchFragment"
+            app:destination="@id/mealProductSearchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/updateProfileInformationFragment"
         android:name="ru.point.profile.ui.update_profile_information.UpdateProfileInformationFragment"

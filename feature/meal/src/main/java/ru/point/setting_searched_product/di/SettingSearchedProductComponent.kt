@@ -25,7 +25,9 @@ interface SettingSearchedProductFragmentDeps {
 
 interface SettingSearchedProductFragmentDepsProvider {
     var deps: SettingSearchedProductFragmentDeps
-    companion object :SettingSearchedProductFragmentDepsProvider by SettingSearchedProductFragmentDepsStore
+
+    companion object :
+        SettingSearchedProductFragmentDepsProvider by SettingSearchedProductFragmentDepsStore
 }
 
 object SettingSearchedProductFragmentDepsStore : SettingSearchedProductFragmentDepsProvider {

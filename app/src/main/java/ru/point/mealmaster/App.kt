@@ -12,6 +12,7 @@ import ru.point.mealmaster.di.DaggerAppComponent
 import ru.point.profile.di.ProfileDepsStore
 import ru.point.profile.di.UpdateProfileDepsStore
 import ru.point.recipe_information.di.RecipeInformationDepsStore
+import ru.point.recipes.di.RecipesFragmentDepsStore
 import ru.point.setting_searched_product.di.SettingSearchedProductFragmentDepsStore
 
 class App : Application() {
@@ -32,5 +33,6 @@ class App : Application() {
         UpdateProfileDepsStore.deps = appComponent
         MealProductSearchFragmentDepsStore.deps = appComponent
         SettingSearchedProductFragmentDepsStore.deps = appComponent
+        RecipesFragmentDepsStore.deps = appComponent
     }
 }

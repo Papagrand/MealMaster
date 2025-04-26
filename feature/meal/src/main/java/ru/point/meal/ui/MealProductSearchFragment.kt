@@ -173,7 +173,7 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
         binding.searchEditText.doOnTextChanged { text, _, _, _ ->
             searchJob?.cancel()
             searchJob = viewLifecycleOwner.lifecycleScope.launch {
-                delay(1500)
+                delay(1000)
                 val query = text?.toString().orEmpty()
                 if (query.isNotBlank()) {
                     viewModel.getSearchedProducts(productName = query)

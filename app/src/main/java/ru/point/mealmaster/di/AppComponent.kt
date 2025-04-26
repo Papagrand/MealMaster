@@ -25,12 +25,13 @@ import ru.point.meal.di.MealProductSearchFragmentDeps
 import ru.point.profile.di.ProfileDeps
 import ru.point.profile.di.UpdateProfileDeps
 import ru.point.recipe_information.di.RecipeInformationDeps
+import ru.point.recipes.di.RecipesFragmentDeps
 import ru.point.setting_searched_product.di.SettingSearchedProductFragmentDeps
 
 @Component(modules = [NetworkModule::class /* другие модули */])
 interface AppComponent : RegistrationDeps, LoginDeps, OnboardingDeps, RecipeInformationDeps,
     ProfileDeps, UpdateProfileDeps, HomeFragmentDeps, MealProductSearchFragmentDeps,
-    SettingSearchedProductFragmentDeps {
+    SettingSearchedProductFragmentDeps, RecipesFragmentDeps {
     // Другие глобальные зависимости
 }
 

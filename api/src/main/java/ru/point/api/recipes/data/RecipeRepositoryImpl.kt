@@ -4,7 +4,9 @@ import ru.point.api.recipes.domain.RecipeRepository
 import ru.point.api.recipes.domain.models.FullRecipeData
 import ru.point.api.recipes.domain.models.FullResponseRecipeData
 import ru.point.api.recipes.domain.models.IngredientData
+import ru.point.api.recipes.domain.models.RecipeItemModel
 import ru.point.api.recipes.domain.models.RecipeStepData
+import ru.point.api.recipes.domain.models.SearchedRecipesSuccessModel
 import ru.point.api.recipes.domain.models.StepImageData
 
 class RecipeRepositoryImpl(
@@ -77,6 +79,69 @@ class RecipeRepositoryImpl(
                 }
             } else {
                 Result.failure(Throwable("Network error: ${response.code()}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun searchRecipes(
+        recipeName: String,
+        isVegan: Boolean?,
+        cookingTime: Int?,
+        difficulty: Int?,
+        maxCalories: Double?,
+        page: Int?,
+        pagesize: Int?
+    ): Result<SearchedRecipesSuccessModel<RecipeItemModel>> {
+        return try {
+            val response = recipeService.searchRecipes(
+                recipeName,
+                isVegan == true,
+                cookingTime ?: 999,
+                difficulty ?: 5,
+                maxCalories ?: 1000.0,
+                page ?: 1,
+                pagesize ?: 10
+            )
+
+            val body = response.body()
+            when(response.code()){
+                200 -> {
+                    if (body != null && body.success && body.data != null){
+                        val domainList: List<RecipeItemModel> = body.data.map { dto ->
+                            RecipeItemModel(
+                                recipeId = dto.recipeId,
+                                recipeName = dto.recipeName,
+                                recipeBackdrop = dto.recipeBackdrop,
+                                recipeCookingTime = dto.recipeCookingTime,
+                                recipeDifficulty = dto.recipeDifficulty,
+                                recipeIsVegan = dto.recipeIsVegan,
+                                recipeServingSize = dto.recipeServingSize,
+                                recipeCalories = dto.recipeCalories,
+                                recipeProtein = dto.recipeProtein,
+                                recipeFat = dto.recipeFat,
+                                recipeCarbohydrate = dto.recipeCarbohydrate
+                            )
+                        }
+                        Result.success(
+                            SearchedRecipesSuccessModel(
+                                success = true,
+                                data = domainList
+                            )
+                        )
+                    } else {
+                        Result.failure(Throwable(body?.message ?: "Unexpected fault"))
+                    }
+                }
+
+                404 -> {
+                    Result.failure(Throwable(body?.message ?: "Not Found"))
+                }
+
+                else -> {
+                    Result.failure(Throwable(body?.message ?: "Unexpected error"))
+                }
             }
         } catch (e: Exception) {
             Result.failure(e)
