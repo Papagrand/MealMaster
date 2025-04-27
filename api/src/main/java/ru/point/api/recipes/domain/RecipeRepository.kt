@@ -2,6 +2,8 @@ package ru.point.api.recipes.domain
 
 import ru.point.api.recipes.domain.models.FullRecipeData
 import ru.point.api.recipes.domain.models.FullResponseRecipeData
+import ru.point.api.recipes.domain.models.MealIdsInfoModel
+import ru.point.api.recipes.domain.models.MealIdsModel
 import ru.point.api.recipes.domain.models.RecipeItemModel
 import ru.point.api.recipes.domain.models.SearchedRecipesSuccessModel
 
@@ -17,4 +19,9 @@ interface RecipeRepository {
         page: Int?,
         pagesize: Int?
     ): Result<SearchedRecipesSuccessModel<RecipeItemModel>>
+
+
+    suspend fun getMealIds(
+        userId: String
+    ): Result<MealIdsModel<MealIdsInfoModel>>
 }

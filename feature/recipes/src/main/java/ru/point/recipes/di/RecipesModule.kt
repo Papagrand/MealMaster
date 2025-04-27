@@ -17,7 +17,7 @@ object RecipesModule {
     }
 
     @Provides
-    fun provideGetSearchedRecipesUseCase(recipeRepository: RecipeRepository)=
+    fun provideGetSearchedRecipesUseCase(recipeRepository: RecipeRepository) =
         GetSearchedRecipesUseCase(recipeRepository)
 
     @Provides

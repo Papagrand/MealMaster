@@ -36,7 +36,7 @@ sealed class RecipeSearchUiEvent {
 }
 
 class RecipesViewModel(
-    private val getSearchedRecipesUseCase: GetSearchedRecipesUseCase
+    private val getSearchedRecipesUseCase: GetSearchedRecipesUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(RecipesSearchUiState())

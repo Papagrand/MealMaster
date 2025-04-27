@@ -4,6 +4,8 @@ import ru.point.api.recipes.domain.RecipeRepository
 import ru.point.api.recipes.domain.models.FullRecipeData
 import ru.point.api.recipes.domain.models.FullResponseRecipeData
 import ru.point.api.recipes.domain.models.IngredientData
+import ru.point.api.recipes.domain.models.MealIdsInfoModel
+import ru.point.api.recipes.domain.models.MealIdsModel
 import ru.point.api.recipes.domain.models.RecipeItemModel
 import ru.point.api.recipes.domain.models.RecipeStepData
 import ru.point.api.recipes.domain.models.SearchedRecipesSuccessModel
@@ -112,6 +114,7 @@ class RecipeRepositoryImpl(
                         val domainList: List<RecipeItemModel> = body.data.map { dto ->
                             RecipeItemModel(
                                 recipeId = dto.recipeId,
+                                recipeProductId = dto.recipeProductId,
                                 recipeName = dto.recipeName,
                                 recipeBackdrop = dto.recipeBackdrop,
                                 recipeCookingTime = dto.recipeCookingTime,
@@ -146,5 +149,42 @@ class RecipeRepositoryImpl(
         } catch (e: Exception) {
             Result.failure(e)
         }
+    }
+
+    override suspend fun getMealIds(userId: String): Result<MealIdsModel<MealIdsInfoModel>> {
+        return try {
+            val response = recipeService.getMealIds(userId)
+            val body = response.body()
+            when(response.code()){
+                200 -> {
+                    if (body != null && body.success && body.data != null){
+                        val domainList: List<MealIdsInfoModel> = body.data.map { dto ->
+                            MealIdsInfoModel(
+                                mealId = dto.mealId,
+                                mealType = dto.mealType
+                            )
+                        }
+                        Result.success(
+                            MealIdsModel(
+                                success = true,
+                                data = domainList
+                            )
+                        )
+                    } else {
+                        Result.failure(Throwable(body?.message ?: "Unexpected fault"))
+                    }
+                }
+                403 -> {
+                    Result.failure(Throwable(body?.message ?: "Not Found"))
+                }
+
+                else -> {
+                    Result.failure(Throwable(body?.message ?: "Unexpected error"))
+                }
+            }
+        }catch (e: Exception) {
+            Result.failure(e)
+        }
+
     }
 }

@@ -27,7 +27,7 @@ interface DailyConsumptionService {
     @POST("/user/daily_consumption/addFoodItem")
     suspend fun addProductToMeal(
         @Body request: AddProductToMealRequest
-    ): AddProductToMealResponse
+    ): Response<AddProductToMealResponse>
 
 }
 

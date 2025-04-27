@@ -1,12 +1,14 @@
 package ru.point.api.recipes.domain.models
 
+import kotlinx.serialization.Serializable
+
 data class FullResponseRecipeData<T>(
     val success: Boolean,
     val data: T? = null,
     val message: String? = null
 )
 
-
+@Serializable
 data class FullRecipeData(
     val recipeId: String,
     val recipeName: String,
@@ -45,16 +47,19 @@ data class FullRecipeData(
     val recipeImages: List<StepImageData>
 )
 
+@Serializable
 data class IngredientData(
     val ingredientName: String,
     val ingredientGrams: Double
 )
 
+@Serializable
 data class RecipeStepData(
     val stepNumber: Int,
     val stepDescription: String
 )
 
+@Serializable
 data class StepImageData(
     val stepNumber: Int,
     val stepImage: String

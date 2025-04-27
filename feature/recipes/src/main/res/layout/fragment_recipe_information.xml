@@ -66,7 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:visibility="gone"
+        android:visibility="invisible"
         >
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -117,7 +117,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:visibility="gone"
+        android:visibility="invisible"
+        android:paddingBottom="70dp"
+        android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -280,6 +282,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Вес (гр)"
+                    android:inputType="numberDecimal"
                     android:fontFamily="@font/exo_regular"
                     />
 
@@ -300,6 +303,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
                     android:hint="Калорийность"
                     android:fontFamily="@font/exo_regular"
                     />
@@ -371,13 +375,11 @@
                 android:id="@+id/stepsRecyclerView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
-                app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+                android:layout_marginHorizontal="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recipeTopText"
                 android:nestedScrollingEnabled="false" />
-
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

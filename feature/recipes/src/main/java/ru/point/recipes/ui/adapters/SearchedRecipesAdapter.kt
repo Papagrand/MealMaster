@@ -11,7 +11,7 @@ import ru.point.api.recipes.domain.models.RecipeItemModel
 import ru.point.recipes.databinding.ItemSearchedRecipeBinding
 
 class SearchedRecipesAdapter(
-    private val onItemClick: (recipeId: String) -> Unit
+    private val onItemClick: (recipeId: String, productId: String) -> Unit
 ) : ListAdapter<RecipeItemModel, SearchedRecipesAdapter.SearchedRecipeViewHolder>(
     DIFF_CALLBACK
 ) {
@@ -63,7 +63,7 @@ class SearchedRecipesAdapter(
             binding.difficultyValue.text = "${itemModel.recipeDifficulty} уровень"
 
             binding.root.setOnClickListener {
-                onItemClick(itemModel.recipeId)
+                onItemClick(itemModel.recipeId, itemModel.recipeProductId)
             }
 
             val recipeItemPictureString = itemModel.recipeBackdrop

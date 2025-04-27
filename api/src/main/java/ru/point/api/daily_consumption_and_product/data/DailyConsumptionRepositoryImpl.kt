@@ -147,22 +147,39 @@ class DailyConsumptionRepositoryImpl(
         }
     }
 
+
     override suspend fun addProductToMeal(
         mealId: String,
         productId: String,
         servingSize: Double
-    ): AddProductResult {
+    ): Result<AddProductResult> {
         return try {
-            val response: AddProductToMealResponse = dailyConsumptionService.addProductToMeal(
-                AddProductToMealRequest(mealId, productId, servingSize)
+            val request = AddProductToMealRequest(
+                mealId = mealId,
+                productId = productId,
+                servingSize = servingSize
             )
-            if (response.success) {
-                AddProductResult.Success
-            } else {
-                AddProductResult.Failure(response.message ?: "Ошибка введенных данных")
+
+            val response = dailyConsumptionService.addProductToMeal(request)
+            val body = response.body()
+            when (response.code()) {
+                201 ->{
+                    if (body != null && body.success) {
+                        Result.success(AddProductResult.Success)
+                    } else {
+                        val msg = body?.message ?: "Неизвестная ошибка сервера"
+                        Result.success(AddProductResult.Failure(msg))
+                    }
+                }
+                403 ->{
+                    Result.failure(Throwable(body?.message ?: "Unexpected error"))
+                }
+                else -> {
+                    Result.failure(Throwable(body?.message ?: "Unexpected error"))
+                }
             }
-        } catch (e: Exception) {
-            AddProductResult.Failure("Неизвестная ошибка: ${e.localizedMessage}")
+        }catch (e: Exception) {
+            Result.failure(e)
         }
     }
 

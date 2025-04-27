@@ -34,7 +34,7 @@ class CalculateProductDataUseCase {
             productFat = (original.productFat * factor).round(1),
             productCarbohydrates = (original.productCarbohydrates * factor).round(1),
             productDietaryFiber = (original.productDietaryFiber * factor).round(1),
-            productSugars =( original.productSugars * factor).round(1),
+            productSugars = (original.productSugars * factor).round(1),
             productStarchDextrins = (original.productStarchDextrins * factor).round(1),
             productPotassium = (original.productPotassium * factor).round(1),
             productCalcium = (original.productCalcium * factor).round(1),

@@ -123,8 +123,7 @@ class SettingSearchedProductFragment : BaseFragment<FragmentSettingSearchedProdu
                         )
 
                     }else {
-                        // 2) После пересчёта — обновляем только то поле,
-                        //    которое НЕ трогал юзер
+
                         if (isEditingWeight) {
                             binding.caloriesEditTextLayout.editText
                                 ?.setText(productInfo.productCalories.toString())

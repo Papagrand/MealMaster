@@ -26,7 +26,25 @@ interface RecipeService {
         @Query("page") page: Int,
         @Query("pagesize") pagesize: Int,
     ) : Response<SearchedRecipesResponse<RecipeItemResponse>>
+
+    @GET("/recipes/getMealIds")
+    suspend fun getMealIds(
+        @Query("userId") userId: String
+    ): Response<MealIdsResponse<MealIdsInfo>>
 }
+
+@Serializable
+data class MealIdsResponse<T>(
+    val success: Boolean,
+    val data: List<T>? = null,
+    val message: String? = null
+)
+
+@Serializable
+data class MealIdsInfo(
+    val mealId: String,
+    val mealType: String
+)
 
 @Serializable
 data class SearchedRecipesResponse<T>(
@@ -38,6 +56,7 @@ data class SearchedRecipesResponse<T>(
 @Serializable
 data class RecipeItemResponse(
     val recipeId: String,
+    val recipeProductId: String,
     val recipeName: String,
     val recipeBackdrop: String,
     val recipeCookingTime: Int,

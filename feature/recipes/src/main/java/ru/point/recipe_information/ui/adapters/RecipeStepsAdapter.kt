@@ -2,6 +2,7 @@ package ru.point.recipe_information.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.point.api.recipes.domain.models.RecipeStepData
@@ -25,7 +26,7 @@ class RecipeStepsAdapter : RecyclerView.Adapter<RecipeStepsAdapter.StepViewHolde
 
         steps.forEach { stepData ->
             val matchedImage = imagesMap[stepData.stepNumber]
-            val imageUrl = matchedImage?.stepImage // "data:image/jpeg;base64,........"
+            val imageUrl = matchedImage?.stepImage
             items.add(
                 StepItem(
                     stepNumber = stepData.stepNumber,
@@ -60,12 +61,10 @@ class RecipeStepsAdapter : RecyclerView.Adapter<RecipeStepsAdapter.StepViewHolde
 
             val imageString = item.stepImageUrl
             if (imageString != null) {
+                binding.stepImageView.isVisible = true
                 if (imageString.startsWith("data:image", ignoreCase = true)) {
-                    // 1. Отрезаем часть после "base64,"
                     val base64Part = imageString.substringAfter("base64,")
-                    // 2. Декодируем
                     val decodedBytes = android.util.Base64.decode(base64Part, android.util.Base64.DEFAULT)
-                    // 3. Передаём Coil
                     binding.stepImageView.load(decodedBytes) {
                         crossfade(true)
                     }

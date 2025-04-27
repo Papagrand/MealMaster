@@ -31,9 +31,10 @@ class RecipesFragment : BaseFragment<FragmentRecipesBinding>() {
     }
 
     private val searchedAdapter by lazy {
-        SearchedRecipesAdapter { recipeId ->
+        SearchedRecipesAdapter { recipeId, productId ->
             val bundle = Bundle().apply {
                 putString("recipeId", recipeId)
+                putString("productId", productId)
             }
             navigator.fromRecipeFragmentToRecipeInformationFragment(bundle)
         }
