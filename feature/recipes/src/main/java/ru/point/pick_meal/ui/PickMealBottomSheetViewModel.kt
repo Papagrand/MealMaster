@@ -84,16 +84,6 @@ class PickMealBottomSheetViewModel(
                     }
 
                 )
-//                when(result){
-//                    is AddProductResult.Success -> {
-//                        _uiEvent.emit(PickMealUiEvent.ShowToast("Продукт добавлен в текущий прием пищи"))
-//                        _uiEvent.emit(PickMealUiEvent.NavigateBack)
-//                    }
-//                    is AddProductResult.Failure -> {
-//                        _uiEvent.emit(PickMealUiEvent.ShowToast(result.message))
-//
-//                    }
-//                }
             }
         }
     }
