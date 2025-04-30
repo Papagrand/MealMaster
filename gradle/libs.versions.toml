@@ -17,7 +17,7 @@ kotlinxCoroutinesAndroidVersion = "1.9.0"
 kotlinxSerializationJsonVersion = "1.7.3"
 navVersion = "2.8.9"
 retrofitVersion = "2.11.0"
-roomVersion = "2.6.1"
+roomVersion = "2.7.1"
 daggerVersion = "2.55"
 kspVersion = "2.1.10-1.0.31"
 kaptVersion = "2.1.10"
@@ -49,6 +49,7 @@ androidx-navigation-safe-args-gradle-plugin = { module = "androidx.navigation:na
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navVersion" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofitVersion" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
 dagger = { module = "com.google.dagger:dagger", version.ref = "daggerVersion" }

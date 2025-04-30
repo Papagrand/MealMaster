@@ -1,11 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.1.10"
+    id ("kotlin-kapt")
 }
 
 android {
-    namespace = "ru.point.api"
+    namespace = "ru.point.core_data"
     compileSdk = 35
 
     defaultConfig {
@@ -31,20 +31,29 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
-
-    implementation(project(":core"))
-    implementation(project(":core-data"))
-
-    implementation(libs.okHttp3)
-    implementation(libs.jakewharton.retrofit)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.retrofit)
+    implementation ("androidx.security:security-crypto:1.1.0-alpha03"){
+        isTransitive = false
+    }
+    implementation ("com.google.crypto.tink:tink-android:1.6.1"){
+        isTransitive = false
+    }
+    kapt("androidx.room:room-compiler:2.7.1")
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime)
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+    implementation(libs.bundles.navigation)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.dagger)
+    kapt(libs.kapt)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

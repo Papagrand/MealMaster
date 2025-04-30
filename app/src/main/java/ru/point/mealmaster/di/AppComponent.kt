@@ -17,9 +17,13 @@ import ru.point.api.recipes.data.RecipeService
 import ru.point.api.recipes.data.createRecipeService
 import ru.point.api.registration.data.RegistrationService
 import ru.point.api.registration.data.createRegistrationService
+import ru.point.api.timer_fasting.data.TimerService
+import ru.point.api.timer_fasting.data.createTimerService
 import ru.point.auth.ui.login.di.LoginDeps
 import ru.point.auth.ui.on_boarding.di.OnboardingDeps
 import ru.point.auth.ui.register.di.RegistrationDeps
+import ru.point.core_data.DatabaseModule
+import ru.point.fasting.di.TimerFragmentDeps
 import ru.point.home.di.HomeFragmentDeps
 import ru.point.meal.di.MealProductSearchFragmentDeps
 import ru.point.profile.di.ProfileDeps
@@ -28,10 +32,10 @@ import ru.point.recipe_information.di.RecipeInformationDeps
 import ru.point.recipes.di.RecipesFragmentDeps
 import ru.point.setting_searched_product.di.SettingSearchedProductFragmentDeps
 
-@Component(modules = [NetworkModule::class /* другие модули */])
+@Component(modules = [AppModule::class, NetworkModule::class, DatabaseModule::class])
 interface AppComponent : RegistrationDeps, LoginDeps, OnboardingDeps, RecipeInformationDeps,
     ProfileDeps, UpdateProfileDeps, HomeFragmentDeps, MealProductSearchFragmentDeps,
-    SettingSearchedProductFragmentDeps, RecipesFragmentDeps {
+    SettingSearchedProductFragmentDeps, RecipesFragmentDeps, TimerFragmentDeps {
     // Другие глобальные зависимости
 }
 
@@ -74,5 +78,10 @@ class NetworkModule {
     @Provides
     fun provideMealService(): MealService {
         return createMealService(url)
+    }
+
+    @Provides
+    fun provideTimerService(): TimerService {
+        return createTimerService(url)
     }
 }

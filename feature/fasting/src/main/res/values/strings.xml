@@ -29,6 +29,7 @@
     <string name="tracker20_4_description">20 часов голодания, 4 часа еды. Интенсивная программа для быстрого результата и дисциплинированного подхода.</string>
     <string name="tracker1_1_description">Один день обычного питания, один день с резким сокращением калорий до 0 или 600 ккал.</string>
     <string name="tracker3_1_description">Три дня обычного рациона и один день с сокращением калорий до 0 или 600 ккал.</string>
+    <string name="countdown_timer_zero">00:00:00</string>
 
 
 </resources>

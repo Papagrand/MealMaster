@@ -74,12 +74,29 @@
         app:autoSizePresetSizes="@array/autosize_text_sizes_24"
         app:autoSizeTextType="uniform"
         android:gravity="center"
+        android:visibility="visible"
         android:text="@string/temp_picked_tracker"
         android:textColor="@color/dark_main_background_elements"
         app:layout_constraintEnd_toEndOf="@id/fasting_tracker_image_view"
         app:layout_constraintStart_toStartOf="@id/fasting_tracker_image_view"
         app:layout_constraintTop_toBottomOf="@id/your_tracker_text"
         app:layout_constraintBottom_toTopOf="@+id/switch_fasting_mode_button"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/countdown_timer_text"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/exo_extra_light"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        android:gravity="center"
+        android:text="@string/countdown_timer_zero"
+        android:textColor="@color/dark_main_background_elements"
+        app:layout_constraintEnd_toEndOf="@id/fasting_tracker_image_view"
+        app:layout_constraintStart_toStartOf="@id/fasting_tracker_image_view"
+        app:layout_constraintTop_toTopOf="@+id/picked_tracker_name_text"
+        app:layout_constraintBottom_toBottomOf="@+id/picked_tracker_name_text"
         />
 
     <com.google.android.material.button.MaterialButton
@@ -164,10 +181,11 @@
 
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/changeStartTimeButton"
             android:layout_width="150dp"
             android:layout_height="50dp"
             style="@style/TransparentButton"
-            android:visibility="gone"
+            android:visibility="invisible"
             android:text="@string/edit"
             android:textColor="@color/dark_main_background_elements"
             android:fontFamily="@font/exo_regular"

@@ -44,7 +44,7 @@ kotlin {
 dependencies {
     implementation(project(":core"))
     implementation(project(":api"))
-
+    implementation(project(":core-data"))
 
     kapt(libs.kapt)
     implementation(libs.androidx.constraintlayout)
@@ -54,6 +54,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation ("androidx.viewpager2:viewpager2:1.0.0"){
         isTransitive = false
     }

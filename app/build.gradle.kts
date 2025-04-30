@@ -52,6 +52,7 @@ kotlin {
 dependencies {
     implementation(project(":api"))
     implementation(project(":core"))
+    implementation(project(":core-data"))
     implementation(project(":feature:auth"))
     implementation(project(":feature:fasting"))
     implementation(project(":feature:home"))
