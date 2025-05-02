@@ -40,8 +40,8 @@
         android:layout_height="0dp"
         app:cpb_background_progressbar_color="?attr/colorSecondaryVariant"
         app:cpb_background_progressbar_width="10dp"
-        app:cpb_progress="1"
         app:cpb_progress_direction="to_right"
+        app:cpb_progress="0"
         app:cpb_progressbar_color="?attr/colorTertiaryFixed"
         app:cpb_progressbar_width="10dp"
         app:cpb_round_border="true"
@@ -50,6 +50,18 @@
         app:layout_constraintStart_toStartOf="@+id/fasting_tracker_image_view"
         app:layout_constraintEnd_toEndOf="@+id/fasting_tracker_image_view"
         />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/centerProgressImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="@+id/circularProgressBarTimer"
+        app:layout_constraintBottom_toBottomOf="@+id/circularProgressBarTimer"
+        app:layout_constraintEnd_toEndOf="@+id/circularProgressBarTimer"
+        app:layout_constraintStart_toStartOf="@+id/circularProgressBarTimer"
+        />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/your_tracker_text"
         android:layout_width="wrap_content"
@@ -110,11 +122,27 @@
         app:layout_constraintTop_toBottomOf="@+id/picked_tracker_name_text"
         app:layout_constraintStart_toStartOf="@id/fasting_tracker_image_view"
         app:layout_constraintEnd_toEndOf="@id/fasting_tracker_image_view"
-        app:layout_constraintBottom_toTopOf="@id/start_date_fasting_text"
+        app:layout_constraintBottom_toTopOf="@id/start_date_fasting_eating_text"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/stop_timer_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        style="@style/RedButton"
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        app:icon="@drawable/stop"
+        app:iconGravity="textEnd"
+        app:iconTint="@color/light_main_background_elements"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/picked_tracker_name_text"
+        app:layout_constraintStart_toEndOf="@id/switch_fasting_mode_button"
+        app:layout_constraintBottom_toTopOf="@id/start_date_fasting_eating_text"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/start_date_fasting_text"
+        android:id="@+id/start_date_fasting_eating_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -126,11 +154,11 @@
         android:textColor="@color/dark_background_color"
         app:layout_constraintTop_toBottomOf="@id/switch_fasting_mode_button"
         app:layout_constraintStart_toStartOf="@+id/fasting_tracker_image_view"
-        app:layout_constraintEnd_toStartOf="@id/end_date_fasting_text"
+        app:layout_constraintEnd_toStartOf="@id/end_date_fasting_eating_text"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/end_date_fasting_text"
+        android:id="@+id/end_date_fasting_eating_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -140,7 +168,7 @@
         android:fontFamily="@font/exo_bold"
         app:autoSizePresetSizes="@array/autosize_text_sizes_14"
         app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@id/start_date_fasting_text"
+        app:layout_constraintStart_toEndOf="@id/start_date_fasting_eating_text"
         app:layout_constraintTop_toBottomOf="@id/switch_fasting_mode_button"
         app:layout_constraintEnd_toEndOf="@+id/fasting_tracker_image_view"
         />
@@ -155,9 +183,9 @@
         android:fontFamily="@font/exo_regular"
         app:autoSizePresetSizes="@array/autosize_text_sizes_14"
         app:autoSizeTextType="uniform"
-        app:layout_constraintTop_toBottomOf="@id/start_date_fasting_text"
+        app:layout_constraintTop_toBottomOf="@id/start_date_fasting_eating_text"
         app:layout_constraintStart_toStartOf="@+id/fasting_tracker_image_view"
-        app:layout_constraintEnd_toStartOf="@id/end_date_fasting_text"
+        app:layout_constraintEnd_toStartOf="@id/end_date_fasting_eating_text"
         app:layout_constraintBottom_toBottomOf="@+id/fasting_tracker_image_view"
         android:layout_marginBottom="80dp"
         />
@@ -172,8 +200,8 @@
         android:fontFamily="@font/exo_regular"
         app:autoSizePresetSizes="@array/autosize_text_sizes_14"
         app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toEndOf="@id/start_date_fasting_text"
-        app:layout_constraintTop_toBottomOf="@id/end_date_fasting_text"
+        app:layout_constraintStart_toEndOf="@id/start_date_fasting_eating_text"
+        app:layout_constraintTop_toBottomOf="@id/end_date_fasting_eating_text"
         app:layout_constraintEnd_toEndOf="@+id/fasting_tracker_image_view"
         app:layout_constraintBottom_toBottomOf="@+id/fasting_tracker_image_view"
         android:layout_marginBottom="80dp"

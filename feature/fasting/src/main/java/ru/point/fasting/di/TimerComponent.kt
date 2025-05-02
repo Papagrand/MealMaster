@@ -1,10 +1,13 @@
 package ru.point.fasting.di
 
+import android.app.Application
+import dagger.BindsInstance
 import dagger.Component
 import ru.point.api.timer_fasting.data.TimerService
 import ru.point.core_data.dao.ScenarioDao
 import ru.point.core_data.dao.UserTimerDao
 import ru.point.fasting.ui.FastingFragment
+import ru.point.fasting.ui.PhaseChangeReceiver
 import kotlin.properties.Delegates.notNull
 
 @Component(
@@ -13,9 +16,12 @@ import kotlin.properties.Delegates.notNull
 )
 interface TimerComponent {
     fun inject(fragment: FastingFragment)
+    fun inject(receiver: PhaseChangeReceiver)
 
     @Component.Builder
     interface Builder {
+        @BindsInstance
+        fun application(app: Application): Builder
         fun deps(deps: TimerFragmentDeps): Builder
         fun build(): TimerComponent
     }

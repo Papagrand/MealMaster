@@ -6,8 +6,12 @@
     <string name="your_tracker">Ваш трекер</string>
     <string name="temp_picked_tracker">16/8</string>
     <string name="on_tracker">Включить трекер</string>
+    <string name="on_fasting">Голодание</string>
+    <string name="on_eating">Прием пищи</string>
     <string name="start_fasting_period">Начало голодания</string>
     <string name="end_fasting_period">Окончание голодания</string>
+    <string name="start_eating_period">Начало приема пищи</string>
+    <string name="end_eating_period">Окончание приема пищи</string>
     <string name="temp">Заглушка</string>
     <string name="edit">Редактировать</string>
     <string name="setting_tracker_your_own">Настройте трекер под себя</string>

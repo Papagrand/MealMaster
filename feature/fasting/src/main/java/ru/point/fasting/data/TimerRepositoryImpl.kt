@@ -24,29 +24,12 @@ class TimerRepositoryImpl(
 ) : TimerRepository {
 
     override fun observeTimer(userId: String): Flow<UserTimer?> =
-        timerDao.getTimerFlow(userId)
+        timerDao
+            .getTimerFlow(userId)
             .combine(scenarioDao.getCurrentScenarioFlow()) { utEnt, scEnt -> utEnt to scEnt }
-            .onStart {
-                val ufResponse = service.getUserFasting(userId)
-                if (ufResponse.isSuccessful) {
-                    ufResponse.body()?.data?.let { dto ->
-                        // Мапим и сохраняем UserTimerEntity
-                        val timerEntity = mapToUserTimerEntity(dto)
-                        timerDao.upsert(timerEntity)
-                        service.getCurrentFastingScenario(dto.pickedScenarioId)
-                            .takeIf { it.isSuccessful }
-                            ?.body()?.data
-                            ?.let { scenarioDto ->
-                                val scenarioEntity = mapToScenarioEntity(scenarioDto)
-                                scenarioDao.upsert(scenarioEntity)
-                            }
-                    }
-                }
-            }
             .map { (utEnt, scEnt) ->
                 if (utEnt == null || scEnt == null) return@map null
 
-                // Собираем доменную модель с уже закешированным сценарием
                 val scenario = Scenario(
                     name = scEnt.scenarioName,
                     fastingHours = scEnt.fastingHours,
@@ -67,52 +50,142 @@ class TimerRepositoryImpl(
                 )
             }
 
-    override suspend fun startTimer(userId: String) {
-        val utEnt = timerDao.getTimerFlow(userId).firstOrNull() ?: return
-        val scEnt = scenarioDao.getCurrentScenarioFlow().firstOrNull() ?: return
+    override fun observeScenario(): Flow<Scenario?> =
+        scenarioDao
+            .getCurrentScenarioFlow()
+            .map { scenarioEntity ->
+                scenarioEntity?.let {
+                    Scenario(
+                        name = it.scenarioName,
+                        fastingHours = it.fastingHours,
+                        eatingHours = it.eatingHours,
+                        description = it.description,
+                        notice = it.notice
+                    )
+                }
+            }
+
+
+    override suspend fun fetchAndCache(userId: String) {
+        val localTimer = timerDao.getTimerFlow(userId).firstOrNull()
+        if (localTimer != null) return
+
+        val respTimer = service.getUserFasting(userId)
+        if (respTimer.isSuccessful) {
+            respTimer.body()?.data?.let { dto ->
+                timerDao.upsert(mapToUserTimerEntity(dto))
+
+                service.getCurrentFastingScenario(dto.pickedScenarioId)
+                    .takeIf { it.isSuccessful }
+                    ?.body()?.data
+                    ?.let { scDto ->
+                        scenarioDao.upsert(mapToScenarioEntity(scDto))
+                    }
+            }
+        }
+    }
+
+
+    override suspend fun getCurrentTimer(userId: String): UserTimer? {
+        val utEnt = timerDao.getTimerFlow(userId).firstOrNull() ?: return null
+        val scEnt = scenarioDao.getCurrentScenarioFlow().firstOrNull() ?: return null
+        return UserTimer(
+            userFastingId = utEnt.userFastingId,
+            userId = utEnt.userId,
+            status = TimerStatus.valueOf(utEnt.status),
+            startTime = utEnt.startTimeMillis,
+            endTime = utEnt.endTimeMillis,
+            eatingWhileFasting = utEnt.eatingWhileFast,
+            isActive = utEnt.isActive,
+            lastUpdate = utEnt.lastUpdateMillis,
+            scenario = Scenario(
+                name = scEnt.scenarioName,
+                fastingHours = scEnt.fastingHours,
+                eatingHours = scEnt.eatingHours,
+                description = scEnt.description,
+                notice = scEnt.notice
+            )
+        )
+    }
+
+    override suspend fun updateTimer(
+        userId: String,
+        status: TimerStatus,
+        startMillis: Long,
+        endMillis: Long
+    ) {
+        timerDao.getTimerFlow(userId).firstOrNull()?.let { ut ->
+            timerDao.upsert(
+                ut.copy(
+                    status = status.name,
+                    startTimeMillis = startMillis,
+                    endTimeMillis = endMillis,
+                    isActive = status != TimerStatus.OFF,
+                    lastUpdateMillis = System.currentTimeMillis()
+                )
+            )
+        }
+    }
+
+    override suspend fun updateStatusOff(userId: String) {
+        timerDao.getTimerFlow(userId).firstOrNull()?.let { ut ->
+            timerDao.upsert(
+                ut.copy(
+                    status = TimerStatus.OFF.name,
+                    startTimeMillis = null,
+                    endTimeMillis = null,
+                    isActive = false,
+                    lastUpdateMillis = System.currentTimeMillis()
+                )
+            )
+        }
+    }
+
+    override suspend fun togglePhase(userId: String) {
+        val timer = timerDao.getTimerFlow(userId).firstOrNull() ?: return
+        val scenario = scenarioDao.getCurrentScenarioFlow().firstOrNull() ?: return
+        val newStatus = when (timer.status) {
+            TimerStatus.FASTING.name -> TimerStatus.EATING.name
+            TimerStatus.EATING.name -> TimerStatus.FASTING.name
+            else -> return
+        }
+
+        val durationHours = when (newStatus) {
+            TimerStatus.FASTING.name -> scenario.fastingHours
+            TimerStatus.EATING.name -> scenario.eatingHours
+            else -> null
+        }
+
         val now = System.currentTimeMillis()
-        val fastingMillis = scEnt.fastingHours * 3_600_000L
+        val newStart = now
+        val newEnd = durationHours?.let { now + it * 60 * 60 * 1000 }
 
         timerDao.upsert(
-            utEnt.copy(
-                status = TimerStatus.FASTING.name,
-                startTimeMillis = now,
-                endTimeMillis = now + fastingMillis,
-                isActive = true,
+            timer.copy(
+                status = newStatus,
+                startTimeMillis = newStart,
+                endTimeMillis = newEnd,
                 lastUpdateMillis = now
             )
         )
     }
 
-    override suspend fun stopTimer(userId: String) {
-        val utEnt = timerDao.getTimerFlow(userId).firstOrNull() ?: return
-        val now = System.currentTimeMillis()
-
-        timerDao.upsert(
-            utEnt.copy(
-                status = TimerStatus.OFF.name,
-                isActive = false,
-                lastUpdateMillis = now
+    override suspend fun adjustTimerWindow(
+        userId: String,
+        newPhase: TimerStatus,
+        newStartMillis: Long,
+        newEndMillis: Long
+    ) {
+        timerDao.getTimerFlow(userId).firstOrNull()?.let { ut ->
+            timerDao.upsert(
+                ut.copy(
+                    status = newPhase.name,
+                    startTimeMillis = newStartMillis,
+                    endTimeMillis = newEndMillis,
+                    lastUpdateMillis = System.currentTimeMillis()
+                )
             )
-        )
-    }
-
-    override suspend fun adjustStart(userId: String, newStartMillis: Long) {
-        val utEnt = timerDao.getTimerFlow(userId).firstOrNull() ?: return
-        val scEnt = scenarioDao.getCurrentScenarioFlow().firstOrNull() ?: return
-        val now = System.currentTimeMillis()
-
-        val hours = if (utEnt.status == TimerStatus.FASTING.name)
-            scEnt.fastingHours else scEnt.eatingHours
-        val durationMillis = hours * 3_600_000L
-
-        timerDao.upsert(
-            utEnt.copy(
-                startTimeMillis = newStartMillis,
-                endTimeMillis = newStartMillis + durationMillis,
-                lastUpdateMillis = now
-            )
-        )
+        }
     }
 
     // --- Вспомогательные мапперы ---
