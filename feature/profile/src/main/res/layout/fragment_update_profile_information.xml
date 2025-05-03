@@ -225,7 +225,7 @@
             android:clickable="true"
             android:fontFamily="@font/exo_regular"
             android:text="Отменить"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorPrimary"
             android:textSize="@dimen/top_strings_size_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/saveNewProfileData"

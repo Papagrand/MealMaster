@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/rounded_shape_for_bottom_sheets"
+    android:background="@drawable/rounded_shape_for_bottom_sheets_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -153,7 +153,7 @@
             android:text="Отменить"
             android:fontFamily="@font/exo_regular"
             android:textSize="@dimen/top_strings_size_16"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorPrimary"
             app:layout_constraintTop_toBottomOf="@+id/radioGroupGoal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/saveNewDietDataButton"

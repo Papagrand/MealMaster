@@ -8,6 +8,7 @@ import ru.point.core_data.dao.ScenarioDao
 import ru.point.core_data.dao.UserTimerDao
 import ru.point.fasting.ui.FastingFragment
 import ru.point.fasting.ui.PhaseChangeReceiver
+import ru.point.fasting.ui.ScenarioBottomSheetFragment
 import kotlin.properties.Delegates.notNull
 
 @Component(
@@ -17,6 +18,7 @@ import kotlin.properties.Delegates.notNull
 interface TimerComponent {
     fun inject(fragment: FastingFragment)
     fun inject(receiver: PhaseChangeReceiver)
+    fun inject(bottomSheetFragment: ScenarioBottomSheetFragment)
 
     @Component.Builder
     interface Builder {

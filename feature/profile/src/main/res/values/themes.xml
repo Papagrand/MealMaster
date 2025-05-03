@@ -8,6 +8,7 @@
         <item name="colorPrimaryVariant">@color/light_water_and_products_buttons</item>
         <item name="colorSecondaryVariant">@color/not_full_circle_diagram_and_center_circle_color</item>
         <item name="colorTertiaryFixed">@color/full_status_bar_purple_blue</item>
+        <item name="colorAccent">@color/light_full_status_bar_purple</item>
         <item name="colorError">@color/stop_tracker_starving_color</item>
     </style>
 
@@ -19,7 +20,7 @@
     </style>
 
     <style name="LightPurpleMaterialButton" parent="@style/Widget.Material3.Button.IconButton.Outlined">
-        <item name="strokeColor">?attr/colorTertiary</item>
+        <item name="strokeColor">?attr/android:textColor</item>
         <item name="backgroundTint">?attr/colorSecondary</item>
         <item name="strokeWidth">2dp</item>
 
@@ -27,7 +28,7 @@
 
     <style name="DarkPurpleMaterialButton" parent="@style/Widget.Material3.Button.IconButton.Outlined">
         <item name="strokeColor">?attr/colorSecondary</item>
-        <item name="backgroundTint">?attr/colorTertiary</item>
+        <item name="backgroundTint">?attr/android:textColor</item>
         <item name="strokeWidth">2dp</item>
 
     </style>

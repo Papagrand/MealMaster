@@ -14,7 +14,6 @@ class StartTimerUseCase @Inject constructor(
         val fastMs = ut.scenario.fastingHours * 3600_000L
         val eatMs = ut.scenario.eatingHours * 3600_000L
 
-        // Сохраняем фазу FASTING
         repo.updateTimer(
             userId = userId,
             status = TimerStatus.FASTING,

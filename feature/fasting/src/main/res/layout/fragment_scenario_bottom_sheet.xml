@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rounded_shape_for_bottom_sheets_fasting_scenario"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Заголовок сценария -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/scenario_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:fontFamily="@font/exo_bold"
+            android:textColor="?attr/android:textColor"
+            android:text="@string/scenario_name_string"
+            android:gravity="center"
+            android:textSize="@dimen/huge_text_size_32"/>
+
+        <!-- Небольшое картинко-сценарий -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/scenario_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/icon1_1" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginVertical="10dp"
+            app:dividerColor="?attr/colorSecondary" />
+        <!-- Описание сценария -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/scenario_description_text"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:fontFamily="@font/exo_regular"
+            android:textColor="?attr/android:textColor"
+            android:text="@string/scenario_description_placeholder"
+            android:textSize="@dimen/size_20" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/scenario_description_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_regular"
+            android:textColor="?attr/android:textColor"
+            android:text="@string/lorem_ipsum"
+            android:textSize="@dimen/top_strings_size_16" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/notice_divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:visibility="gone"
+            android:layout_marginVertical="10dp"
+            app:dividerColor="?attr/colorSecondary" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/scenario_notice_text"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:visibility="gone"
+            android:fontFamily="@font/exo_regular"
+            android:textColor="?attr/android:textColor"
+            android:text="@string/scenario_notice_placeholder"
+            android:textSize="@dimen/size_20" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/scenario_notice_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo_regular"
+            android:visibility="gone"
+            android:textColor="?attr/android:textColor"
+            android:text="@string/lorem_ipsum"
+            android:textSize="@dimen/top_strings_size_16" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginVertical="10dp"
+            app:dividerColor="?attr/colorSecondary" />
+
+        <!-- Кнопки отмены и сохранения -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/backFromInfoButton"
+                style="@style/DarkPurpleMaterialButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="@string/cancel"
+                android:fontFamily="@font/exo_regular"
+                android:textSize="@dimen/top_strings_size_16"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginEnd="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/saveNewScenarioButton"
+                style="@style/LightPurpleMaterialButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="@string/save"
+                android:fontFamily="@font/exo_regular"
+                android:textSize="@dimen/top_strings_size_16"
+                android:textColor="@color/white"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</ScrollView>

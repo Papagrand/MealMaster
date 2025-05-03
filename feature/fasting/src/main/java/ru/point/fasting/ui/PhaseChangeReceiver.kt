@@ -45,14 +45,6 @@ class PhaseChangeReceiver : BroadcastReceiver() {
         val phaseRaw = intent.getStringExtra(EXTRA_NEW_PHASE) ?: return
         val newPhase = TimerStatus.valueOf(phaseRaw)
 
-//        CoroutineScope(Dispatchers.IO).launch {
-//            when (newPhase) {
-//                TimerStatus.FASTING -> startTimerUseCase(userId)
-//                TimerStatus.EATING,
-//                TimerStatus.OFF -> stopTimerUseCase(userId)
-//            }
-//        }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val nm = ctx.getSystemService(NotificationManager::class.java)
             if (nm.getNotificationChannel(CHANNEL_ID) == null) {

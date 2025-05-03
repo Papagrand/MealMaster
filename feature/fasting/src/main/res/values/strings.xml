@@ -21,14 +21,12 @@
     <string name="setting_tracker_your_own">Настройте трекер под себя</string>
 
 
-
     <string name="tracker_name_16_8">16/8</string>
     <string name="tracker_name_14_10">14/10</string>
     <string name="tracker_name_18_6">18/6</string>
     <string name="tracker_name_20_4">20/4</string>
     <string name="tracker_name_3_1">3/1</string>
     <string name="tracker_name_1_1">1/1</string>
-
 
 
     <string name="tracker16_8_description">16 часов голодания, 8 часов еды. Одна из самых популярных программ по всему миру!</string>
@@ -39,6 +37,18 @@
     <string name="tracker3_1_description">Три дня обычного рациона и один день с сокращением калорий до 0 или 600 ккал.</string>
     <string name="countdown_timer_zero">00:00:00</string>
     <string name="check_or_switch_scenario">Изучите или выберите другие сценарии</string>
+    <string name="scenario_name_string">Сценарий</string>
+    <string name="cancel">Назад</string>
+    <string name="save">Сохранить</string>
+    <string name="scenario_description_placeholder">Описание:</string>
+
+    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer
+        took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+        but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
+        with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+        software like Aldus PageMaker including versions of Lorem Ipsum</string>
+    <string name="scenario_notice_placeholder">Примечание:</string>
 
 
 </resources>

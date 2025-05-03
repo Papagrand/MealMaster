@@ -4,10 +4,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onStart
 import ru.point.api.timer_fasting.data.TimerService
 import ru.point.api.timer_fasting.data.UserFastingInfoResponse
 import ru.point.api.timer_fasting.data.ScenarioResponse
+import ru.point.api.timer_fasting.data.UpdateUserFastingRequest
+import ru.point.api.timer_fasting.data.UpdateUserPickedScenarioRequest
+import ru.point.api.timer_fasting.data.UpdateUserPickedScenarioResponse
+import ru.point.api.timer_fasting.domain.UpdateFastingBackendInfoResult
+import ru.point.core.secure_prefs.SecurePrefs
 import ru.point.core_data.dao.ScenarioDao
 import ru.point.core_data.dao.UserTimerDao
 import ru.point.core_data.entity.UserTimerEntity
@@ -50,20 +54,39 @@ class TimerRepositoryImpl(
                 )
             }
 
-    override fun observeScenario(): Flow<Scenario?> =
-        scenarioDao
-            .getCurrentScenarioFlow()
-            .map { scenarioEntity ->
-                scenarioEntity?.let {
-                    Scenario(
-                        name = it.scenarioName,
-                        fastingHours = it.fastingHours,
-                        eatingHours = it.eatingHours,
-                        description = it.description,
-                        notice = it.notice
-                    )
-                }
+
+    override suspend fun updateFastingBackendInfo(
+        userFastingId: String,
+        userId: String,
+        status: String,
+        startTimeMillis: Long?,
+        endTimeMillis: Long?,
+        eatingWhileFast: Boolean,
+        isActive: Boolean,
+        lastUpdateMillis: Long
+    ): UpdateFastingBackendInfoResult {
+        return try {
+            val response = service.updateUserFastingInfo(
+                UpdateUserFastingRequest(
+                    userFastingId = userFastingId,
+                    userId = userId,
+                    status = status,
+                    startTimeMillis = startTimeMillis,
+                    endTimeMillis = endTimeMillis,
+                    eatingWhileFast = eatingWhileFast,
+                    isActive = isActive,
+                    lastUpdateMillis = lastUpdateMillis
+                )
+            )
+            if (response.success) {
+                UpdateFastingBackendInfoResult.Success
+            } else {
+                UpdateFastingBackendInfoResult.Error(response.message ?: "Неизвестная ошибка")
             }
+        } catch (e: Exception) {
+            UpdateFastingBackendInfoResult.Error(e.message ?: "Ошибка соединения")
+        }
+    }
 
 
     override suspend fun fetchAndCache(userId: String) {
@@ -75,7 +98,7 @@ class TimerRepositoryImpl(
             respTimer.body()?.data?.let { dto ->
                 timerDao.upsert(mapToUserTimerEntity(dto))
 
-                service.getCurrentFastingScenario(dto.pickedScenarioId)
+                service.getFastingScenarioById(dto.pickedScenarioId)
                     .takeIf { it.isSuccessful }
                     ?.body()?.data
                     ?.let { scDto ->
@@ -83,6 +106,55 @@ class TimerRepositoryImpl(
                     }
             }
         }
+    }
+
+    override suspend fun getScenarioById(scenarioId: String): Scenario? {
+        val response = service.getFastingScenarioById(fastingId = scenarioId)
+
+        if (!response.isSuccessful) {
+            throw Exception("Ошибка сети при получении сценария: ${response.code()} ${response.message()}")
+        }
+
+        val dto = response.body()?.data
+        return dto?.let {
+            Scenario(
+                name = it.scenarioName,
+                fastingHours = it.scenarioFasting,
+                eatingHours = it.scenarioEating,
+                description = it.scenarioDescription,
+                notice = it.scenarioNotice
+            )
+        }
+    }
+
+    override suspend fun updateUserScenario(
+        userId: String,
+        scenarioId: String
+    ): UpdateFastingBackendInfoResult {
+
+        return try {
+            val response = service.updateUserPickedScenario(
+                UpdateUserPickedScenarioRequest(
+                    userId = userId,
+                    pickedScenarioId = scenarioId
+                )
+            )
+            if (response.success) {
+                UpdateFastingBackendInfoResult.Success
+            } else {
+                UpdateFastingBackendInfoResult.Error(response.message ?: "Неизвестная ошибка")
+            }
+        } catch (e: Exception) {
+            UpdateFastingBackendInfoResult.Error(e.message ?: "Ошибка соединения")
+        }
+
+    }
+
+
+    override suspend fun clearLocalData() {
+        // Удаляем все записи из таблиц
+        timerDao.clearAllTimers()
+        scenarioDao.clearAllScenarios()
     }
 
 
@@ -163,6 +235,29 @@ class TimerRepositoryImpl(
         timerDao.upsert(
             timer.copy(
                 status = newStatus,
+                startTimeMillis = newStart,
+                endTimeMillis = newEnd,
+                lastUpdateMillis = now
+            )
+        )
+    }
+
+    override suspend fun updateStartTime(userId: String, newStartMillis: Long) {
+        val timer = timerDao.getTimerFlow(userId).firstOrNull() ?: return
+        val scenario = scenarioDao.getCurrentScenarioFlow().firstOrNull() ?: return
+
+        val durationHours = when (timer.status) {
+            TimerStatus.FASTING.name -> scenario.fastingHours
+            TimerStatus.EATING.name -> scenario.eatingHours
+            else -> null
+        }
+
+        val now = System.currentTimeMillis()
+        val newStart = newStartMillis
+        val newEnd = durationHours?.let { newStart + it * 60 * 60 * 1000 }
+
+        timerDao.upsert(
+            timer.copy(
                 startTimeMillis = newStart,
                 endTimeMillis = newEnd,
                 lastUpdateMillis = now

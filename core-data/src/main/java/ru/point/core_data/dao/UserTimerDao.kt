@@ -12,6 +12,9 @@ interface UserTimerDao {
     @Query("SELECT * FROM user_timer WHERE userId = :id")
     fun getTimerFlow(id: String): Flow<UserTimerEntity?>
 
+    @Query("DELETE FROM user_timer")
+    suspend fun clearAllTimers()
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(timer: UserTimerEntity)
 }

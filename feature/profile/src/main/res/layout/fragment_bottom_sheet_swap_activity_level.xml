@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/rounded_shape_for_bottom_sheets"
+    android:background="@drawable/rounded_shape_for_bottom_sheets_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -31,8 +31,6 @@
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"
             app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
         <worker8.com.github.radiogroupplus.RadioGroupPlus
@@ -214,7 +212,7 @@
             android:text="Отменить"
             android:fontFamily="@font/exo_regular"
             android:textSize="@dimen/top_strings_size_16"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorPrimary"
             app:layout_constraintTop_toBottomOf="@+id/radio_change_activity_group"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/saveNewActivityDataButton"

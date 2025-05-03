@@ -8,6 +8,7 @@
         <item name="android:textColor">@color/light_main_background_elements</item>
         <item name="colorPrimaryVariant">@color/dark_water_and_products_buttons</item>
         <item name="colorSecondaryVariant">@color/not_full_circle_diagram_and_center_circle_color</item>
+        <item name="colorAccent">@color/light_main_background_elements</item>
         <item name="colorTertiaryFixed">@color/dark_water_and_products_buttons</item>
     </style>
 </resources>

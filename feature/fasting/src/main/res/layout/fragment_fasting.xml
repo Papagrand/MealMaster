@@ -21,19 +21,6 @@
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/setting_fasting_timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/pen"
-        app:tint="?attr/android:textColor"
-        android:backgroundTint="@android:color/transparent"
-        app:layout_constraintEnd_toEndOf="@id/tracker_item"
-        app:layout_constraintTop_toTopOf="@id/guideline_under_page_text"
-        app:layout_constraintBottom_toTopOf="@id/tracker_item"
-        />
-
     <include
         android:id="@+id/tracker_item"
         layout="@layout/item_fasting_view"
@@ -41,7 +28,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@id/setting_fasting_timer" />
+        app:layout_constraintTop_toBottomOf="@id/fasting_text" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/otherOurTimers"

@@ -14,7 +14,6 @@ class AlarmScheduler @Inject constructor(
 ) {
     private val alarmManager = app.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
-
     fun schedulePhaseChange(userId: String, triggerAtMillis: Long, newPhase: TimerStatus) {
         val intent = Intent(app, PhaseChangeReceiver::class.java).apply {
             action = PhaseChangeReceiver.ACTION_PHASE_CHANGE
@@ -28,10 +27,6 @@ class AlarmScheduler @Inject constructor(
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
-
-        val testTime = System.currentTimeMillis()
-        Log.d("ExactAlarm", "canScheduleExactAlarms = ${alarmManager.canScheduleExactAlarms()}")
-
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
             triggerAtMillis,

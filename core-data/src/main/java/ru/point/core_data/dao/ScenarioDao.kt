@@ -12,6 +12,9 @@ interface ScenarioDao {
     @Query("SELECT * FROM scenario LIMIT 1")
     fun getCurrentScenarioFlow(): Flow<ScenarioEntity?>
 
+    @Query("DELETE FROM scenario")
+    suspend fun clearAllScenarios()
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(scenario: ScenarioEntity)
 }

@@ -12,9 +12,11 @@ import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -36,6 +38,12 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 import androidx.core.net.toUri
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_CLOCK
+import com.google.android.material.timepicker.TimeFormat
+import java.time.LocalDate
+import java.time.LocalTime
+import java.util.Calendar
 
 class FastingFragment : BaseFragment<FragmentFastingBinding>() {
 
@@ -79,6 +87,7 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
         ensureExactAlarmPermission()
 
         val userId = SecurePrefs.getUserId()!!
+
         viewModel.loadTimer(userId)
 
         collectUiState(userId)
@@ -91,6 +100,49 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                 progress = 0F
             }
         }
+
+        binding.trackerItem.changeStartTimeButton.setOnClickListener {
+            val now = Calendar.getInstance()
+            val currentHour = now.get(Calendar.HOUR_OF_DAY)
+            val currentMinute = now.get(Calendar.MINUTE)
+
+            val picker = MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+                .setInputMode(INPUT_MODE_CLOCK)
+                .setHour(currentHour)
+                .setMinute(currentMinute)
+                .setTitleText("Выберите время старта")
+                .build()
+
+            picker.show(parentFragmentManager, "TIME_PICKER_TAG")
+
+            picker.addOnPositiveButtonClickListener {
+                val pickedHour = picker.hour
+                val pickedMinute = picker.minute
+
+                val pickedTime = LocalTime.of(pickedHour, pickedMinute)
+                val nowTime = LocalTime.now()
+
+                if (pickedTime.isAfter(nowTime)) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Нельзя выбирать время позже текущего", Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    val today = LocalDate.now()
+                    val epochMillis = today
+                        .atTime(pickedTime)
+                        .atZone(ZoneId.systemDefault())
+                        .toInstant()
+                        .toEpochMilli()
+
+                    Log.d("FastingFragment", "Epoch millis = $epochMillis, calling ViewModel…")
+
+                    viewModel.changeStartInterval(epochMillis, userId)
+                }
+            }
+        }
+
 
         binding.trackerItem.stopTimerButton.setOnClickListener {
             val userId = SecurePrefs.getUserId() ?: return@setOnClickListener
@@ -136,7 +188,27 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
 
         )
 
-        val fastingModePagerAdapter = FastingModePagerAdapter(modItems)
+        parentFragmentManager.setFragmentResultListener(
+            "scenario_updated",
+            viewLifecycleOwner
+        ) { _, bundle ->
+            val updatedScenarioId = bundle.getString("updatedScenarioId")
+            updatedScenarioId?.let {
+                viewModel.loadTimer(userId)
+                binding.trackerItem.circularProgressBarTimer.apply {
+                    setProgressWithAnimation(0F, 500)
+                }
+            }
+        }
+
+        val fastingModePagerAdapter = FastingModePagerAdapter(modItems) { scenarioName ->
+            ScenarioBottomSheetFragment().apply {
+                arguments = Bundle().apply {
+                    putString("ARG_SCENARIO_NAME", scenarioName)
+                }
+            }.show(parentFragmentManager, "SCENARIO_SHEET")
+        }
+
         viewPager.adapter = fastingModePagerAdapter
         PagerSnapHelper().attachToRecyclerView(binding.fastingModesViewPager)
 
@@ -181,15 +253,24 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                 val endTimeView = binding.trackerItem.endDateFasting
 
                 if (off) {
+                    countDownTimer?.cancel()
+                    countDownTimer = null
                     binding.trackerItem.switchFastingModeButton.apply {
                         backgroundTintList =
-                            ContextCompat.getColorStateList(context, R.color.dark_water_and_products_buttons)
+                            ContextCompat.getColorStateList(
+                                context,
+                                R.color.dark_water_and_products_buttons
+                            )
                         strokeColor =
-                            ContextCompat.getColorStateList(context, R.color.dark_main_background_elements)
+                            ContextCompat.getColorStateList(
+                                context,
+                                R.color.dark_main_background_elements
+                            )
                         strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke)
                         text = getString(R.string.on_tracker)
                     }
-                    binding.trackerItem.statusTimer.text = getString(R.string.setting_tracker_your_own)
+                    binding.trackerItem.statusTimer.text =
+                        getString(R.string.setting_tracker_your_own)
                     binding.trackerItem.changeStartTimeButton.visibility = View.INVISIBLE
                     binding.trackerItem.yourTrackerText.text = getString(R.string.your_tracker)
                     pickedNameView.text = "${userTimer.scenario.name}"
@@ -221,9 +302,15 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                             getString(R.string.end_fasting_period)
                         binding.trackerItem.switchFastingModeButton.apply {
                             backgroundTintList =
-                                ContextCompat.getColorStateList(context, R.color.start_tracker_fasting_color)
+                                ContextCompat.getColorStateList(
+                                    context,
+                                    R.color.start_tracker_fasting_color
+                                )
                             strokeColor =
-                                ContextCompat.getColorStateList(context, R.color.dark_main_background_elements)
+                                ContextCompat.getColorStateList(
+                                    context,
+                                    R.color.dark_main_background_elements
+                                )
                             strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke)
                             text = getString(R.string.on_eating)
                         }
@@ -235,9 +322,15 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                             getString(R.string.end_eating_period)
                         binding.trackerItem.switchFastingModeButton.apply {
                             backgroundTintList =
-                                ContextCompat.getColorStateList(context, R.color.stop_tracker_fasting_color)
+                                ContextCompat.getColorStateList(
+                                    context,
+                                    R.color.stop_tracker_fasting_color
+                                )
                             strokeColor =
-                                ContextCompat.getColorStateList(context, R.color.dark_main_background_elements)
+                                ContextCompat.getColorStateList(
+                                    context,
+                                    R.color.dark_main_background_elements
+                                )
                             strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke)
                             text = getString(R.string.on_fasting)
                         }
@@ -264,7 +357,7 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                     val totalHours = when (userTimer.status) {
                         TimerStatus.FASTING -> userTimer.scenario.fastingHours
                         TimerStatus.EATING -> userTimer.scenario.eatingHours
-                        else -> 24
+                        else -> 0
                     }
 
                     val initialRemainingHours = (ms / 3_600_000f).coerceAtLeast(0f)

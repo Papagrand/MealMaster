@@ -7,9 +7,10 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.Query
-import ru.point.api.meal.data.MealService
 
 interface TimerService {
     @GET("/fasting")
@@ -17,10 +18,17 @@ interface TimerService {
         @Query("userId") userId: String
     ): Response<UserFastingResponse<UserFastingInfoResponse>>
 
-    @GET("/fasting/currentFastingScenario")
-    suspend fun getCurrentFastingScenario(
+    @GET("/fasting/getFastingScenarioInfo")
+    suspend fun getFastingScenarioById(
         @Query("fastingId") fastingId: String
     ): Response<UserFastingResponse<ScenarioResponse>>
+
+
+    @PATCH("/fasting/updateUserFastingInformation")
+    suspend fun updateUserFastingInfo(@Body request: UpdateUserFastingRequest): UpdateUserFastingResponse
+
+    @PATCH("/fasting/updateUserPickedScenario")
+    suspend fun updateUserPickedScenario(@Body request: UpdateUserPickedScenarioRequest): UpdateUserPickedScenarioResponse
 }
 
 @Serializable
@@ -45,7 +53,7 @@ data class UserFastingInfoResponse(
 
 
 @Serializable
-data class ScenarioResponse (
+data class ScenarioResponse(
     val scenarioFasting: Int,
     val scenarioEating: Int,
     val scenarioDescription: String,
@@ -53,7 +61,35 @@ data class ScenarioResponse (
     val scenarioNotice: String?
 )
 
+@Serializable
+data class UpdateUserPickedScenarioRequest(
+    val userId: String,
+    val pickedScenarioId: String
+)
 
+@Serializable
+data class UpdateUserPickedScenarioResponse(
+    val success: Boolean,
+    val message: String
+)
+
+@Serializable
+data class UpdateUserFastingRequest(
+    val userFastingId: String,
+    val userId: String,
+    val status: String,
+    val startTimeMillis: Long?,
+    val endTimeMillis: Long?,
+    val eatingWhileFast: Boolean,
+    val isActive: Boolean,
+    val lastUpdateMillis: Long
+)
+
+@Serializable
+data class UpdateUserFastingResponse(
+    val success: Boolean,
+    val message: String
+)
 
 fun createTimerService(apiBaseUrl: String = "http://192.168.1.101:8080"): TimerService {
     val okHttpClient = OkHttpClient.Builder()
