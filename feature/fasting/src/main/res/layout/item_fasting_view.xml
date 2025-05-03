@@ -215,6 +215,7 @@
             style="@style/TransparentButton"
             android:visibility="invisible"
             android:text="@string/edit"
+            android:clickable="true"
             android:textColor="@color/dark_main_background_elements"
             android:fontFamily="@font/exo_regular"
             app:autoSizePresetSizes="@array/autosize_text_sizes_14"

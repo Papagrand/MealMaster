@@ -3,7 +3,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="interval_fasting">Интервальное голодание</string>
     <string name="customize_yourself">Настройте трекер под себя</string>
+    <string name="you_on_fasting">Этап голодания</string>
+    <string name="you_on_eating">Этап приема пищи</string>
+
     <string name="your_tracker">Ваш трекер</string>
+    <string name="last_time">Оставшееся время этапа</string>
     <string name="temp_picked_tracker">16/8</string>
     <string name="on_tracker">Включить трекер</string>
     <string name="on_fasting">Голодание</string>
@@ -34,6 +38,7 @@
     <string name="tracker1_1_description">Один день обычного питания, один день с резким сокращением калорий до 0 или 600 ккал.</string>
     <string name="tracker3_1_description">Три дня обычного рациона и один день с сокращением калорий до 0 или 600 ккал.</string>
     <string name="countdown_timer_zero">00:00:00</string>
+    <string name="check_or_switch_scenario">Изучите или выберите другие сценарии</string>
 
 
 </resources>

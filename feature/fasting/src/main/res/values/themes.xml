@@ -12,6 +12,21 @@
         <item name="colorError">@color/stop_tracker_fasting_color</item>
     </style>
 
+
+    <style name="LightPurpleMaterialButton" parent="@style/Widget.Material3.Button.IconButton.Outlined">
+        <item name="strokeColor">?attr/colorTertiary</item>
+        <item name="backgroundTint">?attr/colorSecondary</item>
+        <item name="strokeWidth">2dp</item>
+
+    </style>
+
+    <style name="DarkPurpleMaterialButton" parent="@style/Widget.Material3.Button.IconButton.Outlined">
+        <item name="strokeColor">?attr/colorSecondary</item>
+        <item name="backgroundTint">?attr/colorTertiary</item>
+        <item name="strokeWidth">2dp</item>
+
+    </style>
+
     <style name="DarkBlueButton" parent="@style/Widget.Material3.Button.IconButton.Outlined">
         <item name="backgroundTint">@color/dark_water_and_products_buttons</item>
         <item name="strokeColor">@color/dark_main_background_elements</item>
@@ -34,6 +49,7 @@
         <item name="backgroundTint">@android:color/transparent</item>
         <item name="strokeColor">@color/dark_main_background_elements</item>
         <item name="strokeWidth">2dp</item>
+        <item name="rippleColor">@color/light_main_background_elements</item>
     </style>
 
 </resources>

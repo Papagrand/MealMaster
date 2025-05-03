@@ -84,6 +84,7 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
         collectUiState(userId)
 
 
+
         binding.trackerItem.switchFastingModeButton.setOnClickListener {
             viewModel.onToggleStartSwitch(System.currentTimeMillis(), userId)
             binding.trackerItem.circularProgressBarTimer.apply {
@@ -188,6 +189,9 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                         strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke)
                         text = getString(R.string.on_tracker)
                     }
+                    binding.trackerItem.statusTimer.text = getString(R.string.setting_tracker_your_own)
+                    binding.trackerItem.changeStartTimeButton.visibility = View.INVISIBLE
+                    binding.trackerItem.yourTrackerText.text = getString(R.string.your_tracker)
                     pickedNameView.text = "${userTimer.scenario.name}"
                     binding.trackerItem.stopTimerButton.isVisible = false
                     pickedNameView.visibility = View.VISIBLE
@@ -201,12 +205,16 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                     val end = now.plusHours(userTimer.scenario.fastingHours.toLong())
                     endTimeView.text = end.format(fmt)
                 } else {
+                    binding.trackerItem.yourTrackerText.text = getString(R.string.last_time)
+                    binding.trackerItem.changeStartTimeButton.visibility = View.VISIBLE
+
                     val fmt = DateTimeFormatter.ofPattern("dd.MM HH:mm")
                     binding.trackerItem.stopTimerButton.isVisible = true
                     pickedNameView.visibility = View.INVISIBLE
                     countdownView.visibility = View.VISIBLE
 
                     if (userTimer.status == TimerStatus.FASTING) {
+                        binding.trackerItem.statusTimer.text = getString(R.string.you_on_fasting)
                         binding.trackerItem.startDateFastingEatingText.text =
                             getString(R.string.start_fasting_period)
                         binding.trackerItem.endDateFastingEatingText.text =
@@ -220,6 +228,7 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                             text = getString(R.string.on_eating)
                         }
                     } else {
+                        binding.trackerItem.statusTimer.text = getString(R.string.you_on_eating)
                         binding.trackerItem.startDateFastingEatingText.text =
                             getString(R.string.start_eating_period)
                         binding.trackerItem.endDateFastingEatingText.text =

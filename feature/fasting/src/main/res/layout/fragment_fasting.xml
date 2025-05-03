@@ -43,15 +43,33 @@
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@id/setting_fasting_timer" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/otherOurTimers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/exo_regular"
+        app:autoSizePresetSizes="@array/autosize_text_sizes_24"
+        app:autoSizeTextType="uniform"
+        android:text="@string/check_or_switch_scenario"
+        android:gravity="start"
+        android:textColor="?attr/android:textColor"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+        app:layout_constraintTop_toBottomOf="@id/tracker_item"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintBottom_toTopOf="@id/fasting_modes_view_pager"
+        />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fasting_modes_view_pager"
         android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
         android:clipToPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/tracker_item"
+        app:layout_constraintTop_toBottomOf="@id/otherOurTimers"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintEnd_toEndOf="parent"
         />

@@ -39,6 +39,12 @@ class FastingViewModel(
         }
     }
 
+    fun updateBackendFastingInfo(){
+        viewModelScope.launch {
+
+        }
+    }
+
     fun onToggleStartSwitch(newStart: Long, userId: String) = viewModelScope.launch {
         _uiState.value?.let { timer ->
             if (!timer.isActive) {
