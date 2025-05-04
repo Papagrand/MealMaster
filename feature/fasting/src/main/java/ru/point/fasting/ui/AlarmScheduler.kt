@@ -47,4 +47,10 @@ class AlarmScheduler @Inject constructor(
         )
         alarmManager.cancel(pi)
     }
+
+    fun cancelAll(userId: String) {
+        TimerStatus.values().forEach { phase ->
+            cancelPhaseChange(userId, phase)
+        }
+    }
 }

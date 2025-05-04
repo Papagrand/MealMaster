@@ -435,4 +435,6 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
     }
 
 
+
+
 }

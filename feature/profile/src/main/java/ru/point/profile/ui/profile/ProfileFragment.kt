@@ -2,6 +2,7 @@ package ru.point.profile.ui.profile
 
 import android.content.Context
 import android.os.Bundle
+import android.provider.Settings
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.decodeFromString
@@ -64,6 +66,24 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
         binding.editDataItem.setOnClickListener{
             viewModel.goToUpdateProfileInformation()
+        }
+        val deviceId = Settings.Secure.getString(requireActivity().contentResolver, Settings.Secure.ANDROID_ID)
+        val userId = SecurePrefs.getUserId()!!
+        binding.buttonExit.setOnClickListener {
+            MaterialAlertDialogBuilder(
+                requireContext(),
+                R.style.MyAlertDialogStyle
+            )
+                .setMessage("Вы уверены, что хотите выйти?")
+                .setNegativeButton("Отмена") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .setPositiveButton("Выйти") { dialog, _ ->
+                    viewModel.logoutUser(userId, deviceId)
+                    SecurePrefs.removeUserId()
+                    dialog.dismiss()
+                }
+                .show()
         }
     }
 
@@ -146,20 +166,20 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                     }
 
                     ProfileUiEvent.NavigateToUpdateProfileInformationFragment -> {
-                        // Получаем данные профиля из uiState ViewModel
                         val profileData = viewModel.uiState.value.profileData
                         if (profileData != null) {
-                            // Сериализуем профиль в JSON
                             val profileJson = Json.encodeToString(ProfileMainDataModel.serializer(), profileData)
-                            // Создаём Bundle и кладём JSON-строку
                             val bundle = Bundle().apply {
                                 putString("profileData", profileJson)
                             }
-                            // Переход с передачей аргументов
                             navigator.fromProfileFragmentToUpdateProfileInformationFragment(bundle)
                         } else {
                             Toast.makeText(requireContext(), "Профиль не найден", Toast.LENGTH_SHORT).show()
                         }
+                    }
+
+                    ProfileUiEvent.NavigateToLoginFragment -> {
+                        navigator.fromProfileFragmentToLoginFragment()
                     }
                 }
             }

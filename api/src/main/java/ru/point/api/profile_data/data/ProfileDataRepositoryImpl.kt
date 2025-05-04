@@ -1,5 +1,8 @@
 package ru.point.api.profile_data.data
 
+import ru.point.api.meal.data.UpdateDeleteMealItemResponse
+import ru.point.api.meal.domain.UpdateMealItemResult
+import ru.point.api.profile_data.domain.LogoutUserResult
 import ru.point.api.profile_data.domain.ProfileDataRepository
 import ru.point.api.profile_data.domain.UpdateProfileResult
 import ru.point.api.profile_data.domain.models.MainMaxNutrientsDataModel
@@ -136,6 +139,19 @@ class ProfileDataRepositoryImpl(
             }
         } catch (e: Exception) {
             UpdateProfileResult.Error(e.message ?: "Ошибка соединения")
+        }
+    }
+
+    override suspend fun logoutUser(userId: String, deviceId: String): LogoutUserResult {
+        return try {
+            val response: LogoutUserResponse = profileDataService.logoutFromProfile(userId, deviceId)
+            if (response.success){
+                LogoutUserResult.Success
+            }else{
+                LogoutUserResult.Failure(response.message ?: "Непредвиденная ошибка удаления")
+            }
+        }catch (e: Exception){
+            LogoutUserResult.Failure("Неизвестная ошибка: ${e.localizedMessage}")
         }
     }
 }

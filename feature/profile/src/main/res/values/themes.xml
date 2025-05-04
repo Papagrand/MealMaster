@@ -12,6 +12,35 @@
         <item name="colorError">@color/stop_tracker_starving_color</item>
     </style>
 
+    <style name="AlertDialogTitleText"
+        parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">?attr/android:textColor</item>
+        <item name="fontFamily">@font/exo_bold</item>
+    </style>
+
+    <style name="AlertDialogBodyText"
+        parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textColor">?attr/android:textColor</item>
+        <item name="fontFamily">@font/exo_regular</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- 2. Кнопки -->
+    <style name="AlertDialogButtonStyle"
+        parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <!-- оставить match_parent/wrap_content, как в родителе -->
+        <item name="android:textColor">?attr/android:textColor</item>
+    </style>
+
+    <!-- 3. Overlay-тема для MaterialAlertDialog -->
+    <style name="MyAlertDialogStyle"
+        parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="materialAlertDialogTitleTextStyle">@style/AlertDialogTitleText</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/AlertDialogBodyText</item>
+        <item name="buttonBarPositiveButtonStyle">@style/AlertDialogButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/AlertDialogButtonStyle</item>
+    </style>
+
     <style name="MyExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="boxBackgroundColor">@android:color/transparent</item>
         <item name="boxStrokeColor">?attr/android:textColor</item>

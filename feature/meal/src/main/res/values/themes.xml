@@ -36,8 +36,6 @@
     <!-- 3. Overlay-тема для MaterialAlertDialog -->
     <style name="MyAlertDialogStyle"
         parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-
-
         <item name="materialAlertDialogTitleTextStyle">@style/AlertDialogTitleText</item>
         <item name="materialAlertDialogBodyTextStyle">@style/AlertDialogBodyText</item>
         <item name="buttonBarPositiveButtonStyle">@style/AlertDialogButtonStyle</item>

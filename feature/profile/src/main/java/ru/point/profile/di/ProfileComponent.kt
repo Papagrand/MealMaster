@@ -2,6 +2,8 @@ package ru.point.profile.di
 
 import dagger.Component
 import ru.point.api.profile_data.data.ProfileDataService
+import ru.point.core.LogoutHandler
+import ru.point.core_data.RoomLogoutModule
 import ru.point.profile.ui.profile.ProfileFragment
 import kotlin.properties.Delegates.notNull
 
@@ -22,6 +24,8 @@ internal interface ProfileComponent {
 
 interface ProfileDeps {
     val profileDataService: ProfileDataService
+    val logoutHandlers: Set<LogoutHandler>
+
 }
 
 interface ProfileDepsProvider {

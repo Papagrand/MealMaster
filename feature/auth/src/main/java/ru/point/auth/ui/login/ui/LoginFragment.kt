@@ -58,7 +58,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         binding.loginEdittext.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // При каждом изменении очищаем возможное сообщение об ошибке
                 binding.loginNotFoundTextView.visibility = View.INVISIBLE
             }
             override fun afterTextChanged(s: Editable?) {
@@ -76,7 +75,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         })
 
 
-// Обработка нажатия на кнопку авторизации
         binding.buttonAuth.setOnClickListener {
             val deviceId = Settings.Secure.getString(requireActivity().contentResolver, Settings.Secure.ANDROID_ID)
             loginViewModel.login(deviceId)

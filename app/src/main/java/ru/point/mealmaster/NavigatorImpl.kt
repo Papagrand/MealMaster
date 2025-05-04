@@ -108,6 +108,19 @@ class NavigatorImpl(private val navController: NavController): Navigator {
         navController.navigateSafe(R.id.action_profileFragment_to_updateProfileInformationFragment, bundle)
     }
 
+    override fun fromProfileFragmentToLoginFragment() {
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.profileFragment, inclusive = true)
+            .build()
+
+        navController.navigate(
+            R.id.action_profileFragment_to_loginFragment,
+            null,
+            navOptions
+        )
+    }
+
+
     override fun fromUpdateProfileInformationFragmentToProfileFragment() {
         val navOptions = NavOptions.Builder()
             .setPopUpTo(R.id.onboardingFragment, inclusive = true)

@@ -28,6 +28,7 @@ interface Navigator {
     fun fromProfileFragmentToRecipesFragment()
     fun fromProfileFragmentToFastingFragment()
     fun fromProfileFragmentToUpdateProfileInformationFragment(bundle: Bundle)
+    fun fromProfileFragmentToLoginFragment()
     fun fromUpdateProfileInformationFragmentToProfileFragment()
     fun fromMealFragmentToHomeProgressFragment()
     fun fromHomeProgressFragmentToMealProductSearchFragment(bundle: Bundle)

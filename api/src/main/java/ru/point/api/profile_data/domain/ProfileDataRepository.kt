@@ -13,4 +13,6 @@ interface ProfileDataRepository {
         userProfileId: String,
         newProfileData: UpdatedProfileData
     ): UpdateProfileResult
+
+    suspend fun logoutUser(userId: String, deviceId: String): LogoutUserResult
 }

@@ -39,6 +39,7 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":api"))
+    implementation(project(":core-data"))
 
     kapt(libs.kapt)
     implementation(libs.kotlinx.serialization.json)

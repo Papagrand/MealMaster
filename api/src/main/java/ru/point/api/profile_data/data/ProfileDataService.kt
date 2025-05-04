@@ -8,11 +8,19 @@ import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.Query
 
 interface ProfileDataService {
+
+    @DELETE("/logout")
+    suspend fun logoutFromProfile(
+        @Query("userId") userId: String,
+        @Query("deviceId") deviceId: String
+    ): LogoutUserResponse
+
     @GET("/user/profileData")
     suspend fun getMainProfileData(
         @Query("userProfileId") userProfileId: String
@@ -26,6 +34,12 @@ interface ProfileDataService {
     @PATCH("/user/update_profile_data")
     suspend fun updateProfileInformation( @Body request: UpdateProfileRequest ) : UpdateProfileResponse
 }
+
+@Serializable
+data class LogoutUserResponse(
+    val success: Boolean,
+    val message: String? = null
+)
 
 @Serializable
 data class ProfileDataResponse<T>(
