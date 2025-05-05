@@ -25,6 +25,7 @@ import ru.point.auth.ui.profile_create.first_step.CreateProfileFirstStepFragment
 import ru.point.auth.ui.profile_create.fourth_step.CreateProfileFourthStepFragment
 import ru.point.auth.ui.profile_create.second_step.CreateProfileSecondStepFragment
 import ru.point.auth.ui.profile_create.third_step.CreateProfileThirdStepFragment
+import ru.point.core.ContentLoadListener
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.secure_prefs.SecurePrefs
 import ru.point.core.ui.BaseFragment
@@ -39,6 +40,7 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
         onboardindViewModelFactory
     }
 
+    private var listener: ContentLoadListener? = null
 
     override fun onAttach(context: Context) {
         DaggerOnboardingComponent.builder()
@@ -46,6 +48,11 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
             .build()
             .inject(this)
         super.onAttach(context)
+
+        listener = context as? ContentLoadListener
+            ?: throw IllegalStateException(
+                "Host must implement ContentLoadListener"
+            )
     }
 
 
@@ -65,6 +72,10 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as BottomBarManager).hide()
+
+        lifecycleScope.launch {
+            listener?.onContentLoaded()
+        }
 
         val viewPagerAdapter = ViewPagerAdapter(requireActivity(), list)
         binding.viewPagerCreateProfile.isUserInputEnabled = false
@@ -176,6 +187,11 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
             else -> "Проверьте введённые данные."
         }
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
     }
 
 }

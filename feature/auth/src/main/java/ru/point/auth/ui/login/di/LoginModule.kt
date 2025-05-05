@@ -5,6 +5,7 @@ import dagger.Provides
 import ru.point.api.login.data.LoginRepositoryImpl
 import ru.point.api.login.data.LoginService
 import ru.point.api.login.domain.LoginRepository
+import ru.point.auth.ui.login.domain.CheckConnectionUseCase
 import ru.point.auth.ui.login.domain.CheckLoginAuthUseCase
 import ru.point.auth.ui.login.domain.CheckProfileExistUseCase
 import ru.point.auth.ui.login.domain.LoginUserUseCase
@@ -26,13 +27,18 @@ object LoginModule {
     fun provideLoginUserUseCase(repo: LoginRepository) = LoginUserUseCase(repo)
 
     @Provides
+    fun provideCheckConnectionUseCase(repo: LoginRepository) = CheckConnectionUseCase(repo)
+
+    @Provides
     fun provideLoginViewModelFactory(
         checkLoginAuthUseCase: CheckLoginAuthUseCase,
         loginUserUseCase: LoginUserUseCase,
-        checkProfileExistUseCase: CheckProfileExistUseCase
+        checkProfileExistUseCase: CheckProfileExistUseCase,
+        checkConnectionUseCase: CheckConnectionUseCase
     ) = LoginViewModelFactory(
             checkLoginAuthUseCaseProvider = { checkLoginAuthUseCase },
             loginUserUseCaseProvider = { loginUserUseCase },
-            checkProfileExistUseCaseProvider = { checkProfileExistUseCase }
+            checkProfileExistUseCaseProvider = { checkProfileExistUseCase },
+            checkConnectionUseCaseProvider = { checkConnectionUseCase }
         )
 }

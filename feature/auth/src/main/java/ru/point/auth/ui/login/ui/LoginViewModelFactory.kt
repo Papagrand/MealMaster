@@ -2,6 +2,7 @@ package ru.point.auth.ui.login.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import ru.point.auth.ui.login.domain.CheckConnectionUseCase
 import ru.point.auth.ui.login.domain.CheckLoginAuthUseCase
 import ru.point.auth.ui.login.domain.CheckProfileExistUseCase
 import ru.point.auth.ui.login.domain.LoginUserUseCase
@@ -11,7 +12,8 @@ import javax.inject.Provider
 class LoginViewModelFactory @Inject constructor(
     private val checkLoginAuthUseCaseProvider: Provider<CheckLoginAuthUseCase>,
     private val loginUserUseCaseProvider: Provider<LoginUserUseCase>,
-    private val checkProfileExistUseCaseProvider: Provider<CheckProfileExistUseCase>
+    private val checkProfileExistUseCaseProvider: Provider<CheckProfileExistUseCase>,
+    private val checkConnectionUseCaseProvider: Provider<CheckConnectionUseCase>
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
@@ -20,7 +22,8 @@ class LoginViewModelFactory @Inject constructor(
         return LoginViewModel(
             checkLoginAuthUseCase = checkLoginAuthUseCaseProvider.get(),
             loginUserUseCase = loginUserUseCaseProvider.get(),
-            checkProfileExistUseCase = checkProfileExistUseCaseProvider.get()
+            checkProfileExistUseCase = checkProfileExistUseCaseProvider.get(),
+            checkConnectionUseCase = checkConnectionUseCaseProvider.get()
         ) as T
     }
 }

@@ -1,6 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-
     <style name="Base.AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">@color/light_background_color</item>
         <item name="colorPrimary">@color/light_main_background_elements</item>
@@ -10,17 +8,9 @@
         <item name="colorPrimaryVariant">@color/light_water_and_products_buttons</item>
         <item name="colorSecondaryVariant">@color/not_full_circle_diagram_and_center_circle_color</item>
         <item name="colorTertiaryFixed">@color/full_status_bar_purple_blue</item>
-        <item name="colorError">@color/stop_tracker_fasting_color</item>
+        <item name="colorAccent">@color/light_full_status_bar_purple</item>
+        <item name="colorError">@color/stop_tracker_starving_color</item>
     </style>
 
-    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/light_main_background_elements</item>
-    </style>
-
-
-    <style name="Theme.MyApp.Splash" parent="Base.AppTheme">
-        <item name="windowSplashScreenAnimatedIcon">@drawable/icon3_1</item>
-        <item name="postSplashScreenTheme">@style/Base.AppTheme</item>
-    </style>
 
 </resources>

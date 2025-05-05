@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import jakarta.inject.Inject
 import kotlinx.coroutines.launch
+import ru.point.core.ContentLoadListener
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.secure_prefs.SecurePrefs
 import ru.point.core.ui.BaseFragment
@@ -31,13 +33,21 @@ class HomeProgressFragment : BaseFragment<FragmentHomeProgressBinding>() {
         homeProgressViewModelFactory
     }
 
+    private var listener: ContentLoadListener? = null
+
     override fun onAttach(context: Context) {
         DaggerHomeFragmentComponent.builder()
             .deps(HomeFragmentDepsProvider.deps)
             .build()
             .inject(this)
         super.onAttach(context)
+
+        listener = context as? ContentLoadListener
+            ?: throw IllegalStateException(
+                "Host must implement ContentLoadListener"
+            )
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +62,6 @@ class HomeProgressFragment : BaseFragment<FragmentHomeProgressBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as BottomBarManager).show()
-
-
 
         val userProfileId = SecurePrefs.getUserId().toString()
         collectUiState()
@@ -148,6 +156,10 @@ class HomeProgressFragment : BaseFragment<FragmentHomeProgressBinding>() {
 
                     binding.mealsItem.root.isVisible = true
                     binding.nutrientsItem.root.isVisible = true
+
+                    lifecycleScope.launch {
+                        listener?.onContentLoaded()
+                    }
                 }
             }
         }
@@ -264,5 +276,11 @@ class HomeProgressFragment : BaseFragment<FragmentHomeProgressBinding>() {
                 }
             }
         }
+    }
+
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
     }
 }

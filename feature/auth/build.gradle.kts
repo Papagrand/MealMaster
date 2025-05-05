@@ -44,6 +44,7 @@ kotlin {
 dependencies {
 
     implementation(project(":core"))
+    implementation(project(":core-data"))
     implementation(project(":api"))
 
     kapt(libs.kapt)

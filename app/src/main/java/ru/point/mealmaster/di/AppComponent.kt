@@ -1,5 +1,7 @@
 package ru.point.mealmaster.di
 
+import android.app.Application
+import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -39,12 +41,12 @@ import ru.point.setting_searched_product.di.SettingSearchedProductFragmentDeps
     AppModule::class, NetworkModule::class, DatabaseModule::class,
     FastingLogoutModule::class,
     RoomLogoutModule::class,
-    ProfileModule::class
+    ProfileModule::class,
+    SessionRepositoryModule::class
 ])
 interface AppComponent : RegistrationDeps, LoginDeps, OnboardingDeps, RecipeInformationDeps,
     ProfileDeps, UpdateProfileDeps, HomeFragmentDeps, MealProductSearchFragmentDeps,
-    SettingSearchedProductFragmentDeps, RecipesFragmentDeps, TimerFragmentDeps {
-    // Другие глобальные зависимости
+    SettingSearchedProductFragmentDeps, RecipesFragmentDeps, TimerFragmentDeps{
 }
 
 
@@ -54,7 +56,6 @@ class NetworkModule {
 
     @Provides
     fun provideRegistrationService(): RegistrationService {
-        // Используем наш метод создания сервиса с базовым URL
         return createRegistrationService(url)
     }
 

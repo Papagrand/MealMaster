@@ -1,10 +1,12 @@
 package ru.point.mealmaster
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatDelegate
 import ru.point.auth.ui.login.di.LoginDepsStore
 import ru.point.auth.ui.on_boarding.di.OnboardingDepsStore
 import ru.point.auth.ui.register.di.RegistrationDepsStore
 import ru.point.core.secure_prefs.SecurePrefs
+import ru.point.core.secure_prefs.ThemeMode
 import ru.point.fasting.di.TimerFragmentDepsStore
 import ru.point.home.di.HomeFragmentDepsStore
 import ru.point.meal.di.MealProductSearchFragmentDepsStore
@@ -38,5 +40,14 @@ class App : Application() {
         SettingSearchedProductFragmentDepsStore.deps = appComponent
         RecipesFragmentDepsStore.deps = appComponent
         TimerFragmentDepsStore.deps = appComponent
+
+        SecurePrefs.init(this)
+
+        val mode = when (SecurePrefs.getTheme()) {
+            ThemeMode.DARK -> AppCompatDelegate.MODE_NIGHT_YES
+            ThemeMode.LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
+            ThemeMode.SYSTEM -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+        }
+        AppCompatDelegate.setDefaultNightMode(mode)
     }
 }

@@ -19,6 +19,7 @@ import kotlinx.coroutines.launch
 import ru.point.auth.databinding.FragmentLoginBinding
 import ru.point.auth.ui.login.di.DaggerLoginComponent
 import ru.point.auth.ui.login.di.LoginDepsProvider
+import ru.point.core.ContentLoadListener
 import ru.point.core.navigation.BottomBarManager
 import ru.point.core.ui.BaseFragment
 import javax.inject.Inject
@@ -32,6 +33,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         loginViewModelFactory
     }
 
+    private var listener: ContentLoadListener? = null
+
 
     override fun onAttach(context: Context) {
         DaggerLoginComponent.builder()
@@ -39,6 +42,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             .build()
             .inject(this)
         super.onAttach(context)
+
+        listener = context as? ContentLoadListener
+            ?: throw IllegalStateException(
+                "Host must implement ContentLoadListener"
+            )
     }
 
     override fun createView(inflater: LayoutInflater, container: ViewGroup?) =
@@ -49,6 +57,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as BottomBarManager).hide()
+
+
+        loginViewModel.checkConnection()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            loginViewModel.connection.collect {
+                if (it){
+                    lifecycleScope.launch {
+                        listener?.onContentLoaded()
+                    }
+                }
+            }
+        }
 
         binding.buttonRegistrationInAuth.setOnClickListener {
             navigator.fromLoginFragmentToRegisterFragment()
@@ -129,5 +150,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
 
 }

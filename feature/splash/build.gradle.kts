@@ -39,12 +39,16 @@ android {
 dependencies {
 
     implementation(project(":core"))
+    implementation(project(":core-data"))
     implementation(project(":api"))
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
 
 
     kapt(libs.kapt)
     implementation(libs.retrofit)
     implementation(libs.dagger)
+    implementation ("androidx.core:core-splashscreen:1.0.1")
     implementation(libs.bundles.navigation)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

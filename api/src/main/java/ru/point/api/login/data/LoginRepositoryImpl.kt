@@ -33,6 +33,19 @@ class LoginRepositoryImpl (
         }
     }
 
+    override suspend fun checkConnection(): LoginResult {
+        return try {
+            val response = loginService.checkConnection()
+            if (response.isSuccessful && response.body()?.success == true) {
+                LoginResult.Success
+            } else {
+                LoginResult.Failure("Проверка соединения неуспешна")
+            }
+        } catch (e: Exception) {
+            LoginResult.Failure("Нет соединения: ${e.localizedMessage}")
+        }
+    }
+
     override suspend fun checkProfileExist(login: String): Boolean {
         return try {
             val response = loginService.checkProfileExist(login)

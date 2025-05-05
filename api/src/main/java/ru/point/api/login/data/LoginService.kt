@@ -28,6 +28,10 @@ interface LoginService {
         @Query("userId") userId: String,
         @Query("deviceId") deviceId: String
     ): Response<CheckAuthUserResponse>
+
+    @GET("/")
+    suspend fun checkConnection(
+    ): Response<CheckAuthUserResponse>
 }
 
 @Serializable

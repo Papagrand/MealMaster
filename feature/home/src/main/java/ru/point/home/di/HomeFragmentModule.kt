@@ -1,13 +1,16 @@
 package ru.point.home.di
 
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import ru.point.api.daily_consumption_and_product.data.DailyConsumptionRepositoryImpl
 import ru.point.api.daily_consumption_and_product.data.DailyConsumptionService
 import ru.point.api.daily_consumption_and_product.domain.DailyConsumptionRepository
+import ru.point.api.login.data.LoginService
 import ru.point.api.profile_data.data.ProfileDataRepositoryImpl
 import ru.point.api.profile_data.data.ProfileDataService
 import ru.point.api.profile_data.domain.ProfileDataRepository
+import ru.point.core_data.SessionRepository
 import ru.point.home.domain.GetDailyConsumptionUseCase
 import ru.point.home.domain.GetMainMaxNutrientsDataUseCase
 import ru.point.home.ui.HomeProgressViewModelFactory

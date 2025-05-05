@@ -28,27 +28,6 @@ class NavigatorImpl(private val navController: NavController): Navigator {
         navController.navigate(R.id.action_loginFragment_to_homeProgressFragment, null, navOptions)
     }
 
-    override fun fromSplashFragmentToLoginFragment() {
-        val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.splashFragment, inclusive = true)
-            .build()
-        navController.navigate(R.id.action_splashFragment_to_loginFragment, null, navOptions)
-    }
-
-    override fun fromSplashFragmentToOnboardingFragment() {
-        val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.splashFragment, inclusive = true)
-            .build()
-        navController.navigate(R.id.action_splashFragment_to_onboardingFragment, null, navOptions)
-    }
-
-    override fun fromSplashFragmentToHomeProgressFragment() {
-        val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.splashFragment, inclusive = true)
-            .build()
-        navController.navigate(R.id.action_splashFragment_to_homeProgressFragment, null, navOptions)
-    }
-
     override fun fromOnboardingFragmentToHomeProgressFragment() {
         val navOptions = NavOptions.Builder()
             .setPopUpTo(R.id.onboardingFragment, inclusive = true)

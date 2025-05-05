@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.point.api.login.domain.LoginCheckResult
 import ru.point.api.login.domain.LoginResult
+import ru.point.auth.ui.login.domain.CheckConnectionUseCase
 import ru.point.auth.ui.login.domain.CheckLoginAuthUseCase
 import ru.point.auth.ui.login.domain.CheckProfileExistUseCase
 import ru.point.auth.ui.login.domain.LoginUserUseCase
@@ -41,10 +43,10 @@ sealed class LoginUiEvent {
 class LoginViewModel(
     private val checkLoginAuthUseCase: CheckLoginAuthUseCase,
     private val loginUserUseCase: LoginUserUseCase,
-    private val checkProfileExistUseCase: CheckProfileExistUseCase
+    private val checkProfileExistUseCase: CheckProfileExistUseCase,
+    private val checkConnectionUseCase: CheckConnectionUseCase
 ) : ViewModel() {
 
-//    private val uiState = MutableStateFlow(LoginUiState())
 
     val uiState: StateFlow<LoginUiState>
         field = MutableStateFlow(LoginUiState())
@@ -54,6 +56,9 @@ class LoginViewModel(
 
     private val _loginInput = MutableStateFlow("")
     private val _passwordInput = MutableStateFlow("")
+
+    private var _connection = MutableStateFlow(false)
+    val connection: StateFlow<Boolean> = _connection.asStateFlow()
 
     init {
         observeLoginInput()
@@ -104,6 +109,22 @@ class LoginViewModel(
 
     fun onPasswordChanged(password: String) {
         _passwordInput.value = password
+    }
+
+    fun checkConnection() {
+        viewModelScope.launch {
+            val result = checkConnectionUseCase()
+            uiState.update { it.copy(isLoading = false) }
+
+            when (result) {
+                is LoginResult.Success -> {
+                    _connection.value = true
+                }
+                is LoginResult.Failure -> {
+                    _connection.value = false
+                }
+            }
+        }
     }
 
     fun login(deviceId: String) {
