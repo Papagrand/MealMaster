@@ -56,6 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/exo_regular"
+                android:inputType="text"
                 android:hint="Имя"
                 android:textColor="?attr/android:textColor" />
 
@@ -77,6 +78,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:fontFamily="@font/exo_regular"
                 android:hint="Фамилия" />
 
@@ -98,6 +100,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:fontFamily="@font/exo_regular"
                 android:hint="Возраст" />
 
@@ -187,6 +190,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/exo_regular"
+                android:inputType="numberDecimal"
                 android:hint="Цель веса" />
 
         </com.google.android.material.textfield.TextInputLayout>

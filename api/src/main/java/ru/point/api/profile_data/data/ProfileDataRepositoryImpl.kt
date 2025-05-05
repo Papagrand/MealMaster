@@ -125,7 +125,8 @@ class ProfileDataRepositoryImpl(
                     name = newProfileData.firstName,
                     secName = newProfileData.lastName,
                     age = newProfileData.age,
-                    activityLevel = ActivityLevel.fromString(newProfileData.activityLevel)?.level ?: 3,
+                    activityLevel = ActivityLevel.fromString(newProfileData.activityLevel)?.level
+                        ?: 3,
                     goal = UserGoal.fromString(newProfileData.goal)?.goalNumber ?: 1,
                     gender = newProfileData.gender,
                     goalWeight = newProfileData.targetWeight,
@@ -142,15 +143,37 @@ class ProfileDataRepositoryImpl(
         }
     }
 
+    override suspend fun updateWeight(
+        userProfileId: String,
+        weight: Double
+    ): UpdateProfileResult {
+        return try {
+            val response = profileDataService.updateWeight(
+                UpdateWeightRequest(
+                    userProfileId = userProfileId,
+                    weight = weight
+                )
+            )
+            if (response.success) {
+                UpdateProfileResult.Success
+            } else {
+                UpdateProfileResult.Error(response.message ?: "Неизвестная ошибка")
+            }
+        } catch (e: Exception) {
+            UpdateProfileResult.Error(e.message ?: "Ошибка соединения")
+        }
+    }
+
     override suspend fun logoutUser(userId: String, deviceId: String): LogoutUserResult {
         return try {
-            val response: LogoutUserResponse = profileDataService.logoutFromProfile(userId, deviceId)
-            if (response.success){
+            val response: LogoutUserResponse =
+                profileDataService.logoutFromProfile(userId, deviceId)
+            if (response.success) {
                 LogoutUserResult.Success
-            }else{
+            } else {
                 LogoutUserResult.Failure(response.message ?: "Непредвиденная ошибка удаления")
             }
-        }catch (e: Exception){
+        } catch (e: Exception) {
             LogoutUserResult.Failure("Неизвестная ошибка: ${e.localizedMessage}")
         }
     }

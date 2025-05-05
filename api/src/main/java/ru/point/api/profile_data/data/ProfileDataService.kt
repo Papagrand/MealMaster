@@ -33,6 +33,9 @@ interface ProfileDataService {
 
     @PATCH("/user/update_profile_data")
     suspend fun updateProfileInformation( @Body request: UpdateProfileRequest ) : UpdateProfileResponse
+
+    @PATCH("/user/update_weight")
+    suspend fun updateWeight( @Body request: UpdateWeightRequest ) : UpdateProfileResponse
 }
 
 @Serializable
@@ -109,6 +112,12 @@ data class UpdateProfileRequest(
     val goal: Int,
     val goalWeight: Double,
     val goalTimeEnd: String
+)
+
+@Serializable
+data class UpdateWeightRequest(
+    val userProfileId: String,
+    val weight: Double
 )
 
 @Serializable

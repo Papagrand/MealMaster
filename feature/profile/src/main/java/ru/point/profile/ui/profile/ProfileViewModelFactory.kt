@@ -5,22 +5,23 @@ import androidx.lifecycle.ViewModelProvider
 import ru.point.core.LogoutHandler
 import ru.point.profile.domain.GetProfileMainDataUseCase
 import ru.point.profile.domain.LogoutUserUseCase
+import ru.point.profile.domain.UpdateWeightUseCase
 import javax.inject.Inject
 import javax.inject.Provider
 
 class ProfileViewModelFactory @Inject constructor(
     private val getProfileMainDataUseCaseProvider: Provider<GetProfileMainDataUseCase>,
     private val logoutUserUseCaseProvider: Provider<LogoutUserUseCase>,
+    private val updateWeightUseCaseProvider: Provider<UpdateWeightUseCase>,
     private val logoutHandlersProvider: Provider<Set<@JvmSuppressWildcards LogoutHandler>>,
-
     ) : ViewModelProvider.Factory {
-
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         require(modelClass == ProfileViewModel::class.java)
         return ProfileViewModel(
             getProfileMainDataUseCaseProvider.get(),
             logoutUserUseCaseProvider.get(),
+            updateWeightUseCaseProvider.get(),
             logoutHandlersProvider.get()
             ) as T
     }

@@ -6,13 +6,18 @@ import android.provider.Settings
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import coil.load
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.decodeFromString
@@ -85,6 +90,41 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 }
                 .show()
         }
+
+        val edit = binding.profileWeightEditTextLayout.editText
+        edit?.doAfterTextChanged { text ->
+            if (edit.hasFocus()) {
+                viewModel.onWeightChanged(text.toString())
+                binding.cancelEditWeight.visibility = View.VISIBLE
+                binding.changeEditWeight.visibility = View.VISIBLE
+            }
+        }
+
+        binding.profileWeightEditTextLayout.editText?.onFocusChangeListener =
+            OnFocusChangeListener { _, hasFocus ->
+                if (!hasFocus){
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                            viewModel.processWeight()
+                        }
+                    }
+
+                }
+            }
+
+        binding.cancelEditWeight.setOnClickListener {
+            binding.root.clearFocus()
+            binding.cancelEditWeight.visibility = View.INVISIBLE
+            binding.changeEditWeight.visibility = View.INVISIBLE
+            viewModel.backToDefault()
+        }
+
+        binding.changeEditWeight.setOnClickListener {
+            binding.root.clearFocus()
+            binding.cancelEditWeight.visibility = View.INVISIBLE
+            binding.changeEditWeight.visibility = View.INVISIBLE
+            viewModel.updateWeight(userProfileId)
+        }
     }
 
     private fun collectUiState() {
@@ -144,10 +184,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                         profile.weight.toString()
                     )
 
-                    binding.profileHeightEditTextLayout.editText?.setText(
-                        profile.height.toString()
-                    )
-
                     binding.dateStartDietTextView.text = "${getString(R.string.diet_start_date)} ${profile.goalTimeStart.substringBefore("T")}"
                     binding.dateEndDietTextView.text = "${getString(R.string.diet_end_date)} ${profile.goalTimeEnd.substringBefore("T")}"
 
@@ -162,7 +198,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             viewModel.uiEvent.collect { event ->
                 when (event) {
                     is ProfileUiEvent.ShowToast -> {
-                        Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
+                        Snackbar.make(binding.root, event.message, Snackbar.LENGTH_LONG).show()
                     }
 
                     ProfileUiEvent.NavigateToUpdateProfileInformationFragment -> {
@@ -174,7 +210,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                             }
                             navigator.fromProfileFragmentToUpdateProfileInformationFragment(bundle)
                         } else {
-                            Toast.makeText(requireContext(), "Профиль не найден", Toast.LENGTH_SHORT).show()
+                            Snackbar.make(binding.root, "Профиль не найден", Snackbar.LENGTH_LONG).show()
                         }
                     }
 
