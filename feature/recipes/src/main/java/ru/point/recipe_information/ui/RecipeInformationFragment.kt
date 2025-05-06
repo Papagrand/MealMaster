@@ -81,6 +81,10 @@ class RecipeInformationFragment : BaseFragment<FragmentRecipeInformationBinding>
         collectUiState()
         collectUiEvent()
 
+        binding.toolbar.setNavigationOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
 
         binding.errorRetryButton.setOnClickListener {
             collectUiState()

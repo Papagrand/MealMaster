@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import jakarta.inject.Inject
+import ru.point.recipes.R
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -72,6 +74,12 @@ class RecipesFragment : BaseFragment<FragmentRecipesBinding>() {
             }
         }
 
+        if (viewModel.searchSettings.value.searchText != null) {
+            binding.motionLayout.setTransitionDuration(0)
+            binding.motionLayout.transitionToEnd()
+            binding.motionLayout.setTransitionDuration(200)
+        }
+
         binding.searchRecipesEditText.doOnTextChanged { text, _, _, _ ->
             searchJob?.cancel()
             searchJob = viewLifecycleOwner.lifecycleScope.launch {
@@ -109,6 +117,24 @@ class RecipesFragment : BaseFragment<FragmentRecipesBinding>() {
                 viewModel.getSearchedRecipes(recipeName = query)
             }
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (binding.motionLayout.currentState == R.id.start) {
+                        navigator.fromMealFragmentToHomeProgressFragment()
+                    }
+                    binding.searchRecipesEditText.text?.clear()
+                    searchedAdapter.submitList(emptyList())
+                    viewModel.updateSearchSettings(
+                        viewModel.searchSettings.value.copy(searchText = null)
+                    )
+                    binding.searchRecipesEditText.clearFocus()
+                    binding.motionLayout.transitionToStart()
+                }
+            }
+        )
 
         collectUiState()
         collectUiEvent()

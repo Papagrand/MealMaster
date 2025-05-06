@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintTop_toBottomOf="@id/recipesText"
-        app:layout_constraintBottom_toTopOf="@id/add_product_to_meal_button"
+        app:layout_constraintBottom_toTopOf="@id/recipesSelectionScrollView"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -59,23 +59,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/add_product_to_meal_button"
-        style="@style/LightPurpleButton"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:clickable="true"
-        android:layout_marginTop="10dp"
-        android:text="@string/add_own_recipe_text"
-        android:textSize="@dimen/top_strings_size_16"
-        android:textColor="@color/white"
-        android:fontFamily="@font/exo_regular"
-        app:layout_constraintTop_toBottomOf="@+id/searchTextInputLayout"
-        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-
-        />
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/recipesSelectionScrollView"
         android:layout_width="0dp"
@@ -83,7 +66,7 @@
         android:fillViewport="true"
         android:paddingVertical="20dp"
         android:clipToPadding="false"
-        app:layout_constraintTop_toBottomOf="@+id/add_product_to_meal_button"
+        app:layout_constraintTop_toBottomOf="@+id/searchTextInputLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight">

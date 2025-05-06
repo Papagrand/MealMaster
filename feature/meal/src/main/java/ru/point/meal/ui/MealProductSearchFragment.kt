@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
@@ -99,6 +100,14 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
             }
 
             binding.motionLayout.setProgress(0f)
+        }
+
+        binding.closeSearchLayout.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+            hideKeyboard()
+            viewModel.updateSearchSettings(
+                viewModel.searchSettings.value.copy(searchText = null)
+            )
         }
 
         if (viewModel.searchSettings.value.searchText != null) {
@@ -287,6 +296,11 @@ class MealProductSearchFragment : BaseFragment<FragmentMealProductSearchBinding>
 
             }
         }
+    }
+
+    private fun hideKeyboard() {
+        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 
 }

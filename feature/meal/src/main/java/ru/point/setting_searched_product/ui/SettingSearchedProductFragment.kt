@@ -69,6 +69,10 @@ class SettingSearchedProductFragment : BaseFragment<FragmentSettingSearchedProdu
         collectUiEvent()
         setupTextWatchers()
 
+        binding.toolbar.setNavigationOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
         binding.addProductToMealButton.setOnClickListener{
             viewModel.addProductToMeal(mealId, productId)
             viewModel.navigateToMealSearchFragment()
