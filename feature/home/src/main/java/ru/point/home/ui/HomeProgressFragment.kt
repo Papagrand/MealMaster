@@ -88,8 +88,9 @@ class HomeProgressFragment : BaseFragment<FragmentHomeProgressBinding>() {
     }
 
     fun getCurrentDateMidnightUTC(): String {
-        val localDate = LocalDate.now(ZoneOffset.UTC)
-        val midnight = localDate.atStartOfDay(ZoneOffset.UTC)
+        val zoneId = ZoneOffset.ofHours(3)
+        val localDate = LocalDate.now(zoneId)
+        val midnight = localDate.atStartOfDay(zoneId)
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
         return midnight.format(formatter)
     }
