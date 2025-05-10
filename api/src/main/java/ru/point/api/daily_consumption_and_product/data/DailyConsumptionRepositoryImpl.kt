@@ -53,7 +53,11 @@ class DailyConsumptionRepositoryImpl(
                                 totalVitaminB2 = body.data.totalVitaminB2,
                                 totalVitaminB4 = body.data.totalVitaminB4,
                                 totalVitaminC = body.data.totalVitaminC,
-                                totalVitaminD = body.data.totalVitaminD
+                                totalVitaminD = body.data.totalVitaminD,
+                                totalBreakfastItemText = body.data.totalBreakfastItemText,
+                                totalLunchItemText = body.data.totalLunchItemText,
+                                totalDinnerItemText = body.data.totalDinnerItemText,
+                                totalSnackItemText = body.data.totalSnackItemText
                             )
                         Result.success(
                             DailyConsumptionSuccessModel(

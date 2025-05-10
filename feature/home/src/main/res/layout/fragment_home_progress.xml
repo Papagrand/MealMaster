@@ -125,7 +125,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             >
 
-            <!-- Внутри shimmer-контейнера разместим шаблон для mealsItem -->
             <include
                 android:id="@+id/mealsItemPlaceHolder"
                 layout="@layout/item_meals_progress_placeholder"

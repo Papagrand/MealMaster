@@ -142,8 +142,13 @@ class HomeProgressFragment : BaseFragment<FragmentHomeProgressBinding>() {
 
                     binding.mealsItem.breakfastCaloriesText.text = "${consumption.totalBreakfastCalories.toInt()} из"
                     binding.mealsItem.lunchCaloriesText.text = "${consumption.totalLunchCalories.toInt()} из"
-                    binding.mealsItem.dinnerCaloriesText.text = "${consumption.totalDinnerCalories.toInt()} из"
+                    binding.mealsItem.dinnerCaloriesText.text = "${consumption.totalDinnerCalories.toInt()} из "
                     binding.mealsItem.snackCaloriesText.text = "${consumption.totalSnackCalories.toInt()} из"
+
+                    binding.mealsItem.breakfastDishesText.text = "${consumption.totalBreakfastItemText}"
+                    binding.mealsItem.lunchDishesText.text = "${consumption.totalLunchItemText}"
+                    binding.mealsItem.dinnerDishesText.text = "${consumption.totalDinnerItemText}"
+                    binding.mealsItem.snackDishesText.text = "${consumption.totalSnackItemText}"
 
 
 
