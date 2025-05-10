@@ -6,6 +6,8 @@
     <color name="light_background_color">#FFEDF5</color>
     <color name="dark_background_color">#191C1E</color>
 
+    <color name="light_grey_color">#6E7476</color>
+
     <color name="light_water_and_products_buttons">#B4D2E7</color>
     <color name="dark_water_and_products_buttons">#006688</color>
 

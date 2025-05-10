@@ -57,8 +57,7 @@
         android:fontFamily="@font/exo_bold"
         android:text="0"
         android:textColor="?attr/colorTertiary"
-        app:autoSizeTextType="uniform"
-        app:autoSizePresetSizes="@array/autosize_text_sizes_14"
+        android:textSize="@dimen/size_14"
         app:layout_constraintBottom_toTopOf="@id/center_circle_divider"
         app:layout_constraintStart_toStartOf="@id/center_circle_divider"
         />
@@ -71,8 +70,7 @@
         android:text="0"
         android:gravity="end"
         android:textColor="?attr/colorTertiary"
-        app:autoSizeTextType="uniform"
-        app:autoSizePresetSizes="@array/autosize_text_sizes_14"
+        android:textSize="@dimen/size_14"
         app:layout_constraintEnd_toEndOf="@id/center_circle_divider"
         app:layout_constraintTop_toBottomOf="@id/center_circle_divider"
         />
@@ -130,9 +128,8 @@
         app:layout_constraintBottom_toTopOf="@id/carbons_progress_bar"
         app:layout_constraintStart_toStartOf="@+id/carbons_group"
         app:layout_constraintEnd_toEndOf="@+id/carbons_group"
-        app:autoSizeTextType="uniform"
         android:gravity="center"
-        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:textSize="@dimen/size_12"
         android:text="@string/carbohydrates"
         android:textColor="@color/button_and_slider_color"
         android:fontFamily="@font/exo_regular"
@@ -161,8 +158,7 @@
         app:layout_constraintEnd_toStartOf="@+id/max_carbons_grams"
         android:text="0"
         android:gravity="center"
-        app:autoSizeTextType="uniform"
-        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:textSize="@dimen/size_12"
         android:textColor="@color/button_and_slider_color"
         android:fontFamily="@font/exo_regular"/>
 
@@ -175,8 +171,7 @@
         app:layout_constraintEnd_toEndOf="@+id/carbons_group"
         android:text="100г"
         android:gravity="center"
-        app:autoSizeTextType="uniform"
-        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:textSize="@dimen/size_12"
         android:textColor="@color/button_and_slider_color"
         android:fontFamily="@font/exo_regular"/>
     <TextView
@@ -187,9 +182,8 @@
         app:layout_constraintBottom_toTopOf="@id/proteins_progress_bar"
         app:layout_constraintStart_toStartOf="@+id/proteins_group"
         app:layout_constraintEnd_toEndOf="@+id/proteins_group"
-        app:autoSizeTextType="uniform"
         android:gravity="center"
-        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:textSize="@dimen/size_12"
         android:text="@string/proteins"
         android:textColor="@color/button_and_slider_color"
         android:fontFamily="@font/exo_regular"
@@ -215,9 +209,8 @@
         app:layout_constraintTop_toBottomOf="@id/proteins_progress_bar"
         app:layout_constraintStart_toStartOf="@+id/proteins_group"
         app:layout_constraintEnd_toStartOf="@+id/max_proteins_grams"
-        app:autoSizeTextType="uniform"
         android:gravity="center"
-        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:textSize="@dimen/size_12"
         android:textColor="@color/button_and_slider_color"
         android:text="0"
         android:fontFamily="@font/exo_regular"/>
@@ -231,8 +224,7 @@
         app:layout_constraintEnd_toEndOf="@+id/proteins_group"
         android:text="100г"
         android:gravity="center"
-        app:autoSizeTextType="uniform"
-        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:textSize="@dimen/size_12"
         android:textColor="@color/button_and_slider_color"
         android:fontFamily="@font/exo_regular"/>
 
@@ -244,9 +236,8 @@
         app:layout_constraintBottom_toTopOf="@id/fats_progress_bar"
         app:layout_constraintStart_toStartOf="@+id/fats_group"
         app:layout_constraintEnd_toEndOf="@+id/fats_group"
-        app:autoSizeTextType="uniform"
         android:gravity="center"
-        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:textSize="@dimen/size_12"
         android:text="@string/fats"
         android:textColor="@color/button_and_slider_color"
         android:fontFamily="@font/exo_regular"
@@ -273,9 +264,8 @@
         app:layout_constraintStart_toStartOf="@+id/fats_group"
         app:layout_constraintEnd_toStartOf="@+id/max_fats_grams"
         android:textColor="@color/button_and_slider_color"
-        app:autoSizeTextType="uniform"
         android:gravity="center"
-        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:textSize="@dimen/size_12"
         android:text="0"
         android:fontFamily="@font/exo_regular"/>
 
@@ -288,8 +278,7 @@
         app:layout_constraintEnd_toEndOf="@+id/fats_group"
         android:text="100г"
         android:gravity="center"
-        app:autoSizeTextType="uniform"
-        app:autoSizePresetSizes="@array/autosize_text_sizes_12"
+        android:textSize="@dimen/size_12"
         android:textColor="@color/button_and_slider_color"
         android:fontFamily="@font/exo_regular"/>
 

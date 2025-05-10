@@ -69,6 +69,10 @@ dependencies {
     implementation("com.github.worker8:RadioGroupPlus:1.0.1") {
         isTransitive = false
     }
+
+    implementation("com.facebook.shimmer:shimmer:0.5.0@aar"){
+        isTransitive = false
+    }
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

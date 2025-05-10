@@ -94,14 +94,14 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
 
 
 
-        binding.trackerItem.switchFastingModeButton.setOnClickListener {
+        binding.timerItem.switchFastingModeButton.setOnClickListener {
             viewModel.onToggleStartSwitch(System.currentTimeMillis(), userId)
-            binding.trackerItem.circularProgressBarTimer.apply {
+            binding.timerItem.circularProgressBarTimer.apply {
                 progress = 0F
             }
         }
 
-        binding.trackerItem.changeStartTimeButton.setOnClickListener {
+        binding.timerItem.changeStartTimeButton.setOnClickListener {
             val now = Calendar.getInstance()
             val currentHour = now.get(Calendar.HOUR_OF_DAY)
             val currentMinute = now.get(Calendar.MINUTE)
@@ -144,9 +144,9 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
         }
 
 
-        binding.trackerItem.stopTimerButton.setOnClickListener {
+        binding.timerItem.stopTimerButton.setOnClickListener {
             val userId = SecurePrefs.getUserId() ?: return@setOnClickListener
-            binding.trackerItem.circularProgressBarTimer.apply {
+            binding.timerItem.circularProgressBarTimer.apply {
                 setProgressWithAnimation(0F, 500)
             }
             viewModel.onStop(userId)
@@ -195,7 +195,7 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
             val updatedScenarioId = bundle.getString("updatedScenarioId")
             updatedScenarioId?.let {
                 viewModel.loadTimer(userId)
-                binding.trackerItem.circularProgressBarTimer.apply {
+                binding.timerItem.circularProgressBarTimer.apply {
                     setProgressWithAnimation(0F, 500)
                 }
             }
@@ -235,7 +235,7 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
 
                 val off = userTimer.status == TimerStatus.OFF && !userTimer.isActive
 
-                binding.trackerItem.centerProgressImage.setImageResource(
+                binding.timerItem.centerProgressImage.setImageResource(
                     when (userTimer.scenario.name) {
                         "16/8" -> R.drawable.icon16_8
                         "14/10" -> R.drawable.icon14_10
@@ -246,16 +246,16 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                         else -> R.drawable.icon16_8
                     }
                 )
-                val pickedNameView = binding.trackerItem.pickedTrackerNameText
+                val pickedNameView = binding.timerItem.pickedTrackerNameText
 
-                val countdownView = binding.trackerItem.countdownTimerText
-                val startTimeView = binding.trackerItem.startDateFasting
-                val endTimeView = binding.trackerItem.endDateFasting
+                val countdownView = binding.timerItem.countdownTimerText
+                val startTimeView = binding.timerItem.startDateFasting
+                val endTimeView = binding.timerItem.endDateFasting
 
                 if (off) {
                     countDownTimer?.cancel()
                     countDownTimer = null
-                    binding.trackerItem.switchFastingModeButton.apply {
+                    binding.timerItem.switchFastingModeButton.apply {
                         backgroundTintList =
                             ContextCompat.getColorStateList(
                                 context,
@@ -269,12 +269,12 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                         strokeWidth = resources.getDimensionPixelSize(R.dimen.stroke)
                         text = getString(R.string.on_tracker)
                     }
-                    binding.trackerItem.statusTimer.text =
+                    binding.timerItem.statusTimer.text =
                         getString(R.string.setting_tracker_your_own)
-                    binding.trackerItem.changeStartTimeButton.visibility = View.INVISIBLE
-                    binding.trackerItem.yourTrackerText.text = getString(R.string.your_tracker)
+                    binding.timerItem.changeStartTimeButton.visibility = View.INVISIBLE
+                    binding.timerItem.yourTrackerText.text = getString(R.string.your_tracker)
                     pickedNameView.text = "${userTimer.scenario.name}"
-                    binding.trackerItem.stopTimerButton.isVisible = false
+                    binding.timerItem.stopTimerButton.isVisible = false
                     pickedNameView.visibility = View.VISIBLE
                     countdownView.visibility = View.INVISIBLE
 
@@ -286,21 +286,21 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                     val end = now.plusHours(userTimer.scenario.fastingHours.toLong())
                     endTimeView.text = end.format(fmt)
                 } else {
-                    binding.trackerItem.yourTrackerText.text = getString(R.string.last_time)
-                    binding.trackerItem.changeStartTimeButton.visibility = View.VISIBLE
+                    binding.timerItem.yourTrackerText.text = getString(R.string.last_time)
+                    binding.timerItem.changeStartTimeButton.visibility = View.VISIBLE
 
                     val fmt = DateTimeFormatter.ofPattern("dd.MM HH:mm")
-                    binding.trackerItem.stopTimerButton.isVisible = true
+                    binding.timerItem.stopTimerButton.isVisible = true
                     pickedNameView.visibility = View.INVISIBLE
                     countdownView.visibility = View.VISIBLE
 
                     if (userTimer.status == TimerStatus.FASTING) {
-                        binding.trackerItem.statusTimer.text = getString(R.string.you_on_fasting)
-                        binding.trackerItem.startDateFastingEatingText.text =
+                        binding.timerItem.statusTimer.text = getString(R.string.you_on_fasting)
+                        binding.timerItem.startDateFastingEatingText.text =
                             getString(R.string.start_fasting_period)
-                        binding.trackerItem.endDateFastingEatingText.text =
+                        binding.timerItem.endDateFastingEatingText.text =
                             getString(R.string.end_fasting_period)
-                        binding.trackerItem.switchFastingModeButton.apply {
+                        binding.timerItem.switchFastingModeButton.apply {
                             backgroundTintList =
                                 ContextCompat.getColorStateList(
                                     context,
@@ -315,12 +315,12 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                             text = getString(R.string.on_eating)
                         }
                     } else {
-                        binding.trackerItem.statusTimer.text = getString(R.string.you_on_eating)
-                        binding.trackerItem.startDateFastingEatingText.text =
+                        binding.timerItem.statusTimer.text = getString(R.string.you_on_eating)
+                        binding.timerItem.startDateFastingEatingText.text =
                             getString(R.string.start_eating_period)
-                        binding.trackerItem.endDateFastingEatingText.text =
+                        binding.timerItem.endDateFastingEatingText.text =
                             getString(R.string.end_eating_period)
-                        binding.trackerItem.switchFastingModeButton.apply {
+                        binding.timerItem.switchFastingModeButton.apply {
                             backgroundTintList =
                                 ContextCompat.getColorStateList(
                                     context,
@@ -361,7 +361,7 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                     }
 
                     val initialRemainingHours = (ms / 3_600_000f).coerceAtLeast(0f)
-                    binding.trackerItem.circularProgressBarTimer.apply {
+                    binding.timerItem.circularProgressBarTimer.apply {
                         progressMax = totalHours.toFloat()
                         setProgressWithAnimation(initialRemainingHours, 500L)
                     }
@@ -371,13 +371,13 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                             val h = millisUntilFinished / 3600000
                             val m = (millisUntilFinished % 3600000) / 60000
                             val s = (millisUntilFinished % 60000) / 1000
-                            binding.trackerItem.countdownTimerText.text =
+                            binding.timerItem.countdownTimerText.text =
                                 "%02d:%02d:%02d".format(h, m, s)
 
                             if (s == 0L) {
                                 val remainingHours =
                                     (millisUntilFinished / 3_600_000f).coerceAtLeast(0f)
-                                binding.trackerItem.circularProgressBarTimer.apply {
+                                binding.timerItem.circularProgressBarTimer.apply {
                                     setProgressWithAnimation(remainingHours, 500L)
                                 }
                             }
@@ -392,6 +392,9 @@ class FastingFragment : BaseFragment<FragmentFastingBinding>() {
                     }.start()
 
                 }
+                binding.shimmerTimer.stopShimmer()
+                binding.shimmerTimer.isVisible = false
+                binding.timerItem.root.isVisible = true
             }
         }
     }

@@ -21,14 +21,48 @@
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/tracker_item"
-        layout="@layout/item_fasting_view"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/timerItemCL"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@id/fasting_text" />
+        app:layout_constraintTop_toBottomOf="@id/fasting_text"
+        >
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_timer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:shimmer_auto_start="true"
+            app:shimmer_duration="1500"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+            <include
+                android:id="@+id/timerItemPlaceholder"
+                layout="@layout/item_fasting_view_placeholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <include
+            android:id="@+id/timerItem"
+            layout="@layout/item_fasting_view"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/otherOurTimers"
@@ -42,7 +76,7 @@
         android:gravity="start"
         android:textColor="?attr/android:textColor"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-        app:layout_constraintTop_toBottomOf="@id/tracker_item"
+        app:layout_constraintTop_toBottomOf="@id/timerItemCL"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintBottom_toTopOf="@id/fasting_modes_view_pager"
         />
